@@ -1,15 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from '../components/home';
+// App.js
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from "./AppRoutes"; // Adjust path as needed
 
 export default function App() {
   return (
+    // BrowserRouter wraps the routing logic for a Single Page Application (SPA)
+    <>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout/>}/>
-        <Route index element={<Home/>}/>
-         
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
+    </>
+    
   );
 }
