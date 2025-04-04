@@ -4,7 +4,7 @@ import Search from "../../components/Search/Search";
 const BookOverview = () => {
 	  return (
 	<div>
-		<Search />
+		<Search buttonName={"Filter"} />
 	  <h1>Book Overview</h1>
 	  <p>This is the book overview page.</p>
 	</div>
