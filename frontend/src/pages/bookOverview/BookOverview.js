@@ -118,7 +118,7 @@ const BookOverview = ({ name, authors, number_of_physical_copies_available, is_e
 							/>
 							<Button text="Bookmark" borderRadius={"0"} onClick={() => {
 								const bookmarked = JSON.parse(sessionStorage.getItem("book_marked")) || {};
-								if (!bookmarked.includes(id)) {
+								if (!bookmarked || !bookmarked[id]) {
 									bookmarked[id] = {
 										name: name,
 										authors: authors,

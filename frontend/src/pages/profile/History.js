@@ -58,6 +58,7 @@ const History = () => {
 					{history_books && Object.keys(history_books).length > 0 ? (
 						Object.keys(history_books).map((id) => (
 							<BookCard
+								key={id}
 								id={id}
 								authors={history_books[id].authors}
 								first_line={`Checked out: ${history_books[id].checked_out_date}`}
