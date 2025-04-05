@@ -1,0 +1,40 @@
+.profileSidebar-container {
+	width: 20%;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-top: 100px;
+	padding: 20px;
+}
+
+.profileSidebar-header {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.profileSidebar-header h3 {
+	margin: 0;
+}
+
+.profileSidebar-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
+}
+
+.profileSidebar-buttons button {
+	border: 1px solid #CDCDCD;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #fff;
+	font-size: 18px;
+	align-items: center;
+	gap: 10px;
+	display: flex;
+}
+
+.profileSidebar-buttons .active {
+	background-color: #808080;
+}
