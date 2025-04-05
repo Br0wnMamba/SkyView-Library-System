@@ -33,9 +33,9 @@ export default function AppRoutes() {
           <Route path="search" element={<Search />} />
           <Route path="book/:bookId" element={<BookOverview />} />
 		  <Route path="history" element={<History />} />
+            <Route path="bookShelf" element={<BookShelf />} />
           <Route path="cart" element={<Cart />} />
           <Route path="profile" element={<Profile />}>
-            <Route path="bookShelf" element={<BookShelf />} />
             <Route path="bookShelf/:bookId" element={<ReadBook />} />
             <Route path="onHold" element={<OnHold />} />
             <Route path="bookmarks" element={<Bookmarks />} />
