@@ -1,7 +1,7 @@
 import React from "react";
 import "./BookCard.css";
 import { useNavigate } from "react-router-dom";
-import bookImages from "../utils/loadBookImages";
+import bookImages from "../../utils/loadBookImages";
 
 const BookCard = ({ name, authors, first_line, second_line, ButtonComponent, id }) => {
 	const navigate = useNavigate();

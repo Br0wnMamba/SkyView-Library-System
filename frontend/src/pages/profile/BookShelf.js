@@ -28,8 +28,8 @@ const BookShelf = () => {
 								second_line={"Access Until: " + my_library[id].return_date}
 								ButtonComponent={() => (
 									<div className="card-button-container">
-										{my_library[id].is_physical === "true" ? (
-											<p>Physical Book</p>
+										{my_library[id].is_physical === true ? (
+											<p>Physical Copy</p>
 										) : (
 											<Button text={"Read this Book"} borderRadius={"0"} textColor={"white"} backgroundColor={"#434EB4"} onClick={() => navigate("/bookShelf/" + id)} />
 										)}
