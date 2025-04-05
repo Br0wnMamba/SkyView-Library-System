@@ -1,15 +1,15 @@
 import React from "react";
 import "./BookCard.css";
 import { useNavigate } from "react-router-dom";
+import bookImages from "../utils/loadBookImages";
 
-// pass book_image = require("../../assets/image...")
-const BookCard = ({ name, book_image, authors, first_line, second_line, ButtonComponent, id }) => {
+const BookCard = ({ name, authors, first_line, second_line, ButtonComponent, id }) => {
 	const navigate = useNavigate();
 
 	return (
 		<div className="book-card-container">
 			<div className="book-image" onClick={() => navigate(`/book/${id}`)}>
-				<img src={book_image} alt="Book Cover" />
+				<img src={bookImages[id]} alt="Book Cover" />
 			</div>
 			<div className="book-details">
 				<hr />

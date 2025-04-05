@@ -24,3 +24,7 @@
 .book-details p {
 	margin: 0;
 }
+
+.button-container div {
+	height: fit-content;
+}

@@ -4,23 +4,26 @@ import Button from "../../components/Button/Button";
 import PhysicalBookLogo from "../../assets/physical-book.svg";
 import EBookLogo from "../../assets/ebook.svg";
 import AuthorProfile from "../../assets/bookoverview-user-profile.svg";
+import { useParams } from "react-router-dom";
 import "./BookOverview.css";
+import bookImages from "../../components/utils/loadBookImages";
 
-const BookOverview = ({ book_image_path, name, authors, number_of_physical_copies_available, is_ebook_available, published_date, description }) => {
+const BookOverview = ({ name, authors, number_of_physical_copies_available, is_ebook_available, published_date, description }) => {
+	const { bookId: id } = useParams();
 	const [bookTypeCheckout, setBookTypeCheckout] = useState("physical");
 	const [quantity, setQuantity] = useState(1);
 
 	const handleAddToCart = () => {
 		const cart = JSON.parse(sessionStorage.getItem("cart")) || {};
-		const bookKey = name;
+		const bookKey = id;
 		if (!cart[bookKey]) {
 			cart[bookKey] = {
+				name: name,
 				authors: authors,
 				is_physical: bookTypeCheckout === "physical",
 				quantity: bookTypeCheckout === "physical" ? quantity : 1,
 				is_ebook_available: is_ebook_available,
 				return_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString(),
-				book_image_path: book_image_path,
 			};
 		} else {
 			if (cart[bookKey].is_physical !== (bookTypeCheckout === "physical")) {
@@ -35,15 +38,15 @@ const BookOverview = ({ book_image_path, name, authors, number_of_physical_copie
 
 	const handleCheckout = () => {
 		const my_library = JSON.parse(sessionStorage.getItem("my_library")) || {};
-		const bookKey = name;
+		const bookKey = id;
 
 		if (!my_library[bookKey]) {
 			my_library[bookKey] = {
+				name: name,
 				authors: authors,
 				is_physical: bookTypeCheckout === "physical",
 				checked_out_date: new Date().toLocaleDateString(),
 				return_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString(),
-				book_image_path: book_image_path,
 			};
 		} else {
 			if (my_library[bookKey].is_physical !== (bookTypeCheckout === "physical")) {
@@ -63,7 +66,7 @@ const BookOverview = ({ book_image_path, name, authors, number_of_physical_copie
 				<div className="book-overview">
 					<div className="book-overview-image-container">
 						<div className="book-overview-image">
-							<img src={book_image_path} alt="Book Cover" />
+							<img src={bookImages[id]} alt="Book Cover" />
 						</div>
 						<div className="book-sample-info-buttons">
 							<button>
@@ -114,9 +117,13 @@ const BookOverview = ({ book_image_path, name, authors, number_of_physical_copie
 							}}
 							/>
 							<Button text="Bookmark" borderRadius={"0"} onClick={() => {
-								const bookmarked = JSON.parse(sessionStorage.getItem("book_marked")) || [];
-								if (!bookmarked.includes(name)) {
-									bookmarked.push(name);
+								const bookmarked = JSON.parse(sessionStorage.getItem("book_marked")) || {};
+								if (!bookmarked.includes(id)) {
+									bookmarked[id] = {
+										name: name,
+										authors: authors,
+										bookmarked_on: new Date().toLocaleDateString(),
+									};
 								}
 								sessionStorage.setItem("book_marked", JSON.stringify(bookmarked));
 							}}
