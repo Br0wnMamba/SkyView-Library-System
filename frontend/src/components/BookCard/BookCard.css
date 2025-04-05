@@ -1,0 +1,30 @@
+.book-card-container {
+	background-color: #EFEFEF;
+	width: 250px;
+	padding: 10px;
+}
+
+.book-image {
+	display: flex;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.book-image img {
+	width: 100%;
+	min-height: 200px;
+	max-height: 350px;
+	height: 350px;
+}
+
+.book-details h3 {
+	margin: 0;
+}
+
+.book-details p {
+	margin: 0;
+}
+
+.button-container div {
+	height: fit-content;
+}

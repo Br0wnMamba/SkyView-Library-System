@@ -1,0 +1,182 @@
+.book-overview-container {
+	display: flex;
+	gap: 10px;
+	margin: 15px 30px;
+}
+
+.book-overview {
+	display: flex;
+	background-color: #efefef;
+	max-width: 75%;
+	min-width: 75%;
+	padding: 10px;
+	gap: 20px;
+	min-height: 400px;
+}
+
+.book-overview-image-container {
+	min-width: 40%;
+	max-width: 40%;
+}
+
+.book-overview-image img {
+	width: 100%;
+	height: auto;
+	max-height: 550px;
+}
+
+.book-overview-info-published-date-name {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.book-overview-info-published-date-name h1 {
+	font-size: 1.8rem;
+	font-weight: 500;
+	margin: 0;
+}
+
+.book-overview-info-published-date-name p {
+	color: #706F74;
+	font-size: 1rem;
+}
+
+.book-overview-info-authors {
+	margin-top: -15px;
+}
+
+.book-overview-info-authors h1 {
+	margin-bottom: 0;
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.book-overview-info-availability {
+	display: flex;
+	align-items: center;
+	gap: 3px;
+}
+
+.book-overview-info-availability img {
+	width: 25px;
+	height: 25px;
+}
+
+.green {
+	color: #43B447;
+}
+
+.red {
+	color: #D50000;
+}
+
+.book-overview-info-availability p {
+	margin: 0;
+}
+
+.book-overview-bookmark-save-author-buttons {
+	display: flex;
+	gap: 10px;
+	width: 50%;
+}
+
+.book-overview-info-description {
+	font-size: 18px;
+}
+
+.book-overview-info-author-learn-more {
+	display: flex;
+	gap: 10px;
+}
+
+.book-overview-info {
+	width: 100%;
+}
+
+.book-sample-info-buttons {
+	display: flex;
+	gap: 10px;
+	width: 100%;
+	justify-content: center;
+}
+
+.book-sample-info-buttons button {
+	align-items: center;
+	background-color: transparent;
+	border: 1px solid #625F5F;
+	border-radius: 20px;
+	padding: 10px 20px;
+	font-size: large;
+	cursor: pointer;
+}
+
+.book-overview-checkout {
+	background-color: #efefef;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 15px;
+}
+
+.book-overview-checkout h1 {
+	font-weight: 500;
+}
+
+.book-overview-checkout-buttons {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-bottom: 20px;
+}
+
+.book-overview-checkout-buttons button {
+	background-color: transparent;
+	color: #000;
+	border: 1px solid #625F5F;
+	border-radius: 20px;
+	padding: 10px 20px;
+	font-size: large;
+	cursor: pointer;
+}
+
+.book-overview-checkout-buttons .selected {
+	border: 1px solid #140DC3;
+	background-color: #130dc339;
+}
+
+.book-overview-checkout-pickup-location {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	font-size: 1rem;
+}
+
+.book-overview-checkout-quantity {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 16px;
+	width: 100%;
+}
+
+.book-overview-checkout-quantity select {
+	padding: 6px 12px;
+	font-size: 1rem;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	cursor: pointer;
+	width: 100%;
+	background-color: #CDCDCD;
+}
+
+.book-overview-checkout-cart-book-now-buttons {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	height: 50px;
+	gap: 10px;
+	width: 100%;
+}
