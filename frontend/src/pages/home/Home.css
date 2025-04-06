@@ -1,1 +1,94 @@
+/* -----------------------------
+   Global Background changes
+------------------------------ */
 
+body {
+    background: linear-gradient(180deg, #0D1B2A 0%, #132B44 50%, #1B263B 100%);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+.homepage-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.home-booknewsFeedGroupings {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #000000;
+    justify-content: space-between;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.home-bookTitleGroupings {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+    object-fit: cover;
+  }
+
+.home-group-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.home-books-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.home-book-item {
+    background-color: #112D42;
+  border-radius: 12px;
+  padding: 1rem;
+  width: 220px;
+  min-height: 150px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); /* Gives the 3D depth */
+  border-radius: 12px; /* Smooth rounded edges */
+  border: 1px solid rgba(255, 255, 255, 0.06); /* Subtle border for edge separation */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Optional: Hover effect to give it more interactivity */
+.home-book-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  }
+
+.home-book-item h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .home-book-item p {
+    font-size: 0.85rem;
+    color: #AABACF;
+    margin: 0;
+  }
+
+
+  .home-addtocart-container {
+    padding-top: 12px;
+  }

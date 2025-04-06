@@ -1,0 +1,74 @@
+.cart-toggle {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #219EBC;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  width: 100%; /* Take full width like add button */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  gap: 1rem;
+  }
+
+  .add-to-cart-button {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #219EBC; /* Button base colour */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  width: 100%; /* Fills container */
+  border-radius: 10px; /* Smooth rounded corners */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle shadow */
+  }
+
+  .add-to-cart-button:hover {
+    background-color: #0b6b71; /* darker teal on hover */
+  }
+  
+  .cart-toggle:hover {
+    background-color: #0b6b71;
+    color: #0b6b71;
+  }
+
+  .add-to-cart-button{
+    color: white;
+    background-color: #0b6b71;
+
+  }
+
+  .quantity-toggle{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 2px solid #1c8aad;
+  }
+  
+  .toggle-btn {
+    background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  }
+  
+  .toggle-btn:focus {
+    outline: none;
+    color: #219EBC;
+  }
+  
+  .toggle-count {
+    min-width: 1.5rem;
+    text-align: center;
+  }
+
