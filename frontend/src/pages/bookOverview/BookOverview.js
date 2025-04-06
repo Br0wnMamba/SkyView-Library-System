@@ -9,10 +9,13 @@ import "./BookOverview.css";
 import bookImages from "../../utils/loadBookImages";
 import { handleAddToCart, handleCheckout, handleAddBookmark, handlePlaceOnHold } from "../../utils/setSessionStorage";
 
-const BookOverview = ({ name, authors, number_of_physical_copies_available, is_ebook_available, published_date, description }) => {
+const BookOverview = () => {
 	const { bookId: id } = useParams();
 	const [bookTypeCheckout, setBookTypeCheckout] = useState("");
 	const [quantity, setQuantity] = useState(0);
+	const books = JSON.parse(sessionStorage.getItem("books")) || {};
+	const book = books[id] || {};
+	const { name, authors, published_date, number_of_physical_copies_available, is_ebook_available, description } = book;
 
 	return (
 		<div>
@@ -72,7 +75,7 @@ const BookOverview = ({ name, authors, number_of_physical_copies_available, is_e
 							}}
 							/>
 							<Button text="Bookmark" borderRadius={"0"} onClick={() => {
-								handleAddBookmark({ id, name, authors, number_of_physical_copies_available, is_ebook_available });
+								handleAddBookmark(id);
 							}}
 							/>
 						</div>
@@ -136,22 +139,22 @@ const BookOverview = ({ name, authors, number_of_physical_copies_available, is_e
 					<div className="book-overview-checkout-cart-book-now-buttons">
 						{(bookTypeCheckout && bookTypeCheckout === "physical" && number_of_physical_copies_available <= 0) || ((bookTypeCheckout === "ebook" || bookTypeCheckout === "audio") && is_ebook_available === false) ? (
 							<Button text={"Place On Hold"} onClick={() => {
-								handlePlaceOnHold({ id, name, authors, bookType: bookTypeCheckout, quantity, number_of_physical_copies_available, is_ebook_available });
+								handlePlaceOnHold({ id, bookTypeCheckout });
 							}} fontSize={"18px"} backgroundColor={"#f4d473"} />) : (
 							<Button text="Add to Cart" onClick={
 								() => {
-									handleAddToCart({ id, name, authors, bookTypeCheckout, quantity, number_of_physical_copies_available, is_ebook_available });
+									handleAddToCart({ id, bookTypeCheckout, quantity });
 								}
 							} fontSize={"18px"} backgroundColor={"green"} disabled={
-								!bookTypeCheckout || (bookTypeCheckout === "physical" && number_of_physical_copies_available <= 0) || (bookTypeCheckout === "ebook" && is_ebook_available === false)
+								!bookTypeCheckout || (bookTypeCheckout === "physical" && number_of_physical_copies_available <= 0) || ((bookTypeCheckout === "ebook" || bookTypeCheckout === "audio") && is_ebook_available === false)
 							} />
 						)}
 						<Button text="Checkout Book Now" onClick={
 							() => {
-								handleCheckout({ id, name, authors, bookTypeCheckout });
+								handleCheckout({ id, bookTypeCheckout, quantity });
 							}
 						} fontSize={"18px"} disabled={
-							!bookTypeCheckout || (bookTypeCheckout === "physical" && number_of_physical_copies_available <= 0) || (bookTypeCheckout === "ebook" && is_ebook_available === false)
+							!bookTypeCheckout || (bookTypeCheckout === "physical" && number_of_physical_copies_available <= 0) || ((bookTypeCheckout === "ebook" || bookTypeCheckout === "audio") && is_ebook_available === false)
 						}
 						/>
 					</div>
