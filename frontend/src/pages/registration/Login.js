@@ -13,13 +13,8 @@ const Login = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log("Accounts: ", accountManager.accounts);
-  console.log("Library members: ", accountManager.libraryMembers);
-
   const handleLogin = () => {
-    console.log(accountManager.auth(emailAddress, password));
-    console.log("User: ", accountManager.user);
-    console.log("User: ", accountManager.getUser());
+    accountManager.auth(emailAddress, password);
   };
 
   return (

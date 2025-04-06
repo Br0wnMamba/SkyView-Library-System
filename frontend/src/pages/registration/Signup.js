@@ -15,7 +15,7 @@ const Signup = () => {
   const [cardNumber, setCardNumber] = useState("");
 
   const handleSignUp = () => {
-    console.log(accountManager.addAccount(emailAddress, password, cardNumber));
+    accountManager.addAccount(emailAddress, password, cardNumber);
   };
 
   return (

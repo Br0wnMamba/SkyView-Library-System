@@ -11,7 +11,7 @@ class AccountManager {
     }
     instance = this;
 
-    this.#user = undefined;
+    this.#user = sessionStorage.getItem("user");
 
     /**
      * Account structure:
@@ -23,41 +23,63 @@ class AccountManager {
      */
 
     // Contains login information only
-    this.#accounts = {
-      "elizabeth@ucalgary.ca": { password: "Adeyemo", cardNumber: 1 },
-      "adarsh@ucalgary.ca": { password: "Dudhat", cardNumber: 2 },
-      "ifeanyi@ucalgary.ca": { password: "Ekpemandu", cardNumber: 3 },
-      "jad@ucalgary.ca": { password: "Khalil", cardNumber: 4 },
-      "noor@ucalgary.ca": { password: "Nawaz", cardNumber: 5 },
-    };
+    let storedAccounts = sessionStorage.getItem("accounts");
+
+    if (storedAccounts === null) {
+      storedAccounts = {
+        "elizabeth@ucalgary.ca": { password: "Adeyemo", cardNumber: 1 },
+        "adarsh@ucalgary.ca": { password: "Dudhat", cardNumber: 2 },
+        "ifeanyi@ucalgary.ca": { password: "Ekpemandu", cardNumber: 3 },
+        "jad@ucalgary.ca": { password: "Khalil", cardNumber: 4 },
+        "noor@ucalgary.ca": { password: "Nawaz", cardNumber: 5 },
+      };
+      sessionStorage.setItem("accounts", JSON.stringify(storedAccounts));
+
+      this.#accounts = storedAccounts;
+    } else {
+      this.#accounts = JSON.parse(storedAccounts);
+    }
 
     // Contains more details about the user
-    this.#libraryMembers = {
-      1: {
-        firstName: "Elizabeth",
-        lastName: "Adeyemo",
-      },
-      2: {
-        firstName: "Adarsh",
-        lastName: "Dudhat",
-      },
-      3: {
-        firstName: "Ifeanyi",
-        lastName: "Ekpemandu",
-      },
-      4: {
-        firstName: "Jad",
-        lastName: "Khalil",
-      },
-      5: {
-        firstName: "Noor",
-        lastName: "Nawaz",
-      },
-      300: {
-        firstName: "Jonathan",
-        lastName: "Matthews",
-      },
-    };
+    let storedLibraryMembers = sessionStorage.getItem("library_members");
+
+    if (storedLibraryMembers === null) {
+      storedLibraryMembers = {
+        1: {
+          firstName: "Elizabeth",
+          lastName: "Adeyemo",
+        },
+        2: {
+          firstName: "Adarsh",
+          lastName: "Dudhat",
+        },
+        3: {
+          firstName: "Ifeanyi",
+          lastName: "Ekpemandu",
+        },
+        4: {
+          firstName: "Jad",
+          lastName: "Khalil",
+        },
+        5: {
+          firstName: "Noor",
+          lastName: "Nawaz",
+        },
+        300: {
+          firstName: "Jonathan",
+          lastName: "Matthews",
+        },
+      };
+
+      sessionStorage.setItem(
+        "library_members",
+        JSON.stringify(storedLibraryMembers)
+      );
+
+      this.#libraryMembers = storedLibraryMembers;
+    } else {
+      this.#libraryMembers = JSON.parse(storedLibraryMembers);
+    }
   }
 
   auth(emailAddress, password) {
@@ -78,7 +100,10 @@ class AccountManager {
       this.#accounts[emailAddress] &&
       this.#accounts[emailAddress].password === password
     ) {
-      this.#user = this.#accounts[emailAddress].cardNumber;
+      const cardNumber = this.#accounts[emailAddress].cardNumber;
+
+      sessionStorage.setItem("user", cardNumber);
+      this.#user = cardNumber;
 
       return {
         status: 200,
@@ -106,6 +131,7 @@ class AccountManager {
   }
 
   removeUser() {
+    sessionStorage.removeItem("user");
     this.#user = undefined;
   }
 
@@ -115,6 +141,8 @@ class AccountManager {
         password: password,
         cardNumber: cardNumber,
       };
+
+      sessionStorage.setItem("accounts", JSON.stringify(this.#accounts));
     }
   }
 
