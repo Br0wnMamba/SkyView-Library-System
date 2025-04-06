@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Cart.css";
 
 import ebookIcon from "../../assets/ebook.svg";
@@ -7,6 +9,8 @@ import placeholderImage from "../../assets/empty-cart-image.png";
 import bookImage from "../../assets/image.png";
 
 export default function Cart() {
+    const navigate = useNavigate();
+
   const [books, setBooks] = useState([
     {
       id: "book-1",
@@ -37,7 +41,6 @@ export default function Cart() {
     { ebooks: 0, physical: 0 }
   );
   
-
   const handleQuantityChange = (id, delta) => {
     setBooks(prev =>
       prev.map(book =>
@@ -53,6 +56,15 @@ export default function Cart() {
   };
 
   const isEmpty = books.length === 0;
+
+  const handleCheckout = () => {
+    const isLoggedIn = sessionStorage.getItem("user"); // or whatever key you use
+    if (isLoggedIn) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
+  };  
 
   return (
     <div className="cart-container">
@@ -105,12 +117,13 @@ export default function Cart() {
                     )}
                     </div>
 
-
                   <div className="cart-controls">
                     <button onClick={() => handleDelete(book.id)} className="delete-link">
                       Delete
                     </button>
-                    <a href="#" className="delete-link">Bookmark</a>
+                    <Link to="/profile/bookmarks" className="delete-link">
+                        Bookmark
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -125,7 +138,9 @@ export default function Cart() {
               <li>{totalBooks.physical} physical book(s)</li>
             </ul>
             <p>Pick up at: <strong>Sky view Library, Calgary, AB</strong></p>
-            <button className="checkout-button">Proceed to Checkout</button>
+            <button className="checkout-button" onClick={handleCheckout}>
+                Proceed to Checkout
+            </button>
           </div>
         </>
       )}
