@@ -67,7 +67,7 @@ body {
   background-color: #ffffff;
   border-radius: 12px;
   padding: 1rem;
-  width: 220px;
+  width: 270px;
   min-height: 150px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); /* Gives the 3D depth */
   border: 1px solid rgba(255, 255, 255, 0.06); /* Subtle border for edge separation */
@@ -77,31 +77,30 @@ body {
   justify-content: space-between;
 }
 
-/* Optional: Hover effect to give it more interactivity */
 .home-book-item:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
   }
 
+  /* book Title css */
 .home-book-item h3 {
   font-size: 1.1rem;
   font-weight: bold;
   color: #000000;
-  margin-bottom: 0.5rem;
-
+  margin-bottom: 0.2rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2;       /* Limit to 2 lines */
+  -webkit-line-clamp: 1;       /* Limit to 1 line */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: 2.2em; /* 2 lines of space = 1.3 * 2 */
+
   }
 
   .home-bookAuthor  {
     font-size: 0.8rem;
   color: #6c757d; /* muted grey */
   font-style: italic;
-  margin: 0.25rem 0 0.5rem 0;
+  margin: 0.25rem 0 1.25rem 0;
   }
 
   .home-book-item p {
@@ -112,7 +111,11 @@ body {
 
 
   .home-addtocart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* This adds spacing between the two buttons only */
     padding-top: 12px;
+    justify-content: space-between;
   }
 
 
@@ -133,4 +136,15 @@ body {
     margin-right: 6px;
     color: #000000; /* subtle dark grey */
     align-self: center;
+  }
+
+
+  .availability-yes {
+    color: #1f7a1f; /* soft green */
+    font-weight: bold;
+  }
+  
+  .availability-no {
+    color: #b30000; /* soft red */
+    font-weight: bold;
   }

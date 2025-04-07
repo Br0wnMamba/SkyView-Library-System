@@ -34,6 +34,22 @@
   .add-to-cart-button:hover {
     background-color: #2C8573 ; /* darker teal on hover */
   }
+
+  .add-to-cart-button:disabled {
+    background-color: #b0b0b0;      /* Muted grey */
+    color: #000000;                 /* White text for contrast */
+    opacity: 0.6;                   /* Faded look */
+    cursor: not-allowed;           /* Shows it's not clickable */
+    box-shadow: none;              /* Remove glow/shadow to reinforce disabled state */
+    transition: none;              /* No hover effect */
+  }
+  
+  .add-to-cart-button:disabled:hover {
+    background-color: #b0b0b0;      /* Prevent hover changes */
+    color: #111010;
+  }
+
+
   
   .cart-toggle:hover {
     background-color: #0b6b71;
