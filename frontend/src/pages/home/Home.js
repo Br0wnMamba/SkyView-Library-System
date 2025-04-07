@@ -5,6 +5,7 @@ import AddToCart from "../../components/AddToCart/AddToCart";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
 
+
 // Home page that will display the main page content, it will contain a series of book groupings grouped as a news feed
 const Home = () => {
   // Object that will be passed as parameter that will contain book Title Container, and its respective books
