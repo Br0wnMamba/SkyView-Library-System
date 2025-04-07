@@ -29,10 +29,9 @@ const NavBar = () => {
                 <input
                     type="text"
                     className="search-input"
-                    placeholder="Search for books..."
+                    placeholder="Search for a book or author..."
                 />
             </div>
-
         </div>
       
         <div class="navbar-right">
