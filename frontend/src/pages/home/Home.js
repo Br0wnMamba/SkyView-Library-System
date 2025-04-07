@@ -2,7 +2,8 @@ import React from "react";
 import "./Home.css";
 import { DisplayContent } from '../../data/book';
 import AddToCart from "../../components/AddToCart/AddToCart";
-
+import { IoMdPhonePortrait } from "react-icons/io";
+import { FaBook } from "react-icons/fa";
 
 // Home page that will display the main page content, it will contain a series of book groupings grouped as a news feed
 const Home = () => {
@@ -31,20 +32,22 @@ const Home = () => {
                 <h3>{book.title}</h3>
 
                 {/* Book author */}
-                <p>{book.author}</p>
+                <h4 className="home-bookAuthor">{book.author}</h4>
 
                 <div className="home-phsycial-avaiablity-container">
-                  <p>physical: {book.availability[0]} </p>
+                  <FaBook className="availability-icon"/>
+                  <p> <strong>physical:</strong> {book.availability[0]} </p>
 
                 </div>
 
                 <div className="home-digital-avaiablity-container">
-                  <p>digital: {book.availability[1]} </p>
+                  <IoMdPhonePortrait className="availability-icon"/>
+                  <p> <strong>digital:</strong> {book.availability[1]} </p>
               
                 </div>
 
                 <div className="home-addtocart-container">
-                  <AddToCart/>
+                  <AddToCart />
                 </div>
 
 

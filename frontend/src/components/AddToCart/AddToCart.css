@@ -18,7 +18,7 @@
     display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #219EBC; /* Button base colour */
+  background-color: #112D42; /* Button base colour */
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -32,7 +32,7 @@
   }
 
   .add-to-cart-button:hover {
-    background-color: #0b6b71; /* darker teal on hover */
+    background-color: #2C8573 ; /* darker teal on hover */
   }
   
   .cart-toggle:hover {
@@ -40,11 +40,7 @@
     color: #0b6b71;
   }
 
-  .add-to-cart-button{
-    color: white;
-    background-color: #0b6b71;
-
-  }
+ 
 
   .quantity-toggle{
     display: flex;
