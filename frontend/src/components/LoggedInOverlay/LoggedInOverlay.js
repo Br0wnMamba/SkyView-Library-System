@@ -4,6 +4,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
 import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import { RiBookShelfFill } from 'react-icons/ri';
 import { IoBookOutline } from 'react-icons/io5';
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,19 @@ const LoggedInOverlay = ({ is_my_library, is_history, is_on_hold, is_bookmark, o
 
 	return (
 		<div className="profileSidebarContainer">
+      <div style={{ display: "flex", justifyContent: "flex-start" }}>
+        <button
+          onClick={onClose}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "0px"
+          }}
+        >
+          <ClearOutlinedIcon style={{ color: "#092833" }} />
+        </button>
+      </div>
 			<div className="profileSidebarHeaderLarge">
 				<IoBookOutline className="profileSidebarPictureLarge"/>
 				<h4 className="profileSidebarSubtitle">Skyview Library</h4>
