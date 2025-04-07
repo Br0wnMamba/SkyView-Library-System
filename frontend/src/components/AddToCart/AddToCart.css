@@ -41,30 +41,20 @@
   }
 
  
-
-  .quantity-toggle{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 2px solid #1c8aad;
+  .added-toggle {
+    opacity: 0.85; /* slightly transparent */
+    background-color: #102838; /* dark blue base with transparency feel */
+    border-radius: 10px;
+    transition: all 0.3s ease;
   }
   
-  .toggle-btn {
-    background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.25rem;
-  cursor: pointer;
-  padding: 0;
+  .added-toggle .add-to-cart-button {
+    background-color: #0b6b71; /* calmer teal for "added" */
+    color: #e0fdfc;
+    cursor: pointer;
   }
   
-  .toggle-btn:focus {
-    outline: none;
-    color: #219EBC;
+  .added-toggle .add-to-cart-button:hover {
+    background-color: #095f64; /* slightly darker hover */
+    color: white;
   }
-  
-  .toggle-count {
-    min-width: 1.5rem;
-    text-align: center;
-  }
-
