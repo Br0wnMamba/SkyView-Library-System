@@ -34,3 +34,14 @@ button:hover {
   padding: 0.7em 1em;
   font-size: 18px;
 }
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.icon-button > .icon {
+  padding-right: 10px;
+}

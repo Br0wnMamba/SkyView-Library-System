@@ -1,0 +1,40 @@
+a {
+  text-decoration: none;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 70px;
+}
+.content {
+  width: 500px;
+  height: 100%;
+}
+
+#seperator {
+  overflow: hidden;
+  text-align: center;
+}
+
+#seperator::before,
+#seperator::after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+#seperator::before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+#seperator::after {
+  left: 0.5em;
+  margin-right: -50%;
+}
