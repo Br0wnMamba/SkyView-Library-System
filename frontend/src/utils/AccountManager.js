@@ -143,7 +143,13 @@ class AccountManager {
       };
 
       sessionStorage.setItem("accounts", JSON.stringify(this.#accounts));
+      return { status: 200, message: "Account created successfully!" };
     }
+
+    return {
+      status: 400,
+      message: "Account already exists or invalid card number.",
+    };
   }
 
   #canAddAccount(cardNumber) {

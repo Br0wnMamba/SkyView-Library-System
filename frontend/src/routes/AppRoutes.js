@@ -15,7 +15,6 @@ import History from '../pages/profile/History.js';
 import OnHold from '../pages/profile/OnHold.js';
 import Bookmarks from '../pages/profile/Bookmarks.js';
 import Login from '../pages/registration/Login.js';
-import Signup from '../pages/registration/Signup.js';
 
 
 // Define the main App component that sets up the router and routes.
@@ -33,13 +32,14 @@ export default function AppRoutes() {
           <Route path="search" element={<Search />} />
           <Route path="book/:bookId" element={<BookOverview />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="profile" element={<Profile />}>
+          {/* taking this out for now because we dont have /profile set up and its not routing properly :'( */}
+          {/* <Route path="profile" element={<Profile />}> */}
             <Route path="bookshelf" element={<BookShelf />} />
             <Route path="bookshelf/:bookId" element={<ReadBook />} />
             <Route path="history" element={<History />} />
             <Route path="onHold" element={<OnHold />} />
             <Route path="bookmarks" element={<Bookmarks />} />
-          </Route>
+          {/* </Route> */}
         </Route>
       </Routes>
 
