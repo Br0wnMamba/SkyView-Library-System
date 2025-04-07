@@ -9,6 +9,8 @@ import { IoBookOutline } from 'react-icons/io5';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import "./RegisterOverlay.css";
 import accountManager from "../../../utils/AccountManager";
+import GoogleOAuthRegister from "../../OAuthComponents/Google/GoogleOAuthRegister";
+import MicrosoftOAuthRegister from "../../OAuthComponents/Microsoft/MicrosoftOAuthRegister";
 
 const RegisterOverlay = ({ onClose, setOverlayView, setSnackbar }) => {
   const [emailAddress, setEmailAddress] = useState("");
@@ -16,8 +18,15 @@ const RegisterOverlay = ({ onClose, setOverlayView, setSnackbar }) => {
   const [cardNumber, setCardNumber] = useState("");
 
   const handleSignUp = () => {
+    if (!accountManager.getAllLibraryMembers()[cardNumber]) {
+      accountManager.addLibraryMember(cardNumber, {
+        firstName: "New",
+        lastName: "User",
+      });
+    }
+  
     const result = accountManager.addAccount(emailAddress, password, cardNumber);
-
+  
     if (result?.status === 200) {
       setSnackbar({ open: true, message: "Registration successful!", severity: "success" });
       setOverlayView("login");
@@ -89,45 +98,9 @@ const RegisterOverlay = ({ onClose, setOverlayView, setSnackbar }) => {
         </p>
         <p id="seperator">OR</p>
         <Space space={5} />
-        <IconButton
-          text={"Continue with Google"}
-          icon={
-            <img
-              src="https://images.icon-icons.com/2631/PNG/512/google_search_new_logo_icon_159150.png"
-              width={20}
-              alt="Google Logo"
-            />
-          }
-          size="l"
-          borderRadius={4}
-          style={{
-            border: "1px solid #808080",
-            justifyContent: "center",
-            fontSize: "14px",
-            padding: "8px 12px"
-          }}
-          fullWidth
-        />
+        <GoogleOAuthRegister onClose={onClose} setSnackbar={setSnackbar} />
         <Space space={10} />
-        <IconButton
-          text={"Continue with Microsoft Account"}
-          icon={
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_logo.jpg"
-              width={20}
-              alt="Microsoft Logo"
-            />
-          }
-          size="l"
-          borderRadius={4}
-          style={{
-            border: "1px solid #808080",
-            justifyContent: "center",
-            fontSize: "14px",
-            padding: "8px 12px"
-          }}
-          fullWidth
-        />
+        <MicrosoftOAuthRegister onClose={onClose} setSnackbar={setSnackbar} />
         <Space space={10} />
         <IconButton
           text={"Continue with Apple"}
