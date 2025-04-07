@@ -1,0 +1,37 @@
+input {
+  font-size: 14px;
+  box-shadow: inset #abacaf 0 0 0 2px;
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+  appearance: none;
+  box-sizing: border-box;
+  border-radius: 3px;
+  padding: 9px 12px;
+  line-height: 1.4;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  transition: all 0.2s ease;
+  width: auto;
+}
+
+input:hover {
+  box-shadow: 0 0 0 0 #fff inset, var(--primary-color) 0 0 0 2px;
+}
+
+input:focus {
+  background: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 0 #fff inset, var(--primary-color) 0 0 0 3px;
+}
+
+input.disabled {
+  background-color: rgb(193, 193, 193);
+  box-shadow: none;
+  color: #ffffff;
+}
+
+input.disabled:hover {
+  cursor: default;
+}

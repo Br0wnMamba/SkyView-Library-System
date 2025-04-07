@@ -1,0 +1,47 @@
+button {
+  color: #ffffff;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  width: auto;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.disabled {
+  background-color: gray;
+}
+
+.disabled:hover {
+  cursor: default;
+}
+
+.sm {
+  padding: 0.5em 0.6em;
+  font-size: 14px;
+}
+
+.md {
+  padding: 0.6em 0.75em;
+  font-size: 16px;
+}
+
+.lg {
+  padding: 0.7em 1em;
+  font-size: 18px;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.icon-button > .icon {
+  padding-right: 10px;
+}
