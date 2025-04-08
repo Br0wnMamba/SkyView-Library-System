@@ -1,0 +1,79 @@
+a {
+  text-decoration: none;
+}
+
+.loginSidebarContainer {
+	min-width: 30%;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-top: 3px;
+	padding: 20px;
+	max-height: 280px;
+}
+
+.loginSidebarHeader {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.loginSidebarHeaderLarge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.loginSidebarHeader h3 {
+	margin: 0;
+}
+
+.loginSidebarPictureLarge {
+    width: 64px;
+    height: 64px;
+}
+
+.loginSidebarSubtitle {
+    margin: 4px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.loginSidebarWelcome {
+    margin: 8px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.loginSidebarDescription {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: #555;
+}
+#seperator {
+  overflow: hidden;
+  text-align: center;
+}
+
+#seperator::before,
+#seperator::after {
+  background-color: #000;
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+#seperator::before {
+  right: 0.5em;
+  margin-left: -50%;
+}
+
+#seperator::after {
+  left: 0.5em;
+  margin-right: -50%;
+}

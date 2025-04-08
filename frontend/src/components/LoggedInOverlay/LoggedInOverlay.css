@@ -1,0 +1,116 @@
+.profileSidebarButtons {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
+}
+
+.profileSidebarButtons button {
+  color: #092833;
+  border: 1px solid #CDCDCD;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  justify-content: flex-start;
+  text-transform: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+  svg {
+    color: inherit;
+  }
+}
+
+.profileSidebarButtons .active {
+  background-color: #e0f0ff;
+  border-color: #90caf9;
+  color: #092833;
+
+  svg {
+    color: #092833;
+  }
+}
+
+.profileSidebarButtons button:hover {
+  background-color: #f5f5f5;
+  border-color: #aaa;
+  color: #092833;
+
+  svg {
+    color: #092833;
+  }
+}
+
+.profileSidebarButtons .logoutButton {
+  background-color: #092833;
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+  
+  &:hover {
+    background-color: #29667c;
+  }
+}
+
+.profileSidebarContainer {
+	min-width: 20%;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-top: 10px;
+	padding: 20px;
+	max-height: 280px;
+}
+
+.profileSidebarHeader {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.profileSidebarHeaderLarge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.profileSidebarHeader h3 {
+	margin: 0;
+}
+
+.profileSidebarPictureLarge {
+    width: 64px;
+    height: 64px;
+}
+
+.profileSidebarSubtitle {
+    margin: 4px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.profileSidebarWelcome {
+    margin: 8px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.profileSidebarDescription {
+    margin: 8px 0 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.profileSidebarButtons {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
+}

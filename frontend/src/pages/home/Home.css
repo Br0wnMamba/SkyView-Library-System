@@ -13,6 +13,7 @@ body {
   }
 
 .homepage-container {
+    margin-top: 67.58px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

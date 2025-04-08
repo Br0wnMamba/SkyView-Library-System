@@ -32,6 +32,8 @@ class AccountManager {
         "ifeanyi@ucalgary.ca": { password: "Ekpemandu", cardNumber: 3 },
         "jad@ucalgary.ca": { password: "Khalil", cardNumber: 4 },
         "noor@ucalgary.ca": { password: "Nawaz", cardNumber: 5 },
+        "cpsc481project@gmail.com": {password: "Interface123!", cardNumber: 6},
+        "cpsc481project@outlook.com": {password: "Interface123!", cardNumber: 7},
       };
       sessionStorage.setItem("accounts", JSON.stringify(storedAccounts));
 
@@ -65,10 +67,19 @@ class AccountManager {
           firstName: "Noor",
           lastName: "Nawaz",
         },
+        6: {
+          firstName: "CPSC",
+          lastName: "481",
+        },
+        7: {
+          firstName: "CPSC",
+          lastName: "481",
+        },
         300: {
           firstName: "Jonathan",
           lastName: "Matthews",
         },
+        
       };
 
       sessionStorage.setItem(
@@ -80,6 +91,22 @@ class AccountManager {
     } else {
       this.#libraryMembers = JSON.parse(storedLibraryMembers);
     }
+  }
+  
+  getAllAccounts() {
+    return this.#accounts;
+  }
+
+  getAllLibraryMembers() {
+    return this.#libraryMembers;
+  }
+
+  addLibraryMember(cardNumber, { firstName, lastName }) {
+    this.#libraryMembers[cardNumber] = {
+      firstName,
+      lastName,
+    };
+    sessionStorage.setItem("library_members", JSON.stringify(this.#libraryMembers));
   }
 
   auth(emailAddress, password) {
@@ -118,6 +145,14 @@ class AccountManager {
     };
   }
 
+  hasAccount(email) {
+    return !!this.#accounts[email];
+  }
+
+  getPasswordByEmail(email) {
+    return this.#accounts[email]?.password;
+  }
+
   getInstance() {
     return this;
   }
@@ -143,7 +178,13 @@ class AccountManager {
       };
 
       sessionStorage.setItem("accounts", JSON.stringify(this.#accounts));
+      return { status: 200, message: "Account created successfully!" };
     }
+
+    return {
+      status: 400,
+      message: "Account already exists or invalid card number.",
+    };
   }
 
   #canAddAccount(cardNumber) {
