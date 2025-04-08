@@ -146,6 +146,11 @@
 	background-color: #130dc339;
 }
 
+.book-overview-checkout-buttons .disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
 .book-overview-checkout-pickup-location {
 	display: flex;
 	gap: 10px;

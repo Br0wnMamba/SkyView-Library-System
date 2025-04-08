@@ -1,5 +1,5 @@
 import React from "react";
-import ProfilePicture from "../../assets/userProfile.png";
+import ProfilePicture from "../../assets/bookoverview-user-profile.svg";
 import HistoryLogo from "../../assets/profile-sidebar-history.svg";
 import MyLibraryLogo from "../../assets/profile-sidebar-library.svg";
 import OnHoldLogo from "../../assets/profile-sidebar-hold.svg";

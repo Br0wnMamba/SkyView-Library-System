@@ -1,0 +1,76 @@
+.cart-toggle {
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #219EBC;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  width: 100%; /* Take full width like add button */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  gap: 1rem;
+  }
+
+  .add-to-cart-button {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #112D42; /* Button base colour */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  width: 100%; /* Fills container */
+  border-radius: 10px; /* Smooth rounded corners */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle shadow */
+  }
+
+  .add-to-cart-button:hover {
+    background-color: #2C8573 ; /* darker teal on hover */
+  }
+
+  .add-to-cart-button:disabled {
+    background-color: #b0b0b0;      /* Muted grey */
+    color: #000000;                 /* White text for contrast */
+    opacity: 0.6;                   /* Faded look */
+    cursor: not-allowed;           /* Shows it's not clickable */
+    box-shadow: none;              /* Remove glow/shadow to reinforce disabled state */
+    transition: none;              /* No hover effect */
+  }
+  
+  .add-to-cart-button:disabled:hover {
+    background-color: #b0b0b0;      /* Prevent hover changes */
+    color: #111010;
+  }
+
+
+  
+  .cart-toggle:hover {
+    background-color: #0b6b71;
+    color: #0b6b71;
+  }
+
+ 
+  .added-toggle {
+    opacity: 0.85; /* slightly transparent */
+    background-color: #102838; /* dark blue base with transparency feel */
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .added-toggle .add-to-cart-button {
+    background-color: #0b6b71; /* calmer teal for "added" */
+    color: #e0fdfc;
+    cursor: pointer;
+  }
+  
+  .added-toggle .add-to-cart-button:hover {
+    background-color: #095f64; /* slightly darker hover */
+    color: white;
+  }

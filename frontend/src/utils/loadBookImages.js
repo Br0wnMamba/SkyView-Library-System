@@ -1,6 +1,6 @@
 // Example - update image import as needed
 
-import book1 from '../../assets/image.png';
+import book1 from '../assets/image.png';
 
 // { book_id: book_image }
 const bookImages = {

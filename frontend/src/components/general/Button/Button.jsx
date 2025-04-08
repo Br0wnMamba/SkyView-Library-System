@@ -45,7 +45,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`button ${buttonSizes[size]} ${
+      className={`general-button ${buttonSizes[size]} ${
         disabled ? "disabled" : ""
       } ${className}`}
       style={buttonStyle}
