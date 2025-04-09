@@ -173,6 +173,14 @@ class AccountManager {
     return this;
   }
 
+  getCardNumber() {
+	if (!this.#user || this.#user === null) {
+	  return undefined;
+	}
+
+	return this.#user;
+  }
+
   getUser() {
     if (!this.#user || this.#user === null) {
       return undefined;
