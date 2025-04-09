@@ -39,7 +39,7 @@ const Home = () => {
                   <FaBook className="availability-icon"/>
                   <p>
                     <strong>physical:</strong>{" "}
-                    {book.availability[0] == 0 ? (
+                    {book.availability[0] === 0 ? (
                       <span className="availability-no">unavailable</span>
                     ) : (
                       <span className="availability-yes">{book.availability[0]} available</span>

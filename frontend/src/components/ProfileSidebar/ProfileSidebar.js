@@ -1,11 +1,12 @@
 import React from "react";
-import ProfilePicture from "../../assets/bookoverview-user-profile.svg";
-import HistoryLogo from "../../assets/profile-sidebar-history.svg";
-import MyLibraryLogo from "../../assets/profile-sidebar-library.svg";
-import OnHoldLogo from "../../assets/profile-sidebar-hold.svg";
-import BookmarksLogo from "../../assets/profile-sidebar-bookmark.svg";
-import { useNavigate } from "react-router-dom";
+import Button from '@mui/material/Button';
+import HistoryIcon from '@mui/icons-material/History';
+import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+import BookmarkBorderOutlinedIcon from '@mui/icons-material/BookmarkBorderOutlined';
+import { RiBookShelfFill } from 'react-icons/ri';
 import "./ProfileSidebar.css";
+import  {useNavigate } from "react-router-dom";
+import ProfilePicture from "../../assets/bookoverview-user-profile.svg";
 
 const ProfileSidebar = ({ is_my_library, is_history, is_on_hold, is_bookmark }) => {
 	const navigate = useNavigate();
@@ -13,27 +14,47 @@ const ProfileSidebar = ({ is_my_library, is_history, is_on_hold, is_bookmark }) 
 	return (
 		<div className="profileSidebar-container">
 			<div className="profileSidebar-header">
-				<img src={ProfilePicture} alt="Profile" className="profileSidebar-picture" width={"25px"} height={"25px"} />
-				<h3 className="profileSidebar-name">Profile</h3>
+				<img src={ProfilePicture} alt="Profile" width={"25px"} height={"25px"} />
+				<h3>Profile</h3>
 			</div>
 			<hr />
 			<div className="profileSidebar-buttons">
-				<button className={`profileSidebar-button ${is_my_library ? "active" : ""}`} onClick={() => navigate("/bookShelf")}>
-					<img src={MyLibraryLogo} alt="My Library" className="profileSidebar-icon" />
+				<Button
+					variant="outlined"
+					startIcon={<RiBookShelfFill />}
+					fullWidth
+					disabled={is_my_library}
+					onClick={() => navigate("/bookShelf")}
+				>
 					My Library
-				</button>
-				<button className={`profileSidebar-button ${is_history ? "active" : ""}`} onClick={() => navigate("/history")}>
-					<img src={HistoryLogo} alt="History" className="profileSidebar-icon" />
+				</Button>
+				<Button
+					variant="outlined"
+					startIcon={<HistoryIcon />}
+					fullWidth
+					disabled={is_history}
+					onClick={() => navigate("/history")}
+				>
 					History
-				</button>
-				<button className={`profileSidebar-button ${is_on_hold ? "active" : ""}`} onClick={() => navigate("/onHold")}>
-					<img src={OnHoldLogo} alt="On Hold" className="profileSidebar-icon" />
+				</Button>
+				<Button
+					variant="outlined"
+					startIcon={<PauseCircleOutlineIcon />}
+					fullWidth
+					disabled={is_on_hold}
+					onClick={() => navigate("/onHold")}
+				>
 					On Hold
-				</button>
-				<button className={`profileSidebar-button ${is_bookmark ? "active" : ""}`} onClick={() => navigate("/bookmarks")}>
-					<img src={BookmarksLogo} alt="Bookmarks" className="profileSidebar-icon" />
-					Bookmarks
-				</button>
+				</Button>
+				<Button
+					variant="outlined"
+					startIcon={<BookmarkBorderOutlinedIcon />}
+					fullWidth
+					disabled={is_bookmark}
+					onClick={() => navigate("/bookmarks")}
+				>
+					Bookmarked
+				</Button>
 			</div>
 		</div>
 	);
