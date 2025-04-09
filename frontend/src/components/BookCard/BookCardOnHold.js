@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBook, FaEllipsisV } from "react-icons/fa";
-import AddToCart from "../AddToCart/AddToCart";
+import ExtendHold from "../AddToCart/ExtendHold";
 import "./BookCard.css";
 import "./BookCardOnHold.css";
 
@@ -57,7 +57,7 @@ const BookCardOnHold = ({ book }) => {
       </div>
 
       <div className="home-addtocart-container">
-        <AddToCart type={book.type}  />
+        <ExtendHold type={book.type}  />
       </div>
 
       

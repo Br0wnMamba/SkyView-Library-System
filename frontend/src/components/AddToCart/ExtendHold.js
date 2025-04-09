@@ -4,6 +4,12 @@ import { FaRegTrashAlt } from "react-icons/fa";
 
 const ExtendHold = ({type}) => {
   
+// First get the label type (physical or digital)
+const label = type === 'physical' ? 'Physical Booking' : 'Digital Booking';
+    
+// variable that checks to make sure there are books
+var availabilityCheck = true;
+
 
 const [added, setAdded] = useState(false);
 
@@ -14,25 +20,19 @@ const [added, setAdded] = useState(false);
 
   return (
     <div className="cart-toggle-container">
-    {availabilityCheck ? (
-      added === false ? (
+      {added === false ? (
         <button className="add-to-cart-button" onClick={handleAdd}>
-          Add {label}
+          Extend {label}
         </button>
       ) : (
         <div className="added-toggle">
           <button className="add-to-cart-button" onClick={handleRemove}>
-            Added {label}
+          Extend {label}
           </button>
         </div>
-      )
-    ) : (
-      <button className="add-to-cart-button" disabled>
-        {label} Unavailable
-      </button>
-    )}
-  </div>
+      )}
+    </div>
   );
 };
 
-export default AddToCart;
+export default ExtendHold;
