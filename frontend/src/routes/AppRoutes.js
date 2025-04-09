@@ -5,7 +5,6 @@ import { Routes, Route, useLocation } from "react-router-dom";
 // Import all components
 import Home from '../pages/home/Home.js';
 import Layout from "../layout/Layout.js";
-import Search from "../components/Search/Search.js"
 import BookOverview from '../pages/bookOverview/BookOverview.js';
 import Cart from "../pages/cart/Cart.js"
 import BookShelf from '../pages/profile/BookShelf.js';
@@ -16,6 +15,7 @@ import Bookmarks from '../pages/profile/Bookmarks.js';
 import Login from '../pages/registration/Login.js';
 import Signup from '../pages/registration/Signup.js';
 import ProfileLayout from "../pages/profile/ProfileLayout.js";
+import SearchResults from "../pages/SearchResults/SearchResults.js";
 
 
 // Define the main App component that sets up the router and routes.
@@ -30,7 +30,7 @@ export default function AppRoutes() {
       <Routes location={state?.backgroundLocation || location}>
         <Route path="/" element={<Layout />}>                    {/* Renders layout which will include shared UI elements (e.g. navbar, searchbar etc) */}
           <Route index element={<Home />} />                     {/* index is the default child of the "/" path*/}
-          <Route path="search" element={<Search />} />
+          <Route path="search" element={<SearchResults />} />
           <Route path="book/:bookId" element={<BookOverview />} />
           <Route path="cart" element={<Cart />} />
           <Route path="profile" element={<ProfileLayout />}>

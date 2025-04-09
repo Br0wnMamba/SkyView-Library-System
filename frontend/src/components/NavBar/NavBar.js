@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./NavBar.css";
 import { GiOpenBook } from "react-icons/gi";
 import { RiHome2Line } from "react-icons/ri";
@@ -7,10 +7,12 @@ import { BsCart3 } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import Search from "../Search/Search.js";
 
 const NavBar = () => {
 
   const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
 
       return (
         <nav class="navbar-container">
@@ -28,15 +30,10 @@ const NavBar = () => {
         </div>
 
         <div className="navbar-center">
-        <div className="search-container">
-            <FaMagnifyingGlass className="search-icon" />
-                <input
-                    type="text"
-                    className="search-input"
-                    placeholder="Search for books..."
-                />
-            </div>
-
+            <Search
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            />
         </div>
       
         <div class="navbar-right">

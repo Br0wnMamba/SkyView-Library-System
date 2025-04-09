@@ -2,68 +2,64 @@
    Colour Variables
 ------------------------------ */
 
-
 :root {
-    --nav-bg: #14273E;
-    --search-bg: #213A50;
-    --icon-color: #FFFFFF;
-    --placeholder-color: #90A4B9;
-    --hover-bg: rgba(255, 255, 255, 0.05);
-  }
+  --nav-bg: #14273E;
+  --search-bg: #213A50;
+  --icon-color: #FFFFFF;
+  --placeholder-color: #90A4B9;
+  --hover-bg: rgba(255, 255, 255, 0.05);
+}
 
 /* -----------------------------
    Global Navbar Container
 ------------------------------ */
 .navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--nav-bg);
-    padding: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    position: sticky;
-    gap: 1.5;
-    top: 0;
-    z-index: 1000;
-    height: 44px;
-  }
-  
-  /* -----------------------------
-     Left Side: Logo  + Title
-  ------------------------------ */
-  .navbar-left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    white-space: nowrap;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--nav-bg);
+  padding: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  gap: 1.5;
+  top: 0;
+  z-index: 1000;
+  height: 44px;
+}
 
-  .icon-skyViewLogo {
-    font-size: 2.5rem;
-    width: 100%;
-    color: white;
-    display: flex;
-    justify-content: center;
-  }
+/* -----------------------------
+   Left Side: Logo + Title
+------------------------------ */
+.navbar-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+}
 
+.icon-skyViewLogo {
+  font-size: 2.5rem;
+  width: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+}
 
 .SkyViewLogo-Container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .p-skyViewLogo {
-    margin: 0;
-    font-size: 0.56em;
-    color: white;
-  }
-  
-/* -----------------------------
-   Center & Search Input Field Styling
------------------------------- */
+  margin: 0;
+  font-size: 0.56em;
+  color: white;
+}
 
+/* -----------------------------
+   Center Container (now just acts as holder for search)
+------------------------------ */
 .navbar-center {
   display: flex;
   padding: 1rem;
@@ -72,87 +68,49 @@
   justify-content: center;
 }
 
-.search-container {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding-right: 40px;
+/* -----------------------------
+   Right Side: Nav Icons
+------------------------------ */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  height: 100%;
+}
 
-  }
-  
-  .search-icon {
-    position: absolute;
-  left: 14px;
-  font-size: 1rem;
+.profile-container {
+  height: 100%;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 8px;
+  transition: background 0.25s ease;
+}
+
+.nav-container:hover {
+  background-color: var(--hover-bg);
+}
+
+/* -----------------------------
+   Individual Icon Styling
+------------------------------ */
+.icon-home,
+.icon-reservations,
+.icon-cart,
+.icon-user {
+  font-size: 28px;
   color: white;
-  pointer-events: none;
-  }
-  
-  .search-input {
-    width: 100%;
-    padding: 0.6rem 1rem 0.6rem 2.2rem; /* left padding for icon */
-    border-radius: 8px; 
-    border: none;
-    background-color: var(--search-bg);
-  color: var(--icon-color);
-    font-size: 0.95rem;
-    transition: box-shadow 0.3s ease;
-    height: 16px;
-  }
-  
-  .search-input::placeholder {
-    color: white;
-  }
-  
-  .search-input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #415A77;
-  }
-  
-  /* -----------------------------
-     Right Side: Nav Icons
-  ------------------------------ */
-  .navbar-right {
-    display: flex;
-    align-items: center;
-    gap: 1.8rem;
-    height: 100%;
-  }
+  transition: color 0.2s ease;
+}
 
-  .profile-container {
-    height: 100%;
-  }
-  
-  .nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    padding: 0.4rem;
-    border-radius: 8px;
-    transition: background 0.25s ease;
-  }
-  
-  .nav-container:hover {
-    background-color: var(--hover-bg);
-  }
-  
-  /* -----------------------------
-     Individual Icon Styling
-  ------------------------------ */
-  .icon-home,
-  .icon-reservations,
-  .icon-cart,
-  .icon-user {
-    font-size: 28px;
-    color: white;
-    transition: color 0.2s ease;
-  }
-  
-  .icon-home:hover,
-  .icon-reservations:hover,
-  .icon-cart:hover,
-  .icon-user:hover {
-    color: #FFD166; /* Accent hover */
-  }
+.icon-home:hover,
+.icon-reservations:hover,
+.icon-cart:hover,
+.icon-user:hover {
+  color: #FFD166;
+}
