@@ -1,0 +1,169 @@
+
+/* Page Container and setup CSS */
+.search-results-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+
+.search-results-container {
+    background-color: #f7fafd;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* Filter options Header data and stuff */
+  .search-results-meta-data-options-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem 0.25rem 1.5rem;
+    border-bottom: 2px solid rgba(47, 59, 82, 0.2);
+  }
+
+
+  .filter-toggle-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+
+  .search-results-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-results-filter-results-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .search-results-filter-button-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .search-results-results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+
+/* Books Display */
+  .search-results-list-container {
+    display: flex;
+    flex-direction: row;
+    align-items: top;
+    width: 100%;
+  }
+
+
+.search-results-list-grid-display-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    justify-content: center;
+    gap: 1.5rem; /* Gap between books */
+    padding: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.search-results-filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    border-right: 2px solid black;
+}
+
+/* Filter Panel Styling */
+.search-results-filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 2rem;
+    width: 25%;
+    border-right: 2px solid rgba(0, 0, 0, 0.1);
+    background-color: #f0f4f8;
+    box-sizing: border-box;
+  }
+  
+  /* Shared filter section container */
+  .search-results-filter-content- {
+    width: 100%;
+  }
+  
+  /* Section Titles */
+  .search-results-filter-container h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1d2d44;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Group of items (genre, authors, etc.) */
+  .search-results-filter-content-genre,
+  .search-results-filter-content-author,
+  .search-results-filter-content-language,
+  .search-results-filter-content-availability {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  /* Individual item styles */
+  .search-results-filter-content-genre-item,
+  .search-results-filter-content-author-item,
+  .search-results-filter-content-language-item,
+  .search-results-filter-content-availability-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    color: #2f3b52;
+  }
+  
+  /* Checkbox spacing and consistent UI */
+  .search-results-filter-container input[type="checkbox"] {
+    accent-color: #2f3b52;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+  }
+  
+  .search-results-filter-container label {
+    cursor: pointer;
+  }
+  
+  /* Responsive Adjustment (Optional) */
+  @media (max-width: 900px) {
+    .search-results-list-container {
+      flex-direction: column;
+    }
+  
+    .search-results-filter-container {
+      width: 100%;
+      border-right: none;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  
