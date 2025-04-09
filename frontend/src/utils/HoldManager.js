@@ -64,8 +64,8 @@ class HoldManager {
           id: book_id,
           type: type,
           quantity: quantity,
-          held_date: new Date().toLocaleDateString(),
-          held_till: HOLD_TILL,
+          hold_date: new Date().toLocaleDateString(),
+          hold_till: HOLD_TILL,
         });
       } else {
         userHolds[holdIndex].quantity += quantity;
