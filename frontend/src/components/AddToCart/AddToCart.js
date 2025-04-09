@@ -5,7 +5,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 const AddToCart = ({type, count}) => {
   
     // First get the label type (physical or digital)
-    const label = type === 'physical' ? 'Physical Copy' : 'Digital Copy';
+    const label = type === 'physical' ? 'Physical Booking' : 'Digital Booking';
     
     // variable that checks to make sure there are books
     var availabilityCheck = true;
@@ -30,22 +30,16 @@ const [added, setAdded] = useState(false);
 
   return (
     <div className="cart-toggle-container">
-    {availabilityCheck ? (
-      added === false ? (
-        <button className="add-to-cart-button" onClick={handleAdd}>
-          Add {label}
-        </button>
-      ) : (
-        <div className="added-toggle">
-          <button className="add-to-cart-button" onClick={handleRemove}>
-            Added {label}
-          </button>
-        </div>
-      )
-    ) : (
-      <button className="add-to-cart-button" disabled>
-        {label} Unavailable
+    {added === false ? (
+      <button className="add-to-cart-button" onClick={handleAdd}>
+        Extend {label}
       </button>
+    ) : (
+      <div className="added-toggle">
+        <button className="add-to-cart-button" onClick={handleRemove}>
+          Extended {label}
+        </button>
+      </div>
     )}
   </div>
   );

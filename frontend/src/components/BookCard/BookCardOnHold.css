@@ -1,0 +1,58 @@
+.on-hold .hold-type-tag {
+    display: flex;
+    align-items: center;
+    background-color: #e9f5ff;
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+    font-weight: bold;
+    color: #005a8d;
+    gap: 0.3rem;
+  }
+  
+  .onhold-due p {
+    margin: 2px 0;
+    font-size: 0.8rem;
+    color: #333;
+  }
+  
+  .onhold-actions {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.75rem;
+  }
+  
+  .menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background-color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+  }
+  
+  .dropdown-menu button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu button:hover {
+    background-color: #f3f3f3;
+  }
+  

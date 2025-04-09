@@ -1,0 +1,83 @@
+.book-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  
+  .home-book-item {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 1rem;
+    width: 270px;
+    min-height: 150px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); /* Gives the 3D depth */
+    border: 1px solid rgba(255, 255, 255, 0.06); /* Subtle border for edge separation */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .home-book-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  }
+  
+  .home-book-item h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 0.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .home-bookAuthor {
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-style: italic;
+    margin: 0.25rem 0 1.25rem 0;
+  }
+  
+  .home-book-item p {
+    font-size: 0.85rem;
+    color: #000000;
+    margin: 0;
+  }
+  
+  .home-addtocart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 12px;
+    justify-content: space-between;
+  }
+  
+  .home-phsycial-avaiablity-container,
+  .home-digital-avaiablity-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.3rem;
+  }
+  
+  .availability-icon {
+    font-size: 1rem;
+    margin-right: 6px;
+    color: #000000;
+    align-self: center;
+  }
+  
+  .availability-yes {
+    color: #1f7a1f;
+    font-weight: bold;
+  }
+  
+  .availability-no {
+    color: #b30000;
+    font-weight: bold;
+  }
+  

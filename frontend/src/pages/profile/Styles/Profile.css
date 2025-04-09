@@ -1,0 +1,114 @@
+/* Global CSS Styles for the Profile */
+
+.site-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 2rem;
+    
+  }
+
+.profile-page-container {
+    background-color: #f7fafd;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 100vh;
+    
+  }
+
+  .profile-navbar {
+    width: 18%;
+    background-color: #f7fafd;
+    border-radius: 12px;
+  }
+
+  .profile-navbar-title-container {
+    background-color: #f7fafd;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.25rem;
+    gap: 1rem;
+  }
+
+  .profile-navbar-title {
+    font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  margin: 0;
+  padding: 0.75rem 1.5rem 0.25rem 1.5rem;
+  border-bottom: 2px solid rgba(47, 59, 82, 0.2);
+  }
+  
+
+  .profile-list-settings {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: #f7fafd;
+    margin: 0;
+    padding: 0.75rem 0.25rem 0.25rem 0.25rem;
+  }
+
+  .profile-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    color: rgb(30, 30, 30);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background-color: #f7fafd;
+    transition: all 0.2s ease;
+  }
+  
+  .profile-link:hover {
+    border-color: #415A77;
+    background-color: rgba(240, 240, 240, 0.8);
+  }
+  
+  .profile-link.active {
+    background-color: #14273E;
+    color: rgb(255, 255, 255);
+  }
+
+  .profile-link-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+  }
+
+  .profile-icon {
+
+  }
+
+
+  .profile-books-container {
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+  .profile-outlet {
+    width: 82%;
+    display: flex;
+    justify-content: center;
+  }
+  
+
+  .profile-icon-reservations {
+    font-size: 28px;
+    color: rgb(0, 0, 0);
+    transition: color 0.2s ease;
+  }
+
+  .profile-active-icon-reservations {
+    color: #0055ff; /* or your primary theme colour */
+  }

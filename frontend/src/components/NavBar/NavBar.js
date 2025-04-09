@@ -6,8 +6,12 @@ import { RiBookShelfLine } from "react-icons/ri";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+
+  const navigate = useNavigate();
+
       return (
         <nav class="navbar-container">
         <div class="nav-container navbar-left">
@@ -36,12 +40,12 @@ const NavBar = () => {
         </div>
       
         <div class="navbar-right">
-            <div className="nav-container home-container">
-                <RiHome2Line className="icon-home"/>
+            <div className="nav-container bookshelf-container" onClick={() => navigate("/profile/bookshelf")}>
+                <RiBookShelfLine className="icon-reservations"/>
             </div>
 
-            <div className="nav-container bookshelf-container">
-                <RiBookShelfLine className="icon-reservations"/>
+            <div className="nav-container home-container" onClick={() => navigate("/")}>
+                <RiHome2Line className="icon-home"/>
             </div>
 
             <div className="nav-container cart-container">

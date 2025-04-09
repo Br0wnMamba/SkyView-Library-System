@@ -78,7 +78,7 @@
     display: flex;
     align-items: center;
     padding-right: 40px;
-    height: 28px;
+
   }
   
   .search-icon {
@@ -98,7 +98,7 @@
   color: var(--icon-color);
     font-size: 0.95rem;
     transition: box-shadow 0.3s ease;
-    height: 28px;
+    height: 16px;
   }
   
   .search-input::placeholder {
@@ -117,6 +117,11 @@
     display: flex;
     align-items: center;
     gap: 1.8rem;
+    height: 100%;
+  }
+
+  .profile-container {
+    height: 100%;
   }
   
   .nav-container {
@@ -140,7 +145,7 @@
   .icon-reservations,
   .icon-cart,
   .icon-user {
-    font-size: 3rem;
+    font-size: 28px;
     color: white;
     transition: color 0.2s ease;
   }
