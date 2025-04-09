@@ -19,7 +19,6 @@ const BookOverview = () => {
 
 	return (
 		<div>
-			<Search buttonName={"Filter"} />
 			<div className="book-overview-container">
 				<div className="book-overview">
 					<div className="book-overview-image-container">

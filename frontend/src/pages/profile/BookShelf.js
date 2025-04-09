@@ -60,7 +60,9 @@ const BookShelf = () => {
               />
             ))
           ) : (
-            <p>No books available in your library.</p>
+			<div>
+				<h2 className="no-data-available">No books available in your library.!!!</h2>
+			</div>
           )}
         </div>
       </div>

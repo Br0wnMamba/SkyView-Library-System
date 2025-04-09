@@ -75,4 +75,6 @@ const handlePlaceOnHold = ({ id, bookTypeCheckout }) => {
 	// need to complete
 };
 
-export { handleAddToCart, handleCheckout, handleAddBookmark, handleRemoveBookmark, handlePlaceOnHold };
+const handleRemoveHold = (id) => {};
+
+export { handleAddToCart, handleCheckout, handleAddBookmark, handleRemoveBookmark, handlePlaceOnHold, handleRemoveHold };

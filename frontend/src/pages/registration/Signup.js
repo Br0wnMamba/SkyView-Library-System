@@ -5,19 +5,45 @@ import {
   Modal,
   Space,
 } from "../../components/general";
+import { Alert, Snackbar } from "@mui/material";
 import "./Registration.css";
 import accountManager from "../../utils/AccountManager";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const Signup = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [cardNumber, setCardNumber] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const background = location.state?.backgroundLocation;
+  const [snackbar, setSnackbar] = useState({
+	open: false,
+	message: "",
+	severity: "success",
+  });
 
   const handleSignUp = () => {
-    accountManager.addAccount(emailAddress, password, cardNumber);
+    const res = accountManager.addAccount(emailAddress, password, cardNumber);
+
+    if (res.status === 200) {
+      if (background) {
+        navigate(background.pathname, { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
+    } else {
+      setSnackbar({
+        open: true,
+        message: res.message,
+        severity: "error",
+      });
+    }
   };
 
   return (
+    <div className="login-signup-modal-container">
+	<div className="login-signup-modal">
     <Modal borderRadius={10}>
       <div className="content">
         <h1>Create Your Account</h1>
@@ -65,10 +91,24 @@ const Signup = () => {
         </Button>
         <Space />
         <p>
-          Already have an account? <a href="/login">Log In</a>
+          Already have an account? {" "}
+		  <Link to="/login" state={{ backgroundLocation: background }}>
+		  	Log In
+	      </Link>
         </p>
       </div>
     </Modal>
+      <Snackbar
+          open={snackbar.open}
+          autoHideDuration={3000}
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+        >
+          <Alert severity={snackbar.severity} sx={{ width: "100%" }}>
+          {snackbar.message}
+          </Alert>
+      </Snackbar>
+    </div>
+	</div>
   );
 };
 
