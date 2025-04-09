@@ -11,12 +11,12 @@ import "./Registration.css";
 import accountManager from "../../utils/AccountManager";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ backgroundLocation }) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
-  const background = location.state?.backgroundLocation;
+  const background = location.state?.backgroundLocation || backgroundLocation;
   const [snackbar, setSnackbar] = useState({
 	open: false,
 	message: "",

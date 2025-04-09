@@ -14,6 +14,7 @@ import AddToBookmark from "../../components/AddToBookmark/AddToBookmark";
 import PutOnHold from "../../components/PutOnHold/PutOnHold";
 import AddToCart from "../../components/AddToCart/AddToCart";
 import bookManager from "../../utils/BookManager";
+import accountManager from "../../utils/AccountManager";
 
 const History = () => {
   const userId = accountManager.getCardNumber();

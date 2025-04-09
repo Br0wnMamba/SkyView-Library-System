@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
         state={{ backgroundLocation: location }}
       />
     );
-  } else if (!user && window.location.pathname === "/signup") {
+  } else if (!user && window.location.pathname !== "/login" && window.location.pathname !== "/signup") {
 	return (
 	  <Navigate
 		to="/signup"
