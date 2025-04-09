@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Cart.css";
@@ -8,29 +8,32 @@ import physicalBookIcon from "../../assets/physical-book.svg";
 import placeholderImage from "../../assets/empty-cart-image.png";
 import bookImage from "../../assets/image.png";
 
-export default function Cart() {
-    const navigate = useNavigate();
+import { handleAddBookmark } from "../../utils/setSessionStorage";
 
-  const [books, setBooks] = useState([
-    {
-      id: "book-1",
-      name: "Harry Potter: and the Philosopher’s Stone",
-      authors: ["J.K. ROWLING"],
-      is_physical: "false",
-      quantity: 2,
-      return_date: "03/25/2025",
-      image_url: bookImage,
-    },
-    {
-      id: "book-2",
-      name: "Harry Potter: and the Sorcerer’s Stone",
-      authors: ["J.K. ROWLING"],
-      is_physical: "true",
-      quantity: 1,
-      return_date: "03/25/2025",
-      image_url: bookImage,
-    },
-  ]);
+export default function Cart() {
+  const navigate = useNavigate();
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(sessionStorage.getItem("cart")) || {};
+    const storedBooks = JSON.parse(sessionStorage.getItem("books")) || {};
+
+    const cartBooks = Object.entries(storedCart).map(([id, item]) => {
+      const bookData = storedBooks[id] || {};
+
+      return {
+        id,
+        name: bookData.title || `Book Title for ${id}`,
+        authors: bookData.authors || ["Unknown Author"],
+        is_physical: item.is_physical ? "true" : "false",
+        quantity: item.quantity,
+        return_date: item.return_date,
+        image_url: bookImage, // Use bookData.image_url if available
+      };
+    });
+
+    setBooks(cartBooks);
+  }, []);
 
   const totalBooks = books.reduce(
     (acc, book) => {
@@ -40,31 +43,52 @@ export default function Cart() {
     },
     { ebooks: 0, physical: 0 }
   );
-  
+
   const handleQuantityChange = (id, delta) => {
-    setBooks(prev =>
-      prev.map(book =>
-        book.id === id
-          ? { ...book, quantity: Math.max(1, book.quantity + delta) }
-          : book
-      )
-    );
+    const updatedBooks = books.map(book => {
+      if (book.id === id) {
+        const newQuantity = Math.max(1, book.quantity + delta);
+        return { ...book, quantity: newQuantity };
+      }
+      return book;
+    });
+    setBooks(updatedBooks);
+
+    const updatedCart = {};
+    updatedBooks.forEach(book => {
+      updatedCart[book.id] = {
+        is_physical: book.is_physical === "true",
+        quantity: book.quantity,
+        return_date: book.return_date,
+      };
+    });
+    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   const handleDelete = (id) => {
-    setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
+    const updatedBooks = books.filter(book => book.id !== id);
+    setBooks(updatedBooks);
+
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || {};
+    delete cart[id];
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  const handleBookmark = (id) => {
+    handleAddBookmark(id);
+    alert("Book bookmarked!");
   };
 
   const isEmpty = books.length === 0;
 
   const handleCheckout = () => {
-    const isLoggedIn = sessionStorage.getItem("user"); // or whatever key you use
+    const isLoggedIn = sessionStorage.getItem("user");
     if (isLoggedIn) {
       navigate("/profile");
     } else {
       navigate("/login");
     }
-  };  
+  };
 
   return (
     <div className="cart-container">
@@ -96,34 +120,33 @@ export default function Cart() {
 
                   <div className="quantity-wrapper">
                     <div className="quantity-controls">
-                        <button
+                      <button
                         onClick={() => handleQuantityChange(book.id, -1)}
                         disabled={book.quantity === 1}
                         className="qty-button"
-                        >
+                      >
                         -
-                        </button>
-                        <span>{book.quantity}</span>
-                        <button
+                      </button>
+                      <span>{book.quantity}</span>
+                      <button
                         onClick={() => handleQuantityChange(book.id, 1)}
                         className="qty-button"
-                        >
+                      >
                         +
-                        </button>
+                      </button>
                     </div>
-
                     {book.quantity === 1 && (
-                        <p className="qty-warning">Minimum quantity is 1</p>
+                      <p className="qty-warning">Minimum quantity is 1</p>
                     )}
-                    </div>
+                  </div>
 
                   <div className="cart-controls">
                     <button onClick={() => handleDelete(book.id)} className="delete-link">
                       Delete
                     </button>
-                    <Link to="/profile/bookmarks" className="delete-link">
-                        Bookmark
-                    </Link>
+                    <button onClick={() => handleBookmark(book.id)} className="delete-link">
+                      Bookmark
+                    </button>
                   </div>
                 </div>
               </div>
@@ -131,15 +154,14 @@ export default function Cart() {
           </div>
 
           <div className="cart-summary">
-          <h3> Finalize checkout of {books.reduce((total, b) => total + b.quantity, 0)} books </h3>
-
+            <h3>Finalize checkout of {books.reduce((total, b) => total + b.quantity, 0)} books</h3>
             <ul>
               <li>{totalBooks.ebooks} e-book(s)</li>
               <li>{totalBooks.physical} physical book(s)</li>
             </ul>
             <p>Pick up at: <strong>Sky view Library, Calgary, AB</strong></p>
             <button className="checkout-button" onClick={handleCheckout}>
-                Proceed to Checkout
+              Proceed to Checkout
             </button>
           </div>
         </>
