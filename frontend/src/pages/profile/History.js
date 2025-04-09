@@ -5,11 +5,14 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import { handleAddBookmark, handleRemoveBookmark as handleRemoveBookmarkFunction } from "../../utils/setSessionStorage";
 import "./profile-all-pages.css";
+import accountManager from "../../utils/AccountManager";
 
 const History = () => {
-	const [history_books, setHistoryBooks] = useState({});
+	const userId = accountManager.getCardNumber();
 	const [bookmarked_books, setBookmarkedBooks] = useState([]);
 	const [on_hold_books, setOnHoldBooks] = useState({});
+	const history_books_all_users = JSON.parse(sessionStorage.getItem("history")) || {};
+	const history_books = history_books_all_users[userId] || {};
 	const books = JSON.parse(sessionStorage.getItem("books")) || {};
 	const navigate = useNavigate();
 
@@ -24,14 +27,12 @@ const History = () => {
 	}
 
 	useEffect(() => {
-		const history_books = JSON.parse(sessionStorage.getItem("history")) || {};
-		const bookmarked_books = JSON.parse(sessionStorage.getItem("book_marked")) || [];
-		const on_hold_books = JSON.parse(sessionStorage.getItem("on_hold")) || {};
+		const bookmarked_books_all_users = JSON.parse(sessionStorage.getItem("book_marked")) || {};
+		const on_hold_books_all_users = JSON.parse(sessionStorage.getItem("on_hold")) || {};
 
-		setHistoryBooks(history_books);
-		setBookmarkedBooks(bookmarked_books);
-		setOnHoldBooks(on_hold_books);
-	}, []);
+		setBookmarkedBooks(bookmarked_books_all_users[userId] || []);
+		setOnHoldBooks(on_hold_books_all_users[userId] || {});
+	}, [userId]);
 
 	return (
 		<div className="profile-page-container">

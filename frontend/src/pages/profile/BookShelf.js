@@ -4,10 +4,13 @@ import ProfileSidebar from "../../components/ProfileSidebar/ProfileSidebar";
 import BookCard from "../../components/BookCard/BookCard";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import accountManager from "../../utils/AccountManager";
 
 const BookShelf = () => {
   const navigate = useNavigate();
-  const my_library = JSON.parse(sessionStorage.getItem("my_library")) || {};
+  const userId = accountManager.getCardNumber();
+  const my_library_all_users = JSON.parse(sessionStorage.getItem("my_library")) || {};
+  const my_library = my_library_all_users[userId] || {};
   const books = JSON.parse(sessionStorage.getItem("books")) || {};
   const my_library_book_ids = Object.keys(my_library);
   const my_library_books = {};
