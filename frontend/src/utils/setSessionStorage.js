@@ -1,26 +1,39 @@
 const returnDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString();
 
-const handleAddToCart = ({ id, bookTypeCheckout, quantity }) => {
+const handleAddToCart = ({ id, bookTypeCheckout, quantity, name, authors, image }) => {
 	const cart = JSON.parse(sessionStorage.getItem("cart")) || {};
-
-	const bookKey = id;
+	const returnDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString();
+  
+	const bookKey = `${id}-${bookTypeCheckout}`; // <-- 🔥 FIX
+	if (bookTypeCheckout === "digital" && cart[bookKey]) {
+		// Already added an eBook, don’t add another
+		return cart;
+	  } 
+  
 	if (!cart[bookKey]) {
-		cart[bookKey] = {
-			is_physical: bookTypeCheckout === "physical",
-			quantity: bookTypeCheckout === "physical" ? parseInt(quantity) : 1,
-			return_date: returnDate,
-		};
+	  cart[bookKey] = {
+		is_physical: bookTypeCheckout === "physical",
+		quantity: bookTypeCheckout === "physical" ? parseInt(quantity) : 1,
+		return_date: returnDate,
+		name,
+		authors,
+		image
+	  };
 	} else {
-		if (cart[bookKey].is_physical !== (bookTypeCheckout === "physical")) {
-			cart[bookKey].is_physical = bookTypeCheckout === "physical";
-		}
-		cart[bookKey].quantity = bookTypeCheckout === "physical" ? cart[bookKey].quantity + parseInt(quantity) : 1;
-		cart[bookKey].return_date = returnDate;
+	  if (cart[bookKey].is_physical !== (bookTypeCheckout === "physical")) {
+		cart[bookKey].is_physical = bookTypeCheckout === "physical";
+	  }
+  
+	  cart[bookKey].quantity = bookTypeCheckout === "physical"
+		? cart[bookKey].quantity + parseInt(quantity)
+		: 1;
+  
+	  cart[bookKey].return_date = returnDate;
 	}
 
 	sessionStorage.setItem("cart", JSON.stringify(cart));
 	return cart;
-};
+  };  
 
 const handleCheckout = ({ id, bookTypeCheckout, quantity }) => {
 	const books = JSON.parse(sessionStorage.getItem("books")) || {};

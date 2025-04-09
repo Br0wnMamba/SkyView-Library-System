@@ -18,20 +18,21 @@ export default function Cart() {
     const storedCart = JSON.parse(sessionStorage.getItem("cart")) || {};
     const storedBooks = JSON.parse(sessionStorage.getItem("books")) || {};
 
-    const cartBooks = Object.entries(storedCart).map(([id, item]) => {
+    const cartBooks = Object.entries(storedCart).map(([key, item]) => {
+      const [id, type] = key.split("-");
       const bookData = storedBooks[id] || {};
-
+    
       return {
-        id,
-        name: bookData.title || `Book Title for ${id}`,
-        authors: bookData.authors || ["Unknown Author"],
+        id: key,
+        name: item.name || bookData.title || `Book Title for ${id}`,
+        authors: item.authors || bookData.authors || ["Unknown Author"],
         is_physical: item.is_physical ? "true" : "false",
         quantity: item.quantity,
         return_date: item.return_date,
-        image_url: bookImage, // Use bookData.image_url if available
+        image_url: item.image || bookImage,
       };
     });
-
+    
     setBooks(cartBooks);
   }, []);
 
@@ -169,7 +170,7 @@ export default function Cart() {
                       </button>
                       <button
                         onClick={() => handleBookmark(book.id)}
-                        className="delete-link"
+                        className="bookmark-link"
                       >
                         Bookmark
                       </button>
