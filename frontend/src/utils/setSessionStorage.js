@@ -4,7 +4,7 @@ const handleAddToCart = ({ id, bookTypeCheckout, quantity, name, authors, image 
 	const cart = JSON.parse(sessionStorage.getItem("cart")) || {};
 	const returnDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString();
   
-	const bookKey = `${id}-${bookTypeCheckout}`; // <-- 🔥 FIX
+	const bookKey = `${id}-${bookTypeCheckout}`;
 	if (bookTypeCheckout === "digital" && cart[bookKey]) {
 		// Already added an eBook, don’t add another
 		return cart;
