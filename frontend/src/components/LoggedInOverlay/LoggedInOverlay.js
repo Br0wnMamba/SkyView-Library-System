@@ -7,26 +7,23 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import { RiBookShelfFill } from 'react-icons/ri';
 import { IoBookOutline } from 'react-icons/io5';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./LoggedInOverlay.css";
 import accountManager from '../../utils/AccountManager';
 
-const LoggedInOverlay = ({ is_my_library, is_history, is_on_hold, is_bookmark, onClose, setSnackbar }) => {
+const LoggedInOverlay = ({ onClose, setSnackbar }) => {
 	const navigate = useNavigate();
+	const location = useLocation();
+	const currentPath = location.pathname;
 
 	return (
 		<div className="profileSidebarContainer">
       <div style={{ display: "flex", justifyContent: "flex-start" }}>
         <button
           onClick={onClose}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "0px"
-          }}
+          className="closeButton"
         >
-          <ClearOutlinedIcon style={{ color: "#092833" }} />
+          <ClearOutlinedIcon className="closeButtonIcon" />
         </button>
       </div>
 			<div className="profileSidebarHeaderLarge">
@@ -39,8 +36,9 @@ const LoggedInOverlay = ({ is_my_library, is_history, is_on_hold, is_bookmark, o
 			<div className="profileSidebarButtons">
 				<Button
 					variant="outlined"
-					startIcon={<RiBookShelfFill style={{ fontSize: 20 }} />}
+					startIcon={<RiBookShelfFill />}
 					fullWidth
+					disabled={currentPath === "/bookshelf"}
 					onClick={() => {
 						navigate("/bookshelf");
 						onClose();
@@ -50,8 +48,9 @@ const LoggedInOverlay = ({ is_my_library, is_history, is_on_hold, is_bookmark, o
 				</Button>
 				<Button
 					variant="outlined"
-					startIcon={<HistoryIcon style={{ fontSize: 20 }} />}
+					startIcon={<HistoryIcon />}
 					fullWidth
+					disabled={currentPath === "/history"}
 					onClick={() => {
 						navigate("/history");
 						onClose();
@@ -61,8 +60,9 @@ const LoggedInOverlay = ({ is_my_library, is_history, is_on_hold, is_bookmark, o
 				</Button>
 				<Button
 					variant="outlined"
-					startIcon={<PauseCircleOutlineIcon style={{ fontSize: 20 }} />}
+					startIcon={<PauseCircleOutlineIcon />}
 					fullWidth
+					disabled={currentPath === "/onHold"}
 					onClick={() => {
 						navigate("/onHold");
 						onClose();
@@ -72,14 +72,15 @@ const LoggedInOverlay = ({ is_my_library, is_history, is_on_hold, is_bookmark, o
 				</Button>
 				<Button
 					variant="outlined"
-					startIcon={<BookmarkBorderOutlinedIcon style={{ fontSize: 20 }} />}
+					startIcon={<BookmarkBorderOutlinedIcon />}
 					fullWidth
+					disabled={currentPath === "/bookmarks"}
 					onClick={() => {
 						navigate("/bookmarks");
 						onClose();
 					}}
 				>
-					Bookmarks
+					Bookmarked
 				</Button>
         
 				<Button
