@@ -6,7 +6,7 @@ let instance;
 class HoldManager {
   constructor() {
     if (instance) {
-      throw new Error("A cart manager has already been initialized");
+      throw new Error("A hold manager has already been initialized");
     }
     instance = this;
 
@@ -18,6 +18,7 @@ class HoldManager {
       sessionStorage.setItem("holds", JSON.stringify(storedHolds));
     }
   }
+
   getInstance() {
     return this;
   }
@@ -43,7 +44,7 @@ class HoldManager {
     }
 
     if (bookManager.getBook(book_id).availability[type] >= quantity) {
-      const RETURN_DATE = new Date(
+      const HOLD_TILL = new Date(
         Date.now() + 7 * 24 * 60 * 60 * 1000
       ).toLocaleDateString();
 
@@ -63,8 +64,8 @@ class HoldManager {
           id: book_id,
           type: type,
           quantity: quantity,
-          checked_out_date: new Date().toLocaleDateString(),
-          return_date: RETURN_DATE,
+          held_date: new Date().toLocaleDateString(),
+          held_till: HOLD_TILL,
         });
       } else {
         userHolds[holdIndex].quantity += quantity;
