@@ -32,8 +32,14 @@ class AccountManager {
         "ifeanyi@ucalgary.ca": { password: "Ekpemandu", cardNumber: 3 },
         "jad@ucalgary.ca": { password: "Khalil", cardNumber: 4 },
         "noor@ucalgary.ca": { password: "Nawaz", cardNumber: 5 },
-        "cpsc481project@gmail.com": {password: "Interface123!", cardNumber: 6},
-        "cpsc481project@outlook.com": {password: "Interface123!", cardNumber: 7},
+        "cpsc481project@gmail.com": {
+          password: "Interface123!",
+          cardNumber: 6,
+        },
+        "cpsc481project@outlook.com": {
+          password: "Interface123!",
+          cardNumber: 7,
+        },
       };
       sessionStorage.setItem("accounts", JSON.stringify(storedAccounts));
 
@@ -79,7 +85,6 @@ class AccountManager {
           firstName: "Jonathan",
           lastName: "Matthews",
         },
-        
       };
 
       sessionStorage.setItem(
@@ -92,7 +97,7 @@ class AccountManager {
       this.#libraryMembers = JSON.parse(storedLibraryMembers);
     }
   }
-  
+
   getAllAccounts() {
     return this.#accounts;
   }
@@ -106,7 +111,10 @@ class AccountManager {
       firstName,
       lastName,
     };
-    sessionStorage.setItem("library_members", JSON.stringify(this.#libraryMembers));
+    sessionStorage.setItem(
+      "library_members",
+      JSON.stringify(this.#libraryMembers)
+    );
   }
 
   auth(emailAddress, password) {
@@ -162,7 +170,7 @@ class AccountManager {
       return undefined;
     }
 
-    return this.#libraryMembers[this.#user];
+    return { id: this.#user, ...this.#libraryMembers[this.#user] };
   }
 
   removeUser() {
@@ -184,6 +192,22 @@ class AccountManager {
     return {
       status: 400,
       message: "Account already exists or invalid card number.",
+    };
+  }
+
+  // Callback to make sure user is signed in otherwise returns 400 error
+  requireAuth(callback) {
+    return (...args) => {
+      let account = accountManager.getUser();
+
+      if (!account) {
+        return {
+          status: 401,
+          message: "User not signed in",
+        };
+      }
+
+      return callback.apply(this, args);
     };
   }
 
