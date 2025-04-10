@@ -1,0 +1,25 @@
+.readBookSidebar-container {
+	min-width: 20%;
+	max-width: 20%;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-top: 100px;
+	padding: 20px;
+	height: fit-content;
+}
+
+.readBookSidebar-header {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+.readBookSidebar-header h3 {
+	margin: 0;
+}
+
+.text-chapter-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}

@@ -46,6 +46,7 @@
   .footer-column a {
     color: #ffffff;
     text-decoration: none;
+	cursor: pointer;
   }
   
   .footer-column a:hover {

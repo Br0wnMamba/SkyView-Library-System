@@ -4,22 +4,22 @@ import ProfileSidebar from "../../components/ProfileSidebar/ProfileSidebar";
 import BookCard from "../../components/BookCard/BookCard";
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
+import loanManager from "../../utils/LoanManager";
+import bookManager from "../../utils/BookManager";
 
 const BookShelf = () => {
   const navigate = useNavigate();
-  const my_library = JSON.parse(sessionStorage.getItem("my_library")) || {};
-  const books = JSON.parse(sessionStorage.getItem("books")) || {};
-  const my_library_book_ids = Object.keys(my_library);
-  const my_library_books = {};
+  const my_library_books_info = loanManager.getUserLoans();
+  const all_books = bookManager.getAllBooks(); // result is an array of objects
 
-  my_library_book_ids.forEach((id) => {
-    if (books[id]) {
-      my_library_books[id] = {
-        ...my_library[id],
-        ...books[id],
-      };
-    }
+  const my_library_books = my_library_books_info.map((book) => {
+	const bookDetails = all_books.find((b) => Number(b.id) === Number(book.book_id));
+	return {
+	  ...book,
+	  ...bookDetails,
+	};
   });
+
 
   return (
     <div className="profile-page-container">
@@ -29,22 +29,22 @@ const BookShelf = () => {
           <h1 className="profile-page-header-text">My Library</h1>
         </div>
         <div className="profile-page-cards-container">
-          {my_library_books && Object.keys(my_library_books).length > 0 ? (
-            Object.keys(my_library_books).map((id) => (
+          {my_library_books && my_library_books.length > 0 ? (
+            my_library_books.map((book) => (
               <BookCard
-                key={id}
-                id={id}
-                name={my_library_books[id].name}
-                authors={my_library_books[id].authors}
+                key={book.book_id}
+                id={book.book_id}
+                name={book.title}
+                authors={book.authors}
                 first_line={
-                  "Checked out: " + my_library_books[id].checked_out_date
+                  "Checked out: " + book.checked_out_date
                 }
                 second_line={
-                  "Access Until: " + my_library_books[id].return_date
+                  "Access Until: " + book.return_date
                 }
                 ButtonComponent={() => (
                   <div className="card-button-container">
-                    {my_library_books[id].is_physical === true ? (
+                    {book.type === "physical" ? (
                       <p>Physical Copy</p>
                     ) : (
                       <Button
@@ -52,7 +52,7 @@ const BookShelf = () => {
                         borderRadius={"0"}
                         textColor={"white"}
                         backgroundColor={"#434EB4"}
-                        onClick={() => navigate("bookShelf/" + id)}
+                        onClick={() => navigate("/bookShelf/" + book.book_id)}
                       />
                     )}
                   </div>
@@ -60,7 +60,9 @@ const BookShelf = () => {
               />
             ))
           ) : (
-            <p>No books available in your library.</p>
+			<div>
+				<h2 className="no-data-available">No books available in your library.!!!</h2>
+			</div>
           )}
         </div>
       </div>

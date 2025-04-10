@@ -8,13 +8,14 @@ import Layout from "../layout/Layout.js";
 import Search from "../components/Search/Search.js"
 import BookOverview from '../pages/bookOverview/BookOverview.js';
 import Cart from "../pages/cart/Cart.js"
-import Profile from '../pages/profile/Profile.js';
 import BookShelf from '../pages/profile/BookShelf.js';
 import ReadBook from '../pages/profile/ReadBook.js';
 import History from '../pages/profile/History.js';
 import OnHold from '../pages/profile/OnHold.js';
 import Bookmarks from '../pages/profile/Bookmarks.js';
 import Login from '../pages/registration/Login.js';
+import ProtectedRoute from "./ProtectedRoutes.js";
+import Signup from "../pages/registration/Signup.js";
 
 
 // Define the main App component that sets up the router and routes.
@@ -32,12 +33,28 @@ export default function AppRoutes() {
           <Route path="search" element={<Search />} />
           <Route path="book/:bookId" element={<BookOverview />} />
           <Route path="cart" element={<Cart />} />
-          {/* taking this out for now because we dont have /profile set up and its not routing properly :'( */}
-          {/* <Route path="profile" element={<Profile />}> */}
-            <Route path="bookshelf" element={<BookShelf />} />
-            <Route path="bookshelf/:bookId" element={<ReadBook />} />
-            <Route path="history" element={<History />} />
-            <Route path="onHold" element={<OnHold />} />
+
+            <Route path="bookshelf" element={
+					<ProtectedRoute>
+						<BookShelf />
+					</ProtectedRoute>
+				}
+			 />
+            <Route path="bookshelf/:bookId" element={
+					<ProtectedRoute>
+						<ReadBook />
+					</ProtectedRoute>
+			} />
+            <Route path="history" element={
+					<ProtectedRoute>
+						<History />
+					</ProtectedRoute>
+			} />
+            <Route path="onHold" element={
+					<ProtectedRoute>
+						<OnHold />
+					</ProtectedRoute>
+			} />
             <Route path="bookmarks" element={<Bookmarks />} />
           {/* </Route> */}
         </Route>
@@ -47,6 +64,7 @@ export default function AppRoutes() {
       {state?.backgroundLocation && (
         <Routes>
           <Route path="/login" element={<Login />} />
+		  <Route path="/signup" element={<Signup />} />
         </Routes>
       )}
     </>

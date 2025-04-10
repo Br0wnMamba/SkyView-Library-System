@@ -1,64 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import './AddToCart.css';
-import { handleAddToCart } from "../../utils/setSessionStorage";
+import React, { useState } from "react";
+import "./AddToCart.css";
+import cartManager from "../../utils/CartManager";
 
-const AddToCart = ({ id, type, count, title, author, image }) => {
-  const label = type === 'physical' ? 'Physical Copy' : 'Digital Copy';
-
-  const isAvailable = type === 'physical' ? count > 0 : count !== 'n';
+const AddToCart = ({ type, book_id }) => {
+  // First get the label type (physical or digital)
+  const label = type === "physical" ? "Physical Copy" : "Digital Copy";
 
   const [added, setAdded] = useState(false);
-  const [locked, setLocked] = useState(false); // for digital, one-time add
-
 
   const handleAdd = () => {
-    handleAddToCart({
-      id,
-      bookTypeCheckout: type,
-      quantity: 1,
-      name: title,
-      authors: [author],
-      image
-    });
-  
-    setAdded(true);
-  
-    if (type === "digital") {
-      // After 2 seconds, lock it so it shows "eBook Already Added"
-      setTimeout(() => {
-        setAdded(false);
-        setLocked(true);
-      }, 2000);
-    } else {
-      // for physical, allow normal re-adding after timeout
-      setTimeout(() => setAdded(false), 2000);
-    }
-  };  
+    const result = cartManager.add(book_id, type);
 
-  useEffect(() => {
-    if (type === "digital") {
-      const cart = JSON.parse(sessionStorage.getItem("cart")) || {};
-      const key = `${id}-digital`;
-      if (cart[key]) {
-        setLocked(true);
-      }
+    if (result === 200) {
+      setAdded(true);
     }
-  }, [id, type]);
+  };
+  const handleRemove = () => setAdded(false);
 
   return (
     <div className="cart-toggle-container">
-      {isAvailable ? (
-        <button
-          className={`add-to-cart-button ${added || locked ? "added" : ""}`}
-          onClick={handleAdd}
-          disabled={locked}
-        >
-          {locked
-            ? "eBook Already Added"
-            : added
-            ? "Added to Cart"
-            : `Add ${label}`}
-        </button>
+      {cartManager.canAdd(book_id, type) ? (
+        added === false ? (
+          <button className="add-to-cart-button" onClick={handleAdd}>
+            Add {label}
+          </button>
+        ) : (
+          <div className="added-toggle">
+            <button className="add-to-cart-button" onClick={handleRemove}>
+              Added {label}
+            </button>
+          </div>
+        )
       ) : (
         <button className="add-to-cart-button" disabled>
           {label} Unavailable
