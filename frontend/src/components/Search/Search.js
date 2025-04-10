@@ -15,6 +15,7 @@ const Search = () => {
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent form submission
             navigate(`/search?q=${query}`); // Redirect to search page with query
+            setQuery(""); // Clear the input field after search
         }
     }
 

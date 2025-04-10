@@ -50,6 +50,13 @@ const SearchResults = () => {
   return (
     <>
         <div className="search-results-page-container">
+
+        <div className="search-results-title-container">      
+            <h1 className="search-results-title-header">
+                Showing Results for "<span style={{ fontStyle: 'italic' }}>{query}"</span>
+            </h1>
+        </div>
+
             <div className="search-results-container">
 
                 <div className="search-results-meta-data-options-container">
@@ -77,11 +84,7 @@ const SearchResults = () => {
 
                         </div>    
 
-                        <div className="search-results-title-container">      
-                            <h2 className="search-results-title-header">
-                                Showing Results for "<span style={{ fontStyle: 'italic' }}>{query}"</span>
-                            </h2>
-                        </div>
+                        
 
                     </div>
                 
