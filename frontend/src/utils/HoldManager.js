@@ -43,7 +43,7 @@ class HoldManager {
       return;
     }
 
-    if (bookManager.getBook(book_id).availability[type] >= quantity) {
+    if (bookManager.getBook(book_id).availability[type] < quantity) {
       const HOLD_TILL = new Date(
         Date.now() + 7 * 24 * 60 * 60 * 1000
       ).toLocaleDateString();

@@ -12,7 +12,7 @@ import {
 	MenuItem
 } from "@mui/material";
 
-const ReadBookSidebar = ({ onTextColorsChange, onBackgroundColorChange, onTextSizeChange, onChapterChange }) => {
+const ReadBookSidebar = ({ onTextColorsChange, onBackgroundColorChange, onTextSizeChange, onChapterChange, totalChapters }) => {
 	const [textColor, setTextColor] = useState("black");
 	const [backgroundColor, setBackgroundColor] = useState("white");
 	const [textSize, setTextSize] = useState(12);
@@ -93,9 +93,11 @@ const ReadBookSidebar = ({ onTextColorsChange, onBackgroundColorChange, onTextSi
 					<h4>Chapter</h4>
 					<FormControl variant="outlined" size="small">
 						<Select value={chapter} onChange={handleChapterChange} style={{ width: "120px" }}>
-							<MenuItem value={1}>1</MenuItem>
-							<MenuItem value={2}>2</MenuItem>
-							<MenuItem value={3}>3</MenuItem>
+							{Array.from({ length: totalChapters }, (_, index) => (
+								<MenuItem key={index + 1} value={index + 1}>
+									Chapter {index + 1}
+								</MenuItem>
+							))}
 						</Select>
 					</FormControl>
 				</div>

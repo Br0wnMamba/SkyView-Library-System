@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProfileSidebar from "../../components/ProfileSidebar/ProfileSidebar";
 import BookCard from "../../components/BookCard/BookCard";
 import Button from "../../components/Button/Button";
@@ -7,35 +7,32 @@ import "./profile-all-pages.css";
 import bookManager from "../../utils/BookManager";
 import bookmarkManager from "../../utils/BookmarkManager";
 import holdManager from "../../utils/HoldManager";
+import historyManager from "../../utils/HistoryManager";
 
 const History = () => {
-  const [history_books, setHistoryBooks] = useState({});
-  const [bookmarked_books, setBookmarkedBooks] = useState([]);
-  const [on_hold_books, setOnHoldBooks] = useState({});
+  const historyBooksInfo = historyManager.getHistory();
+  const on_hold_books = holdManager.getHolds();
   const books = bookManager.getAllBooks();
+  const [bookmarked_books, setBookmarkedBooks] = useState(bookmarkManager.getAllBookmarks());
   const navigate = useNavigate();
 
-  const handleBookmark = (id) => {
-    bookmarkManager.addBookmark(id);
-    const res = bookmarkManager.getAllBookmarks();
+  const history_books = historyBooksInfo.map((book) => {
+	const bookDetails = books.find((b) => Number(b.id) === Number(book.book_id));
+	return {
+	  ...book,
+	  ...bookDetails,
+	};
+  });
 
-    setBookmarkedBooks(res);
+  const handleAddBookmark = (book_id) => {
+	bookmarkManager.addBookmark(book_id);
+	setBookmarkedBooks(bookmarkManager.getAllBookmarks());
   };
 
-  const handleRemoveBookmark = (id) => {
-    bookmarkManager.removeBookmark(id);
-    const res = bookmarkManager.getAllBookmarks();
-
-    setBookmarkedBooks(res);
+  const handleRemoveBookmark = (book_id) => {
+	bookmarkManager.removeBookmark(book_id);
+	setBookmarkedBooks(bookmarkManager.getAllBookmarks());
   };
-
-  useEffect(() => {
-    const history_books = JSON.parse(sessionStorage.getItem("history")) || {};
-
-    setHistoryBooks(history_books);
-    setBookmarkedBooks(bookmarkManager.getAllBookmarks());
-    setOnHoldBooks(holdManager.getHolds());
-  }, []);
 
   return (
     <div className="profile-page-container">
@@ -45,20 +42,18 @@ const History = () => {
           <h1 className="profile-page-header-text">History</h1>
         </div>
         <div className="profile-page-cards-container">
-          {history_books && Object.keys(history_books).length > 0 ? (
-            Object.keys(history_books).map((id) => (
+          {history_books && history_books.length > 0 ? (
+            history_books.map((book) => (
               <BookCard
-                key={id}
-                id={id}
-                authors={books[id].authors}
-                first_line={`Checked out: ${history_books[id].checked_out_date}`}
-                second_line={`Returned on: ${history_books[id].returned_date}`}
-                name={books[id].name}
+                key={book.id}
+                id={book.id}
+                authors={book.authors}
+                first_line={`Checked out: ${book.checked_out_date}`}
+                second_line={`Returned on: ${book.return_date}`}
+                name={book.title}
                 ButtonComponent={() => (
                   <div className="card-button-container">
-                    {on_hold_books &&
-                    Object.keys(on_hold_books).length > 0 &&
-                    Object.keys(on_hold_books).includes(id) ? (
+                    {on_hold_books && on_hold_books.length > 0 && on_hold_books.some((holdBook) => Number(holdBook.id) === Number(book.id)) ? (
                       <Button
                         text={"On Hold"}
                         textColor={"white"}
@@ -66,12 +61,12 @@ const History = () => {
                         borderRadius={"0px"}
                         padding={"10px 20px"}
                         fontSize={"16px"}
-                        disabled={true}
+                        onClick={() => navigate("/onHold")}
                       />
                     ) : (
                       <Button
                         text={"Add to Cart"}
-                        onClick={() => navigate(`/book/${id}`)}
+                        onClick={() => navigate(`/book/${book.id}`)}
                         textColor={"white"}
                         backgroundColor={"#43B447"}
                         borderRadius={"0px"}
@@ -80,11 +75,10 @@ const History = () => {
                       />
                     )}
                     {bookmarked_books &&
-                    bookmarked_books.length > 0 &&
-                    bookmarked_books.includes(id) ? (
+                    bookmarked_books.includes(book.id) ? (
                       <Button
                         text={"Remove Bookmark"}
-                        onClick={() => handleRemoveBookmark(id)}
+                        onClick={() => handleRemoveBookmark(book.id)}
                         textColor={"white"}
                         borderRadius={"0px"}
                         padding={"10px 20px"}
@@ -93,7 +87,7 @@ const History = () => {
                     ) : (
                       <Button
                         text={"Bookmark"}
-                        onClick={() => handleBookmark(id)}
+                        onClick={() => handleAddBookmark(book.id)}
                         textColor={"white"}
                         borderRadius={"0px"}
                         padding={"10px 20px"}

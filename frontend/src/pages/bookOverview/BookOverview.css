@@ -178,6 +178,11 @@
 	background-color: #CDCDCD;
 }
 
+.book-overview-checkout-quantity select:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
 .book-overview-checkout-cart-book-now-buttons {
 	display: flex;
 	flex-direction: column;
@@ -185,4 +190,9 @@
 	height: 50px;
 	gap: 10px;
 	width: 100%;
+}
+
+.book-overview-checkout-cart-book-now-buttons .disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
 }
