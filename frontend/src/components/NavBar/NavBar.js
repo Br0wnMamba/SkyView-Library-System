@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from 'react-router-dom';
 import "./NavBar.css";
 import { GiOpenBook } from "react-icons/gi";
 import { RiHome2Line } from "react-icons/ri";
@@ -12,7 +13,14 @@ import Search from "../Search/Search.js";
 const NavBar = () => {
 
   const navigate = useNavigate();
+  const routerLocation = useLocation(); // Renamed to avoid conflict
   const [searchValue, setSearchValue] = useState("");
+
+  const handleProfileClick = () => {
+    navigate('/login', {
+      state: { backgroundLocation: routerLocation }
+    });
+  };
 
       return (
         <nav class="navbar-container">
@@ -49,7 +57,7 @@ const NavBar = () => {
                 <BsCart3 className="icon-cart"/>
             </div>
 
-            <div className="nav-container profile-container">
+            <div onClick={handleProfileClick} className="nav-container profile-container">
                 <FaRegUser className="icon-user"/>
             </div>
           

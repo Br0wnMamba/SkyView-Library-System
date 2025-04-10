@@ -1,6 +1,6 @@
 // AppRoutes.js
 import React from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 
 // Import all components
 import Home from '../pages/home/Home.js';
@@ -12,8 +12,8 @@ import ReadBook from '../pages/profile/ReadBook.js';
 import History from '../pages/profile/History.js';
 import OnHold from '../pages/profile/OnHold.js';
 import Bookmarks from '../pages/profile/Bookmarks.js';
-import Login from '../pages/registration/Login.js';
-import Signup from '../pages/registration/Signup.js';
+import LogIn from "../components/LogInOverlay/LogIn.js";
+import Search from "../components/Search/Search.js";
 import ProfileLayout from "../pages/profile/ProfileLayout.js";
 import SearchResults from "../pages/SearchResults/SearchResults.js";
 
@@ -23,6 +23,7 @@ export default function AppRoutes() {
 
   const location = useLocation();
   const state = location.state;
+  let routeNavigate = useNavigate();
 
   return (
     <>
@@ -47,7 +48,7 @@ export default function AppRoutes() {
       {/* Model login overlay route so that no matter where we are in the application we will stay on the same page when clicking login */}
       {state?.backgroundLocation && (
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LogIn onClose={() => routeNavigate(-1)} />} />
         </Routes>
       )}
     </>
