@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: 0.25em;
     padding: 2rem;
   }
 
@@ -22,8 +22,19 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 1.5rem 0.25rem 1.5rem;
-    border-bottom: 2px solid rgba(47, 59, 82, 0.2);
+    padding: 0.25em 1.5rem 0.25rem 1rem;  
+    gap: 3rem;  
+  }
+
+  .search-results-meta-data-options-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #b8b6b6;
+    padding-bottom: 0.5rem;
+
   }
 
 
@@ -31,13 +42,21 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 21%;
   }
 
 
   .search-results-title-container {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+  }
+
+  .search-results-title-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+ 
   }
 
   .search-results-filter-results-container {
@@ -56,6 +75,7 @@
 
   .search-results-results-container {
     display: flex;
+    
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -77,7 +97,7 @@
     grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     justify-content: center;
     gap: 1.5rem; /* Gap between books */
-    padding: 2rem;
+    padding: 1rem 1.5rem;
     width: 100%;
     box-sizing: border-box;
 }
@@ -85,85 +105,155 @@
 .search-results-filter-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
-    border-right: 2px solid black;
-}
-
-/* Filter Panel Styling */
-.search-results-filter-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.5rem;
-    gap: 2rem;
+    align-items: flex-start; 
+    justify-content: flex-start; 
     width: 25%;
-    border-right: 2px solid rgba(0, 0, 0, 0.1);
-    background-color: #f0f4f8;
+    flex-basis: 25%;
+    padding: 1rem 1.5rem;
+    gap: 2rem;
+    
     box-sizing: border-box;
+    transition:
+      transform 0.4s ease,
+      opacity 0s ease,
+      width 0.4s ease,
+      flex-basis 0.4s ease;
+    opacity: 1;
+}
+
+.search-results-filter-container.collapsed {
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    flex-basis: 0;
+    padding: 0;
+    border-right: none;
   }
   
-  /* Shared filter section container */
-  .search-results-filter-content- {
-    width: 100%;
-  }
-  
-  /* Section Titles */
-  .search-results-filter-container h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #1d2d44;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Group of items (genre, authors, etc.) */
-  .search-results-filter-content-genre,
-  .search-results-filter-content-author,
-  .search-results-filter-content-language,
-  .search-results-filter-content-availability {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    width: 100%;
-  }
-  
-  /* Individual item styles */
-  .search-results-filter-content-genre-item,
-  .search-results-filter-content-author-item,
-  .search-results-filter-content-language-item,
-  .search-results-filter-content-availability-item {
+
+/* Shared filter section container */
+.search-results-filter-content- {
+  width: 100%;
+}
+
+/* Section Titles */
+.search-results-filter-container h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1d2d44;
+  margin-bottom: 0.5rem;
+}
+
+.search-results-filter-button {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.95rem;
-    color: #2f3b52;
-  }
-  
-  /* Checkbox spacing and consistent UI */
-  .search-results-filter-container input[type="checkbox"] {
-    accent-color: #2f3b52;
+    background-color: #112D42;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: none;
     cursor: pointer;
-    width: 16px;
-    height: 16px;
-  }
-  
-  .search-results-filter-container label {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    min-width: 160px;
+}
+
+.search-results-filter-button:hover {
+    background-color: #2C8573;
+}
+
+.search-results-filter-button-icon {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-results-filter-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #112D42;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: none;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    min-width: 10px;
+}
+
+
+/* Group of items (genre, authors, etc.) */
+.search-results-filter-content-genre,
+.search-results-filter-content-author,
+.search-results-filter-content-language,
+.search-results-filter-content-availability {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-height: calc(100vh - 6rem); 
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent; 
+}
+
+/* Individual item styles */
+.search-results-filter-content-genre-item,
+.search-results-filter-content-author-item,
+.search-results-filter-content-language-item,
+.search-results-filter-content-availability-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #2f3b52;
+}
+
+/* Checkbox spacing and consistent UI */
+.search-results-filter-container input[type="checkbox"] {
+  accent-color: #2f3b52;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.search-results-filter-container label {
+  cursor: pointer;
+}
+
+/* Responsive Adjustment (Optional) */
+@media (max-width: 900px) {
+  .search-results-list-container {
+    flex-direction: column;
   }
-  
-  /* Responsive Adjustment (Optional) */
-  @media (max-width: 900px) {
-    .search-results-list-container {
-      flex-direction: column;
-    }
-  
-    .search-results-filter-container {
-      width: 100%;
-      border-right: none;
-      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-    }
+
+  .search-results-filter-container {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   }
-  
-  
+}
+
+  .search-results-filter-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .media-type-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+  }
+
