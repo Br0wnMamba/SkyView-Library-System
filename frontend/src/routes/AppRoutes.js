@@ -40,7 +40,11 @@ export default function AppRoutes() {
 					</ProtectedRoute>
 				}
 			 />
-            <Route path="bookshelf/:bookId" element={<ReadBook />} />
+            <Route path="bookshelf/:bookId" element={
+					<ProtectedRoute>
+						<ReadBook />
+					</ProtectedRoute>
+			} />
             <Route path="history" element={
 					<ProtectedRoute>
 						<History />
