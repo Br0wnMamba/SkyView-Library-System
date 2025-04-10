@@ -128,11 +128,14 @@ const NavBar = () => {
         open={snackbar.open}
         autoHideDuration={3000}
         onClose={() => setSnackbar({ ...snackbar, open: false })}
-      >
-        <Alert severity={snackbar.severity} sx={{ width: "100%" }}>
-          {snackbar.message}
-        </Alert>
-      </Snackbar>
+        ContentProps={{
+          className:
+            snackbar.severity === "success"
+              ? "success-snackbar"
+              : "fail-snackbar",
+        }}
+        message={snackbar.message}
+      />
     </Box>
   );
 };

@@ -1,50 +1,26 @@
-import { covers } from "./covers";
-
-
-export const DisplayContent = [
-    {
-      title: "Recently Added",
-      books: [
-        {
-          id: 1,
-          title: "Percy Jackson & the Olympians",
-          author: "Rick Riordan",
-          cover: covers.PercyJackson,
-          availability: ["4", "n"],
-        },
-        {
-          id: 2,
-          title: "The Thirteenth Tale",
-          author: "Diane Setterfield",
-          cover: covers.ThirteenthTale,
-          availability: ["6", "y"],
-        },
-        {
-          id: 3,
-          title: "My Sister's Keeper",
-          author: "Jodi Picoult",
-          cover: covers.MySistersKeeper,
-          availability: ["1", "y"],
-        },
-      ],
-    },
-    {
-      title: "Top Picks",
-      books: [
-        {
-          id: 4,
-          title: "The Kite Runner",
-          author: "Khaled Hosseini",
-          cover: covers.KiteRunner,
-          availability: ["0", "n"],
-        },
-        {
-          id: 5,
-          title: "The 48 Laws of Power",
-          author: "Robert Greene",
-          cover: covers.Laws48,
-          availability: ["2","n"],
-        },
-      ],
-    },
-  ];
+export const Books = {
+  "book-101": { name: "The Silent Patient", authors: ["Alex Michaelides"], published_date: "2019-02-05", number_of_physical_copies_available: 4, is_ebook_available: true, description: "A psychological thriller about a woman’s act of violence against her husband—and of the therapist obsessed with uncovering her motive." },
+  "book-102": { name: "Sapiens: A Brief History of Humankind", authors: ["Yuval Noah Harari"], published_date: "2015-02-10", number_of_physical_copies_available: 2, is_ebook_available: true, description: "An exploration of humanity’s creation and evolution—transforming the ways we understand ourselves and our place in the world." },
+  "book-103": { name: "Atomic Habits", authors: ["James Clear"], published_date: "2018-10-16", number_of_physical_copies_available: 0, is_ebook_available: false, description: "A practical guide to building good habits and breaking bad ones using proven strategies." },
+  "book-104": { name: "Educated", authors: ["Tara Westover"], published_date: "2018-02-20", number_of_physical_copies_available: 3, is_ebook_available: true, description: "A memoir about a girl who kept out of school leaves her survivalist family and goes on to earn a PhD from Cambridge University." },
+  "book-105": { name: "The Power of Habit", authors: ["Charles Duhigg"], published_date: "2012-02-28", number_of_physical_copies_available: 6, is_ebook_available: false, description: "An investigation into the science of habit formation and how we can use it to improve our lives." },
+  "book-106": { name: "Start With Why", authors: ["Simon Sinek"], published_date: "2009-10-29", number_of_physical_copies_available: 1, is_ebook_available: true, description: "A guide to inspirational leadership based on understanding your purpose and vision." },
+  "book-107": { name: "Can't Hurt Me", authors: ["David Goggins"], published_date: "2018-12-04", number_of_physical_copies_available: 4, is_ebook_available: true, description: "The astonishing life story of a man who transformed himself from a depressed, overweight young man into a U.S. Armed Forces icon." },
+  "book-108": { name: "Becoming", authors: ["Michelle Obama"], published_date: "2018-11-13", number_of_physical_copies_available: 0, is_ebook_available: false, description: "A deeply personal memoir by the former First Lady of the United States." },
+  "book-109": { name: "The Alchemist", authors: ["Paulo Coelho"], published_date: "1988-04-15", number_of_physical_copies_available: 5, is_ebook_available: true, description: "A novel about a shepherd's journey to realize his personal legend." },
+  "book-110": { name: "The Great Gatsby", authors: ["F. Scott Fitzgerald"], published_date: "1925-04-10", number_of_physical_copies_available: 3, is_ebook_available: false, description: "A story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan." },
+  "book-111": { name: "1984", authors: ["George Orwell"], published_date: "1949-06-08", number_of_physical_copies_available: 0, is_ebook_available: true, description: "A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism." },
+  "book-112": { name: "To Kill a Mockingbird", authors: ["Harper Lee"], published_date: "1960-07-11", number_of_physical_copies_available: 2, is_ebook_available: false, description: "A novel about the serious issues of rape and racial inequality." },
+  "book-113": { name: "The Catcher in the Rye", authors: ["J.D. Salinger"], published_date: "1951-07-16", number_of_physical_copies_available: 3, is_ebook_available: true, description: "A story about teenage rebellion and alienation." },
+  "book-114": { name: "Pride and Prejudice", authors: ["Jane Austen"], published_date: "1813-01-28", number_of_physical_copies_available: 4, is_ebook_available: false, description: "A romantic novel that critiques the British landed gentry at the end of the 18th century." },
+  "book-115": { name: "The Hobbit", authors: ["J.R.R. Tolkien"], published_date: "1937-09-21", number_of_physical_copies_available: 0, is_ebook_available: false, description: "A fantasy novel about the journey of a hobbit named Bilbo Baggins." },
+  "book-116": { name: "Fahrenheit 451", authors: ["Ray Bradbury"], published_date: "1953-10-19", number_of_physical_copies_available: 0, is_ebook_available: false, description: "A dystopian novel set in a future where books are outlawed." },
+  "book-117": { name: "The Grapes of Wrath", authors: ["John Steinbeck"], published_date: "1939-04-14", number_of_physical_copies_available: 3, is_ebook_available: true, description: "A novel about the struggles of a family during the Great Depression." },
+  "book-118": { name: "Brave New World", authors: ["Aldous Huxley"], published_date: "1932-08-18", number_of_physical_copies_available: 4, is_ebook_available: true, description: "A dystopian novel that explores the implications of technological advancements." },
+  "book-119": { name: "The Picture of Dorian Gray", authors: ["Oscar Wilde"], published_date: "1890-07-01", number_of_physical_copies_available: 0, is_ebook_available: false, description: "A novel about a young man who wishes to remain young and beautiful forever." },
+  "book-120": { name: "Percy Jackson & the Olympians", authors: ["Rick Riordan"], published_date: "2005-06-28", number_of_physical_copies_available: 4, is_ebook_available: true, description: "A series of fantasy novels about a young demigod named Percy Jackson." },
+  "book-121": { name: "The Thirteenth Tale", authors: ["Diane Setterfield"], published_date: "2006-01-01", number_of_physical_copies_available: 6, is_ebook_available: true, description: "A gothic suspense novel about a reclusive author and her mysterious past." },
+  "book-122": { name: "My Sister's Keeper", authors: ["Jodi Picoult"], published_date: "2004-04-06", number_of_physical_copies_available: 3, is_ebook_available: true, description: "A provocative novel that raises important questions about life, love, and medical ethics as a family faces the life-or-death decision surrounding their daughter's health." }, 
+  "book-123": { name: "The Kite Runner", authors: ["Khaled Hosseini"], published_date: "2003-05-29", number_of_physical_copies_available: 4, is_ebook_available: true, description: "A haunting tale of friendship and redemption set against the backdrop of a changing Afghanistan." }, 
+  "book-124": { name: "The 48 Laws of Power", authors: ["Robert Greene"], published_date: "1998-09-01", number_of_physical_copies_available: 0, is_ebook_available: false, description: "A guide to understanding and mastering the dynamics of power through historical examples and strategic advice." }
+};

@@ -32,8 +32,14 @@ class AccountManager {
         "ifeanyi@ucalgary.ca": { password: "Ekpemandu", cardNumber: 3 },
         "jad@ucalgary.ca": { password: "Khalil", cardNumber: 4 },
         "noor@ucalgary.ca": { password: "Nawaz", cardNumber: 5 },
-        "cpsc481project@gmail.com": {password: "Interface123!", cardNumber: 6},
-        "cpsc481project@outlook.com": {password: "Interface123!", cardNumber: 7},
+        "cpsc481project@gmail.com": {
+          password: "Interface123!",
+          cardNumber: 6,
+        },
+        "cpsc481project@outlook.com": {
+          password: "Interface123!",
+          cardNumber: 7,
+        },
       };
       sessionStorage.setItem("accounts", JSON.stringify(storedAccounts));
 
@@ -79,7 +85,6 @@ class AccountManager {
           firstName: "Jonathan",
           lastName: "Matthews",
         },
-        
       };
 
       sessionStorage.setItem(
@@ -92,7 +97,7 @@ class AccountManager {
       this.#libraryMembers = JSON.parse(storedLibraryMembers);
     }
   }
-  
+
   getAllAccounts() {
     return this.#accounts;
   }
@@ -106,7 +111,10 @@ class AccountManager {
       firstName,
       lastName,
     };
-    sessionStorage.setItem("library_members", JSON.stringify(this.#libraryMembers));
+    sessionStorage.setItem(
+      "library_members",
+      JSON.stringify(this.#libraryMembers)
+    );
   }
 
   auth(emailAddress, password) {
@@ -153,6 +161,14 @@ class AccountManager {
     return this.#accounts[email]?.password;
   }
 
+  getCardNumber() {
+    if (!this.#user || this.#user === null) {
+      return undefined;
+    }
+
+    return this.#user;
+  }
+
   getInstance() {
     return this;
   }
@@ -186,6 +202,22 @@ class AccountManager {
       message: "Account already exists or invalid card number.",
     };
   }
+
+  requireAuth(callback) {
+    return (...args) => {
+      let account = accountManager.getUser();
+
+      if (!account) {
+        return {
+          status: 401,
+          message: "User not signed in",
+        };
+      }
+
+      return callback.apply(this, args);
+    };
+  }
+
 
   #canAddAccount(cardNumber) {
     // Ensure library member with card number exists

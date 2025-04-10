@@ -1,8 +1,8 @@
 .card-button-container {
-	gap: 10px;
-	display: flex;
-	flex-direction: column;
-	height: 40px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
 }
 
 .profile-page-container {
@@ -23,4 +23,31 @@
 	flex-wrap: wrap;
 	gap: 80px;
 	width: 100%;
+}
+
+.my-library-page .profile-page-cards-container .home-addtocart-container,
+.on-hold-page .profile-page-cards-container .home-addtocart-container {
+  min-height: unset;
+  height: fit-content;
+}
+
+/* Default for all other pages */
+.profile-page-cards-container .home-addtocart-container {
+  min-height: 98px; 
+}
+
+.success-snackbar {
+  background-color: #d3e4db!important; 
+  color: #2e6552 !important; 
+}
+
+.snackbar-undo-button {
+  color: #fd0b0b !important; 
+  font-weight: 600;
+  text-transform: none;
+}
+
+.fail-snackbar {
+  background-color: #f9d7da !important; 
+  color: #9a4d5b !important; 
 }

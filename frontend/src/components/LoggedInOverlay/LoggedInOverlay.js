@@ -92,6 +92,7 @@ const LoggedInOverlay = ({ onClose, setSnackbar }) => {
 						accountManager.removeUser();
 						setSnackbar({ open: true, message: "Logout successful!", severity: "success" });
 						onClose();
+            navigate("/");
 					}}
 				>
 					LOG OUT

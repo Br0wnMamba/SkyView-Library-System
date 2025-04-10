@@ -1,3 +1,5 @@
+import bookManager from './BookManager';
+
 const returnDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString();
 
 const handleAddToCart = ({ id, bookTypeCheckout, quantity }) => {
@@ -18,7 +20,7 @@ const handleAddToCart = ({ id, bookTypeCheckout, quantity }) => {
 		cart[bookKey].return_date = returnDate;
 	}
 
-	sessionStorage.setItem("cart", JSON.stringify(cart));
+	bookManager.setBooks(cart);
 	return cart;
 };
 
@@ -43,8 +45,8 @@ const handleCheckout = ({ id, bookTypeCheckout, quantity }) => {
 
 	books[bookKey].number_of_physical_copies_available -= bookTypeCheckout === "physical" ? parseInt(quantity) : 0;
 
-	sessionStorage.setItem("my_library", JSON.stringify(my_library));
-	sessionStorage.setItem("books", JSON.stringify(books));
+	bookManager.setMyLibrary(my_library);
+	bookManager.setBooks(books);
 	return my_library;
 };
 
@@ -53,9 +55,9 @@ const handleAddBookmark = (id) => {
 
 	if (!bookmarked.includes(id)) {
 		bookmarked.push(id);
-	};
+	}
 
-	sessionStorage.setItem("book_marked", JSON.stringify(bookmarked));
+	bookManager.setBookmarked(bookmarked);
 	return bookmarked;
 };
 
@@ -66,7 +68,7 @@ const handleRemoveBookmark = (id) => {
 		const index = bookmarked.indexOf(id);
 		bookmarked.splice(index, 1);
 	}
-	sessionStorage.setItem("book_marked", JSON.stringify(bookmarked));
+	bookManager.setBookmarked(bookmarked);
 
 	return bookmarked;
 };
@@ -75,4 +77,6 @@ const handlePlaceOnHold = ({ id, bookTypeCheckout }) => {
 	// need to complete
 };
 
-export { handleAddToCart, handleCheckout, handleAddBookmark, handleRemoveBookmark, handlePlaceOnHold };
+const handleRemoveHold = (id) => {};
+
+export { handleAddToCart, handleCheckout, handleAddBookmark, handleRemoveBookmark, handlePlaceOnHold, handleRemoveHold };

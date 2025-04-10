@@ -46,3 +46,13 @@
   margin-left: 0;
   font-size: 0.65rem;
 }
+
+.success-snackbar {
+  background-color: #d3e4db !important; 
+  color: #2e6552 !important; 
+}
+
+.fail-snackbar {
+  background-color: #f9d7da !important; 
+  color: #9a4d5b !important; 
+}

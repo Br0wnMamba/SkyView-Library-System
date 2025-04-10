@@ -117,6 +117,7 @@ body {
     gap: 0.5rem; /* This adds spacing between the two buttons only */
     padding-top: 12px;
     justify-content: space-between;
+    min-height: 98px;
   }
 
 

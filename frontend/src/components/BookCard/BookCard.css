@@ -11,10 +11,9 @@
 }
 
 .book-image img {
-	width: 100%;
-	min-height: 200px;
-	max-height: 350px;
-	height: 350px;
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
 }
 
 .book-details h3 {
