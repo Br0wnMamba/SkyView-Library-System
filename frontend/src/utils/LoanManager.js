@@ -1,5 +1,6 @@
 import accountManager from "./AccountManager";
 import bookManager from "./BookManager";
+import cartManager from "./CartManager";
 
 let instance;
 
@@ -7,7 +8,7 @@ let instance;
 class LoanManager {
   constructor() {
     if (instance) {
-      throw new Error("A cart manager has already been initialized");
+      throw new Error("A loan manager has already been initialized");
     }
     instance = this;
 
@@ -38,7 +39,6 @@ class LoanManager {
     return userLoans;
   };
 
-  //
   checkoutBook = accountManager.requireAuth((book_id, type, quantity) => {
     if (quantity <= 0) {
       return;
@@ -51,22 +51,40 @@ class LoanManager {
 
       let loans = this.#getLoans();
       let userLoans = this.#getUserLoans();
+      let bookLoanIndex = -1; // Used to find if user already has book loaned in which case only quantity of the book is updated
 
-      for (let i = 0; i < quantity; i++) {
+      userLoans.forEach((loan, index) => {
+        if (loan.type === type && loan.book_id === book_id) {
+          bookLoanIndex = index;
+          return;
+        }
+      });
+
+      if (bookLoanIndex === -1) {
         userLoans.push({
-          id: book_id,
+          book_id: book_id,
           type: type,
           quantity: quantity,
           checked_out_date: new Date().toLocaleDateString(),
           return_date: RETURN_DATE,
         });
-
-        bookManager.updateCopies(
-          book_id,
-          type,
-          bookManager.getBook(book_id).availability[type] - quantity
-        );
+      } else {
+        // Update loans quantity and update return date
+        userLoans[bookLoanIndex].quantity =
+          userLoans[bookLoanIndex].quantity + quantity;
+        userLoans[bookLoanIndex].checked_out_date =
+          new Date().toLocaleDateString();
+        userLoans[bookLoanIndex].return_date = RETURN_DATE;
       }
+
+      // Remove book from user cart
+      cartManager.remove(book_id, type, quantity);
+
+      bookManager.updateCopies(
+        book_id,
+        type,
+        bookManager.getBook(book_id).availability[type] - quantity
+      );
 
       loans[accountManager.getUser().id] = userLoans;
       sessionStorage.setItem("loans", JSON.stringify(loans));

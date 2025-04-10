@@ -9,42 +9,52 @@ export const Books = {
       physical: 4,
       digital: 0,
     },
+    desc: "Percy Jackson & the Olympians is a fantasy novel series",
+    content: null, // To be updated by reading book designer
   },
   2: {
     title: "The Thirteenth Tale",
-    author: "Diane Setterfield",
+    authors: ["Diane Setterfield"],
     cover: covers.ThirteenthTale,
     availability: {
       physical: 6,
       digital: 4,
     },
+    desc: "From Diane Setterfields series",
+    content: null, // To be updated by reading book designer
   },
   3: {
     title: "My Sister's Keeper",
-    author: "Jodi Picoult",
+    authors: ["Jodi Picoult", "Mark Fisher"],
     cover: covers.MySistersKeeper,
     availability: {
       physical: 1,
       digital: 3,
     },
+    desc: "Based upon Anissa and Marissa Ayala",
+    content: null, // To be updated by reading book designer
   },
   4: {
     title: "The Kite Runner",
-    author: "Khaled Hosseini",
+    authors: ["Khaled Hosseini"],
     cover: covers.KiteRunner,
     availability: {
       physical: 0,
       digital: 0,
     },
+    desc: "The Kite Runner is a coming of age story about redemption",
+    content: null, // To be updated by reading book designer
   },
   5: {
     title: "The 48 Laws of Power",
-    author: "Robert Greene",
+    authors: ["Robert Greene"],
     cover: covers.Laws48,
     availability: {
       physical: 2,
       digital: 0,
     },
+    desc: "48 Laws of Power details the laws for attaining power in life, business, and more, and gives historical examples of each law in practice.",
+    content: null, // To be updated by reading book designer
   },
 };
 

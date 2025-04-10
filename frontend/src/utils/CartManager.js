@@ -112,13 +112,32 @@ class CartManager {
     }
   });
 
-  remove = accountManager.requireAuth((book_id) => {
+  remove = accountManager.requireAuth((book_id, type, quantity = 1) => {
     let userCart = this.#getUserCart();
 
+    if (quantity <= 0) {
+      return;
+    }
+
     if (userCart && userCart.length > 0) {
-      const index = userCart.indexOf(book_id);
-      if (index !== -1) {
-        userCart.splice(index, 1);
+      let bookIndex = -1; // Index of book in cart
+
+      userCart.forEach((book, index) => {
+        if (book.type === type && book.book_id === book_id) {
+          bookIndex = index;
+          return;
+        }
+      });
+
+      if (bookIndex !== -1) {
+        // If we want to remove more books than in cart remove book from cart
+        if (quantity >= userCart[bookIndex].quantity) {
+          userCart.splice(bookIndex, 1);
+        } else {
+          // Decrease quantity in cart
+          userCart[bookIndex].quantity =
+            userCart[bookIndex].quantity - quantity;
+        }
 
         this.#updateUserCart(userCart);
 

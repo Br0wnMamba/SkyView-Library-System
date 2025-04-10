@@ -82,11 +82,7 @@ class HoldManager {
     }
   });
 
-  remove = accountManager.requireAuth((book_id, type, quantity) => {
-    if (quantity <= 0) {
-      return;
-    }
-
+  remove = accountManager.requireAuth((book_id, type) => {
     let holds = this.#getHolds();
     let userHolds = this.#getUserHolds();
     let holdIndex = -1;
@@ -99,19 +95,13 @@ class HoldManager {
     });
 
     if (holdIndex !== -1) {
-      let removeHolds = 0;
-      if (quantity >= userHolds[holdIndex].quantity) {
-        removeHolds = userHolds[holdIndex].quantity;
-        userHolds.splice(holdIndex, 1);
-      } else {
-        removeHolds = quantity;
-        userHolds[holdIndex].quantity -= quantity;
-      }
+      const removedAmount = userHolds[holdIndex].quantity;
+      userHolds.splice(holdIndex, 1);
 
       bookManager.updateCopies(
         book_id,
         type,
-        bookManager.getBook(book_id).availability[type] + removeHolds
+        bookManager.getBook(book_id).availability[type] + removedAmount // Add the books user held back
       );
 
       // Update and store the new holds

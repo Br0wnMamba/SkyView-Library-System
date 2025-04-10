@@ -6,15 +6,11 @@ import EBookLogo from "../../assets/ebook.svg";
 import AuthorProfile from "../../assets/bookoverview-user-profile.svg";
 import { useParams } from "react-router-dom";
 import "./BookOverview.css";
-import bookImages from "../../utils/loadBookImages";
-import {
-  handleAddToCart,
-  handleCheckout,
-  handlePlaceOnHold,
-} from "../../utils/setSessionStorage";
 import bookManager from "../../utils/BookManager";
 import bookmarkManager from "../../utils/BookmarkManager";
 import cartManager from "../../utils/CartManager";
+import holdManager from "../../utils/HoldManager";
+import loanManager from "../../utils/LoanManager";
 
 const BookOverview = () => {
   const { bookId: id } = useParams();
@@ -25,7 +21,6 @@ const BookOverview = () => {
   const number_of_physical_copies_available = availability.physical;
   const is_ebook_available = availability.digital;
   const published_date = "2001-01-01";
-  const description = "Book description to be added to book date.";
 
   return (
     <div>
@@ -34,7 +29,7 @@ const BookOverview = () => {
         <div className="book-overview">
           <div className="book-overview-image-container">
             <div className="book-overview-image">
-              <img src={bookImages[id]} alt="Book Cover" />
+              <img src={book.cover} alt="Book Cover" />
             </div>
             <div className="book-sample-info-buttons">
               <button>Read Sample</button>
@@ -125,7 +120,7 @@ const BookOverview = () => {
               />
             </div>
             <hr />
-            <div className="book-overview-info-description">{description}</div>
+            <div className="book-overview-info-description">{book.desc}</div>
             <hr />
             <div className="book-overview-info-learn-more">
               <b>Learn more about the authors!</b>
@@ -218,7 +213,7 @@ const BookOverview = () => {
               <Button
                 text={"Place On Hold"}
                 onClick={() => {
-                  handlePlaceOnHold({ id, bookTypeCheckout });
+                  holdManager.add(id, bookTypeCheckout, 1);
                 }}
                 fontSize={"18px"}
                 backgroundColor={"#f4d473"}
@@ -227,7 +222,7 @@ const BookOverview = () => {
               <Button
                 text="Add to Cart"
                 onClick={() => {
-                  cartManager.add(id, bookTypeCheckout, quantity);
+                  console.log(cartManager.add(id, bookTypeCheckout, quantity));
                 }}
                 fontSize={"18px"}
                 backgroundColor={"green"}
@@ -244,7 +239,7 @@ const BookOverview = () => {
             <Button
               text="Checkout Book Now"
               onClick={() => {
-                handleCheckout(id, bookTypeCheckout, quantity);
+                loanManager.checkoutBook(id, bookTypeCheckout, quantity);
               }}
               fontSize={"18px"}
               disabled={

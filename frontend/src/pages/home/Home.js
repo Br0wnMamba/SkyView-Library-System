@@ -39,7 +39,16 @@ const Home = () => {
                   <h3>{book.title}</h3>
 
                   {/* Book author */}
-                  <h4 className="home-bookAuthor">{book.author}</h4>
+                  <h4 className="home-bookAuthor">
+                    {book?.authors?.map((author, index) => {
+                      return (
+                        <span>
+                          {index !== 0 && ", "}
+                          {author}
+                        </span>
+                      );
+                    })}
+                  </h4>
 
                   <div className="home-phsycial-avaiablity-container">
                     <FaBook className="availability-icon" />

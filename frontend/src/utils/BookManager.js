@@ -5,7 +5,7 @@ let instance;
 class BookManager {
   constructor() {
     if (instance) {
-      throw new Error("A bookmark manager has already been initialized");
+      throw new Error("A book manager has already been initialized");
     }
     instance = this;
 
