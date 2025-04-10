@@ -12,10 +12,187 @@
   }
   
   .overlay-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    align-items: center;
     background: white;
-    width: 300px;
+    width: 20%;
     height: 100%;
     padding: 2rem;
     box-shadow: -2px 0 5px rgba(0,0,0,0.2);
   }
+  
+
+  .login-overlay-icon-skyViewLogo {
+    font-size: 2.5rem;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+  }
+
+
+  /* The header for the login overlay */
+    .login-overlay-header-container {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+/* The Welcom container section for users  */
+.login-overlay-title-welcome-information-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+
+
+/* The Login Credentails container which also includes the forgot password and the sign in button */
+
+.login-overlay-login-credentials-conainer-sign-in-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #112D42; /* Button base colour */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    width: 100%; /* Fills container */
+    border-radius: 10px; /* Smooth rounded corners */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle shadow */
+}
+
+
+.login-overlay-login-credentials-conainer-sign-in-button:hover {
+    background-color: #2C8573 ; /* darker teal on hover */
+  }
+
+
+/* The bridge OR section between base login and alternatve logins */
+
+  .login-overlay-alternative-login-alternatives-bridge-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1.5rem 0;
+    color: #000000;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+
+  .login-overlay-alternative-login-alternatives-bridge-container hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 0 1rem;
+  }
+  
+  .login-overlay-alternative-login-alternatives-bridge-container span {
+    white-space: nowrap;
+  }
+
+
+
+
+  /* Alternative Site Login CSS */
+
+
+  .login-overlay-alternative-login-alternatives-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+
+  .login-overlay-alternative-login-alternatives-container-google {
+    display: flex;
+    flex-direction: row;
+    border: 0.7px solid #CDCDCD;
+  }
+
+  .login-overlay-alternative-login-alternatives-container-microsoft {
+    display: flex;
+    flex-direction: row;
+    border: 0.7px solid #CDCDCD;
+  }
+
+  .login-overlay-alternative-login-alternatives-container-apple {
+    display: flex;
+    flex-direction: row;
+    border: 0.7px solid #CDCDCD;
+  }
+
+
+.login-overlay-login-credentials-container-forgot-password,
+.login-overlay-alternative-login-alternatives-container-create-account {
+    display: flex;
+    color: #635DFF;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+}
+
+.welcome-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+  
+  .welcome-subtext {
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+    max-width: 220px;
+  }
+  
+  .login-overlay-login-credentials-container input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+  
+  .login-option-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid #CDCDCD;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: white;
+  }
+  
+  .login-option-button:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .login-overlay-alternative-login-alternatives-container-create-account {
+    margin-top: 2rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+
+
+  
   
