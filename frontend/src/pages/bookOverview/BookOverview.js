@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import Search from "../../components/Search/Search";
+import React, { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
 import PhysicalBookLogo from "../../assets/physical-book.svg";
 import EBookLogo from "../../assets/ebook.svg";
 import AuthorProfile from "../../assets/bookoverview-user-profile.svg";
+import Login from "../../pages/registration/Login";
 import { useParams } from "react-router-dom";
 import "./BookOverview.css";
 import bookManager from "../../utils/BookManager";
@@ -11,20 +11,28 @@ import bookmarkManager from "../../utils/BookmarkManager";
 import cartManager from "../../utils/CartManager";
 import holdManager from "../../utils/HoldManager";
 import loanManager from "../../utils/LoanManager";
+import accountManager from "../../utils/AccountManager";
 
 const BookOverview = () => {
+  const user = accountManager.getUser();
   const { bookId: id } = useParams();
   const [bookTypeCheckout, setBookTypeCheckout] = useState("");
+  const [showLogin, setShowLogin] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const book = bookManager.getBook(id);
   const { title, authors, availability } = book;
   const number_of_physical_copies_available = availability.physical;
   const is_ebook_available = availability.digital;
-  const published_date = "2001-01-01";
+
+  useEffect(() => {
+	if (user) {
+		setShowLogin(false);
+	}
+  }, [user]);
 
   return (
     <div>
-      {/* <Search buttonName={"Filter"} /> */}
+	{showLogin ? <Login backgroundLocation={window.location.pathname} /> : (
       <div className="book-overview-container">
         <div className="book-overview">
           <div className="book-overview-image-container">
@@ -53,7 +61,6 @@ const BookOverview = () => {
             <div className="book-overview-info-title">
               <div className="book-overview-info-published-date-name">
                 <h1>{title}</h1>
-                <p> - {published_date}</p>
               </div>
               <div className="book-overview-info-authors">
                 <h1>
@@ -153,23 +160,13 @@ const BookOverview = () => {
             </button>
             <button
               className={
-                bookTypeCheckout === "ebook"
+                bookTypeCheckout === "digital"
                   ? "book-overview-checkout-book-type selected"
                   : "book-overview-checkout-book-type"
               }
-              onClick={() => setBookTypeCheckout("ebook")}
+              onClick={() => setBookTypeCheckout("digital")}
             >
               E-Book
-            </button>
-            <button
-              className={
-                bookTypeCheckout === "audio"
-                  ? "book-overview-checkout-book-type selected"
-                  : "book-overview-checkout-book-type"
-              }
-              onClick={() => setBookTypeCheckout("audio")}
-            >
-              Audiobook
             </button>
           </div>
           <div className="book-overview-checkout-pickup-location">
@@ -189,10 +186,14 @@ const BookOverview = () => {
             <select
               id="quantity"
               value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+			  disabled={!bookTypeCheckout || bookTypeCheckout === "digital"}
+			  className={`${
+				(!bookTypeCheckout || bookTypeCheckout === "digital") ? "disabled" : ""
+			  }`}
             >
               {Array.from(
-                { length: Math.min(10, number_of_physical_copies_available) },
+                { length: 10 },
                 (_, index) => {
                   const value = index + 1;
                   return (
@@ -207,13 +208,22 @@ const BookOverview = () => {
           <div className="book-overview-checkout-cart-book-now-buttons">
             {(bookTypeCheckout &&
               bookTypeCheckout === "physical" &&
-              number_of_physical_copies_available <= 0) ||
-            ((bookTypeCheckout === "ebook" || bookTypeCheckout === "audio") &&
-              is_ebook_available === false) ? (
+              number_of_physical_copies_available < quantity) ||
+            ((bookTypeCheckout === "digital") &&
+              is_ebook_available === 0) ? (
               <Button
                 text={"Place On Hold"}
                 onClick={() => {
-                  holdManager.add(id, bookTypeCheckout, 1);
+					if (!accountManager.getUser()) {
+					  setShowLogin(true);
+					  return;
+					}
+
+					if (bookTypeCheckout === "physical") {
+	                  holdManager.add(id, bookTypeCheckout, quantity);
+					} else {
+  					  holdManager.add(id, bookTypeCheckout, 1);
+					}
                 }}
                 fontSize={"18px"}
                 backgroundColor={"#f4d473"}
@@ -222,38 +232,44 @@ const BookOverview = () => {
               <Button
                 text="Add to Cart"
                 onClick={() => {
-                  console.log(cartManager.add(id, bookTypeCheckout, quantity));
+					if (!accountManager.getUser()) {
+						setShowLogin(true);
+						return;
+					}
+
+					if (bookTypeCheckout === "physical") {
+	                  cartManager.add(id, bookTypeCheckout, quantity);
+					} else {
+	                  cartManager.add(id, bookTypeCheckout, 1);
+					}
                 }}
                 fontSize={"18px"}
                 backgroundColor={"green"}
-                disabled={
-                  !bookTypeCheckout ||
-                  (bookTypeCheckout === "physical" &&
-                    number_of_physical_copies_available <= 0) ||
-                  ((bookTypeCheckout === "ebook" ||
-                    bookTypeCheckout === "audio") &&
-                    is_ebook_available === false)
-                }
+                disabled={!bookTypeCheckout}
               />
             )}
             <Button
               text="Checkout Book Now"
               onClick={() => {
+				if (!accountManager.getUser()) {
+				  setShowLogin(true);
+				  return;
+				}
                 loanManager.checkoutBook(id, bookTypeCheckout, quantity);
               }}
               fontSize={"18px"}
               disabled={
                 !bookTypeCheckout ||
                 (bookTypeCheckout === "physical" &&
-                  number_of_physical_copies_available <= 0) ||
-                ((bookTypeCheckout === "ebook" ||
-                  bookTypeCheckout === "audio") &&
-                  is_ebook_available === false)
+                  number_of_physical_copies_available < quantity) ||
+                ((bookTypeCheckout === "digital") &&
+                  is_ebook_available === 0)
               }
             />
           </div>
         </div>
       </div>
+	)}
     </div>
   );
 };

@@ -6,19 +6,45 @@ import {
   Modal,
   Space,
 } from "../../components/general";
+import { Alert, Snackbar } from "@mui/material";
 import "./Registration.css";
 import accountManager from "../../utils/AccountManager";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ backgroundLocation }) => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const background = location.state?.backgroundLocation || backgroundLocation;
+  const [snackbar, setSnackbar] = useState({
+	open: false,
+	message: "",
+	severity: "success",
+  });
 
   const handleLogin = () => {
-    accountManager.auth(emailAddress, password);
+    const res = accountManager.auth(emailAddress, password);
+
+	if (res.status === 200) {
+		if (background) {
+			navigate(background.pathname, { replace: true });
+		} else {
+			navigate("/", { replace: true });
+		}
+	} else {
+		setSnackbar({
+			open: true,
+			message: "Login failed. Please check your credentials.",
+			severity: "error",
+		});
+	}
   };
 
   return (
-    <Modal borderRadius={10}>
+	<div className="login-signup-modal-container">
+	<div className="login-signup-modal">
+    <Modal borderRadius={10} show={false}>
       <div className="content">
         <h1>Welcome</h1>
         <p>
@@ -55,8 +81,11 @@ const Login = () => {
         </Button>
         <Space />
         <p>
-          Don't have an account? <a href="/signup">Sign Up</a>
-        </p>
+  		Don't have an account?{" "}
+  		<Link to="/signup" state={{ backgroundLocation: background }}>
+    		Sign Up
+  		</Link>
+		</p>
         <p id="seperator">OR</p>
         <Space space={20} />
         <IconButton
@@ -105,6 +134,17 @@ const Login = () => {
         />
       </div>
     </Modal>
+		<Snackbar
+			  open={snackbar.open}
+			  autoHideDuration={3000}
+			  onClose={() => setSnackbar({ ...snackbar, open: false })}
+			>
+			  <Alert severity={snackbar.severity} sx={{ width: "100%" }}>
+				{snackbar.message}
+			  </Alert>
+		</Snackbar>
+		</div>
+	</div>
   );
 };
 

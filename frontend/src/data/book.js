@@ -10,7 +10,7 @@ export const Books = {
       digital: 0,
     },
     desc: "Percy Jackson & the Olympians is a fantasy novel series",
-    content: null, // To be updated by reading book designer
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
   },
   2: {
     title: "The Thirteenth Tale",
@@ -21,7 +21,7 @@ export const Books = {
       digital: 4,
     },
     desc: "From Diane Setterfields series",
-    content: null, // To be updated by reading book designer
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
   },
   3: {
     title: "My Sister's Keeper",
@@ -32,7 +32,7 @@ export const Books = {
       digital: 3,
     },
     desc: "Based upon Anissa and Marissa Ayala",
-    content: null, // To be updated by reading book designer
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
   },
   4: {
     title: "The Kite Runner",
@@ -43,7 +43,7 @@ export const Books = {
       digital: 0,
     },
     desc: "The Kite Runner is a coming of age story about redemption",
-    content: null, // To be updated by reading book designer
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
   },
   5: {
     title: "The 48 Laws of Power",
@@ -54,7 +54,7 @@ export const Books = {
       digital: 0,
     },
     desc: "48 Laws of Power details the laws for attaining power in life, business, and more, and gives historical examples of each law in practice.",
-    content: null, // To be updated by reading book designer
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
   },
 };
 

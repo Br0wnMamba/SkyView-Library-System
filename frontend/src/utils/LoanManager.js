@@ -28,7 +28,7 @@ class LoanManager {
     return JSON.parse(sessionStorage.getItem("loans") || "{}");
   };
 
-  #getUserLoans = () => {
+  getUserLoans = () => {
     const loans = this.#getLoans();
     const userLoans = loans[accountManager.getUser().id];
 
@@ -50,7 +50,7 @@ class LoanManager {
       ).toLocaleDateString();
 
       let loans = this.#getLoans();
-      let userLoans = this.#getUserLoans();
+      let userLoans = this.getUserLoans();
       let bookLoanIndex = -1; // Used to find if user already has book loaned in which case only quantity of the book is updated
 
       userLoans.forEach((loan, index) => {

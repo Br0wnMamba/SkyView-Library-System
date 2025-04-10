@@ -1,6 +1,27 @@
 a {
   text-decoration: none;
 }
+
+.login-signup-modal-container {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 9998;
+}
+
+.login-signup-modal {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+}
+
 .modal {
   display: flex;
   justify-content: center;
