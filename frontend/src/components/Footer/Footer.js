@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="footer-main">
         <div className="footer-column logo-column">
           <FaBookOpen className="footer-logo" />
-          <p>Library Name</p>
+          <p>Skyview Library</p>
         </div>
 
         <div className="footer-column">
