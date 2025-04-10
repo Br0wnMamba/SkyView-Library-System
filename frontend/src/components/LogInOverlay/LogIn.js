@@ -31,31 +31,34 @@ const LogIn = ({ onClose }) => {
                 <button className="login-overlay-login-credentials-conainer-sign-in-button">Sign In</button>
             </div>
 
-    <div className="login-overlay-alternative-login-alternatives-bridge-container">
-      <hr /><span>OR</span><hr />
-    </div>
+            <div className="login-overlay-alternative-login-alternatives-bridge-container">
+                <hr /><span>OR</span><hr />
+            </div>
 
-    <div className="login-overlay-alternative-login-alternatives-container">
-      <div className="login-option-button">
-        <FcGoogle />
-        <span>Sign in with Google</span>
-      </div>
-      <div className="login-option-button">
-        <img src={microsoft} alt="Microsoft logo" width={18} height={18} />
-        <span>Sign in with Microsoft</span>
-      </div>
-      <div className="login-option-button">
-        <IoLogoApple />
-        <span>Sign in with Apple</span>
-      </div>
-    </div>
+            <div className="login-overlay-alternative-login-alternatives-container">
+                <div className="login-option-button">
+                    <FcGoogle />
+                    <span>Sign in with Google</span>
+                </div>
+                <div className="login-option-button">
+                    <img src={microsoft} alt="Microsoft logo" width={18} height={18} />
+                    <span>Sign in with Microsoft</span>
+                </div>
+                <div className="login-option-button">
+                    <IoLogoApple />
+                    <span>Sign in with Apple</span>
+                </div>
 
-    <div className="login-overlay-alternative-login-alternatives-container-create-account">
-      <p>Don’t have an account? <strong style={{ color: '#635DFF' }}>Register now!</strong></p>
-    </div>
+                <div className="login-overlay-alternative-login-alternatives-container-create-account">
+                    <p>Don’t have an account? <strong style={{ color: '#635DFF' }}>Register now!</strong></p>
+                </div>
 
-  </div>
-</div>
+            </div>
+
+           
+
+        </div>
+    </div>
 
   );
 };
