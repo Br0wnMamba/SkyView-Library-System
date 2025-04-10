@@ -3,7 +3,6 @@ import ProfileSidebar from "../../components/ProfileSidebar/ProfileSidebar";
 import BookCard from "../../components/BookCard/BookCard";
 import Button from "../../components/Button/Button";
 import accountManager from "../../utils/AccountManager";
-import { handleRemoveHold as handleRemoveHoldFunction } from "../../utils/setSessionStorage";
 import "./profile-all-pages.css";
 
 const OnHold = () => {
@@ -12,8 +11,6 @@ const OnHold = () => {
 	const books = JSON.parse(sessionStorage.getItem("books")) || {};
 
 	const handleRemoveHold = (id) => {
-		const res = handleRemoveHoldFunction(id);
-		setOnHoldBooks(res);
 	};
 
 	useEffect(() => {
