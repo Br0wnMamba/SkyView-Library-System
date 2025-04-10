@@ -1,4 +1,4 @@
-/* input {
+.input {
   font-size: 14px;
   box-shadow: inset #abacaf 0 0 0 2px;
   border: 0;
@@ -16,22 +16,22 @@
   width: auto;
 }
 
-input:hover {
+.input:hover {
   box-shadow: 0 0 0 0 #fff inset, var(--primary-color) 0 0 0 2px;
 }
 
-input:focus {
+.input:focus {
   background: #fff;
   outline: 0;
   box-shadow: 0 0 0 0 #fff inset, var(--primary-color) 0 0 0 3px;
 }
 
-input.disabled {
+.input.disabled {
   background-color: rgb(193, 193, 193);
   box-shadow: none;
   color: #ffffff;
 }
 
-input.disabled:hover {
+.input.disabled:hover {
   cursor: default;
-} */
+}

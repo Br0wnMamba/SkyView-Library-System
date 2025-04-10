@@ -17,7 +17,7 @@ const Input = ({
   return (
     <div>
       <input
-        className={`${disabled ? "disabled" : ""} ${className}`}
+        className={`input ${disabled ? "disabled" : ""} ${className}`}
         type={type}
         placeholder={placeholder}
         disabled={disabled}
