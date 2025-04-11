@@ -1,12 +1,46 @@
 import './LogIn.css';
 import { GiOpenBook } from "react-icons/gi";
-
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoApple } from "react-icons/io5";
-import  microsoft from "../../assets/Logos/microsoft.svg";
+import microsoft from "../../assets/Logos/microsoft.svg";
+import { useState } from "react";
+import { MdErrorOutline } from "react-icons/md";
+import { useAuth } from '../../routes/AuthContext'; 
+import { useNavigate } from "react-router-dom";
+
+
+const dummyUsers = [
+    { email: "jad@gmail.com", password: "password123", name: "Jad" },
+    { email: "noor@egmail.com", password: "adminpass", name: "Noor" },
+    { email: "elizabith@gmail.com", password: "password123", name: "Elizabith" },
+  ];
+
 
 const LogIn = ({ onClose }) => {
-  return (
+  
+    const { login } = useAuth();
+
+    const routeNavigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loggedIn, setLoggedIn] = useState(false);
+    const [prevFailedLogin, setPrevFailedLogin] = useState(false);
+   
+    const handleLogin = () => {
+        const foundUser = dummyUsers.find(
+          (user) => user.email === email && user.password === password
+        );
+        if (foundUser) {
+          setLoggedIn(true);
+          login(foundUser.name); // Call the login function from AuthContext
+          routeNavigate('/'); 
+        } else {
+            setPrevFailedLogin(true);
+        }
+      };
+
+
+    return (
     <div className="overlay-backdrop" onClick={onClose}>
   <div className="overlay-content" onClick={(e) => e.stopPropagation()}>
 
@@ -27,10 +61,25 @@ const LogIn = ({ onClose }) => {
       </div>
 
       <div className="login-overlay-login-credentials-container">
-        <input type="text" className='login-overlay-login-credentials-email-input' placeholder="Email address*" />
-        <input type="password" className='login-overlay-login-credentials-password-input' placeholder="Password*" />
+        
+        {prevFailedLogin && 
+        <div className='login-overlay-login-credentials-container-failed-login-container'>
+            <MdErrorOutline className="login-overlay-login-credentials-error-icon"/>
+            <p className="login-overlay-login-credentials-failed-login-text">Invalid email or password</p>
+        </div>}
+
+
+        <input type="text" 
+        className='login-overlay-login-credentials-email-input'
+        placeholder="Email address*" value={email} onChange={(e) => setEmail(e.target.value)} 
+        />
+        
+        <input type="password" 
+        className='login-overlay-login-credentials-password-input' 
+        placeholder="Password*" value={password}  onChange={(e) => setPassword(e.target.value)} 
+        />
         <p className="login-overlay-login-credentials-container-forgot-password">Forgot Password?</p>
-        <button className="login-overlay-login-credentials-conainer-sign-in-button">Sign In</button>
+        <button className="login-overlay-login-credentials-conainer-sign-in-button" onClick={handleLogin}>Sign In</button>
       </div>
 
       <div className="login-overlay-alternative-login-alternatives-bridge-container">

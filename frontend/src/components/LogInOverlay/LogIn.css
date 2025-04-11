@@ -26,9 +26,6 @@
     position: relative; /* For absolute positioning of the close button */
     }
 
-    
-
-      
 
   .overlay-content {
     display: flex;
@@ -204,6 +201,7 @@ align-items: center;
     color: #555;
     text-align: center;
     max-width: 220px;
+    margin-bottom: 4rem;
   }
   
   .login-overlay-login-credentials-email-input {
@@ -266,6 +264,86 @@ align-items: center;
 }
   
 
-
+/* Error container with icon and message alignment */
+.login-overlay-login-credentials-container-failed-login-container {
+    color: #D93025;
+    background-color: #FEEAEA;
+    border: 1px solid #D93025;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-sizing: border-box; /* Ensure consistent width calculation */
+  }
   
+  /* Error icon styling */
+  .login-overlay-login-credentials-error-icon {
+    font-size: 1.25rem;
+    color: #D93025;
+  }
+  
+  /* Error text specifically */
+  .login-overlay-login-credentials-failed-login-text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #D93025;
+  }
+  
+  /* Highlight invalid input fields */
+  .login-overlay-login-credentials-email-input.invalid,
+  .login-overlay-login-credentials-password-input.invalid {
+    border-color: #D93025;
+    background-color: #FFF5F5;
+  }
+  
+  .login-overlay-body {
+    width: 100%;
+  }
+  
+  .nav-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+
+
+  .nav-button:hover {
+    background-color: #0d2f44;
+    color: white;
+  }
+  
+  .nav-icon {
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+  }
+  
+  .login-overlay-nav-buttons-group {
+    margin-top: 1rem;
+  }
+  
+  .login-overlay-logout-button-wrapper {
+    margin-top: 2.5rem;
+    
+  }
+  
+  .logout {
+    color: #ffffff;
+    background-color: #0d2f44;
+  }
+
+
   

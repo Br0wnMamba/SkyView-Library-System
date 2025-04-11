@@ -1,6 +1,7 @@
 // AppRoutes.js
-import React from "react";
-import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import {React} from "react";
+import {Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from './AuthContext.js';
 
 // Import all components
 import Home from '../pages/home/Home.js';
@@ -16,6 +17,7 @@ import LogIn from "../components/LogInOverlay/LogIn.js";
 import Search from "../components/Search/Search.js";
 import ProfileLayout from "../pages/profile/ProfileLayout.js";
 import SearchResults from "../pages/SearchResults/SearchResults.js";
+import LoggedInOverlay from "../components/LogInOverlay/LogedInOverLay.js";
 
 
 // Define the main App component that sets up the router and routes.
@@ -24,6 +26,7 @@ export default function AppRoutes() {
   const location = useLocation();
   const state = location.state;
   let routeNavigate = useNavigate();
+  const { isAuthenticated } = useAuth();
 
   return (
     <>
@@ -48,7 +51,14 @@ export default function AppRoutes() {
       {/* Model login overlay route so that no matter where we are in the application we will stay on the same page when clicking login */}
       {state?.backgroundLocation && (
         <Routes>
-          <Route path="/login" element={<LogIn onClose={() => routeNavigate(-1)} />} />
+          <Route
+            path="/login"
+            element={
+              isAuthenticated
+                ? <LoggedInOverlay onClose={() => routeNavigate(-1)} />
+                : <LogIn onClose={() => routeNavigate(-1)} />
+            }
+          />
         </Routes>
       )}
     </>
