@@ -1,0 +1,41 @@
+.search-sidebar-container {
+	min-width: 20%;
+	background-color: #fff;
+	border-radius: 8px;
+	margin-top: 100px;
+	padding: 20px;
+	height: fit-content;
+}
+
+.search-sidebar-header {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+.search-sidebar-header h3 {
+	margin: 0;
+}
+
+.filter h4 {
+	display: flex;
+	justify-content: space-between;
+	cursor: pointer;
+	margin: 15px 0;
+}
+
+.filter-options {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.filter-options input {
+	margin-right: 10px;
+	margin-bottom: 8px;
+	cursor: pointer;
+	accent-color: gray;
+}
+
+.filter-options label {
+	cursor: pointer;
+}
