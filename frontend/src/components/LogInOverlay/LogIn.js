@@ -13,6 +13,8 @@ const dummyUsers = [
     { email: "jad@gmail.com", password: "password123", name: "Jad" },
     { email: "noor@egmail.com", password: "adminpass", name: "Noor" },
     { email: "elizabith@gmail.com", password: "password123", name: "Elizabith" },
+    { email: "Adarsh@gmail.com", password: "password123", name: "Adarsh" },
+    { email: "Ifeanyi@gmail.com", password: "password123", name: "Ifeanyi" }
   ];
 
 
@@ -39,6 +41,9 @@ const LogIn = ({ onClose }) => {
         }
       };
 
+    const notImplemented = () => {
+        alert("This feature is not implemented yet. Please try again later.");
+    }
 
     return (
     <div className="overlay-backdrop" onClick={onClose}>
@@ -78,7 +83,7 @@ const LogIn = ({ onClose }) => {
         className='login-overlay-login-credentials-password-input' 
         placeholder="Password*" value={password}  onChange={(e) => setPassword(e.target.value)} 
         />
-        <p className="login-overlay-login-credentials-container-forgot-password">Forgot Password?</p>
+        <button onclick={notImplemented} className="login-overlay-login-credentials-container-forgot-password">Forgot Password?</button>
         <button className="login-overlay-login-credentials-conainer-sign-in-button" onClick={handleLogin}>Sign In</button>
       </div>
 
@@ -101,7 +106,10 @@ const LogIn = ({ onClose }) => {
         </div>
 
         <div className="login-overlay-alternative-login-alternatives-container-create-account">
-          <p>Don’t have an account? <strong style={{ color: '#635DFF' }}>Register now!</strong></p>
+          <p>Don’t have an account? <strong style={{ color: '#635DFF' }}>
+            <button className='login-overlay-login-credentials-container-register-now-button' onClick={notImplemented}> 
+                Register now!
+            </button></strong></p>
         </div>
       </div>
     </div>

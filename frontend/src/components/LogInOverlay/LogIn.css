@@ -185,9 +185,14 @@ align-items: center;
     color: #635DFF;
     font-size: 0.95rem;
     font-weight: 500;
-    margin-left: 0.5rem;
     margin-top: 0;
     margin-bottom: 1rem;
+    border: none;
+    background-color: transparent;
+}
+
+.login-overlay-login-credentials-container-forgot-password:hover {
+  cursor: pointer;
 }
 
 .welcome-heading {
@@ -346,4 +351,15 @@ align-items: center;
   }
 
 
-  
+  .login-overlay-login-credentials-container-register-now-button {
+    color: #635DFF;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 0;
+    border: none;
+    background-color: transparent;
+  }
+
+  .login-overlay-login-credentials-container-register-now-button {
+    cursor: pointer;
+  }
