@@ -15,7 +15,7 @@ import {
 const ReadBookSidebar = ({ onTextColorsChange, onBackgroundColorChange, onTextSizeChange, onChapterChange, totalChapters }) => {
 	const [textColor, setTextColor] = useState("black");
 	const [backgroundColor, setBackgroundColor] = useState("white");
-	const [textSize, setTextSize] = useState(12);
+	const [textSize, setTextSize] = useState(24);
 	const [chapter, setChapter] = useState(1);
 
 	const handleTextColorChange = (event) => {

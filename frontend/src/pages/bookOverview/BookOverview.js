@@ -12,6 +12,7 @@ import cartManager from "../../utils/CartManager";
 import holdManager from "../../utils/HoldManager";
 import loanManager from "../../utils/LoanManager";
 import accountManager from "../../utils/AccountManager";
+import { Snackbar, Alert } from "@mui/material";
 
 const BookOverview = () => {
   const user = accountManager.getUser();
@@ -23,6 +24,11 @@ const BookOverview = () => {
   const { title, authors, availability } = book;
   const number_of_physical_copies_available = availability.physical;
   const is_ebook_available = availability.digital;
+  const [snackbar, setSnackbar] = useState({
+	  open: false,
+	  message: "",
+	  severity: "success",
+	});
 
   useEffect(() => {
 	if (user) {
@@ -116,14 +122,25 @@ const BookOverview = () => {
                     "saved_authors",
                     JSON.stringify(savedAuthors)
                   );
+				  setSnackbar({
+					open: true,
+					message: "Authors saved successfully!",
+					severity: "success",
+				  });
                 }}
               />
               <Button
                 text="Bookmark"
                 borderRadius={"0"}
                 onClick={() => {
-                  bookmarkManager.addBookmark(id);
-                }}
+                  const res = bookmarkManager.addBookmark(id);
+				  if (res.status === 200 || res.status === 400) {
+					setSnackbar({
+						open: true,
+						message: res.message,
+						severity: "success",
+					});
+                }}}
               />
             </div>
             <hr />
@@ -224,9 +241,14 @@ const BookOverview = () => {
 					} else {
   					  holdManager.add(id, bookTypeCheckout, 1);
 					}
+					setSnackbar({
+						open: true,
+						message: "Book placed on hold successfully!",
+						severity: "success",
+					});
                 }}
                 fontSize={"18px"}
-                backgroundColor={"#f4d473"}
+                backgroundColor={"#f4c542"}
               />
             ) : (
               <Button
@@ -237,11 +259,18 @@ const BookOverview = () => {
 						return;
 					}
 
+					let res;
+
 					if (bookTypeCheckout === "physical") {
-	                  cartManager.add(id, bookTypeCheckout, quantity);
+	                  res = cartManager.add(id, bookTypeCheckout, quantity);
 					} else {
-	                  cartManager.add(id, bookTypeCheckout, 1);
+	                  res = cartManager.add(id, bookTypeCheckout, 1);
 					}
+					setSnackbar({
+						open: true,
+						message: res.message,
+						severity: "success",
+					});
                 }}
                 fontSize={"18px"}
                 backgroundColor={"green"}
@@ -256,6 +285,11 @@ const BookOverview = () => {
 				  return;
 				}
                 loanManager.checkoutBook(id, bookTypeCheckout, quantity);
+				setSnackbar({
+					open: true,
+					message: "Book checked out successfully!",
+					severity: "success",
+				});
               }}
               fontSize={"18px"}
               disabled={
@@ -270,6 +304,15 @@ const BookOverview = () => {
         </div>
       </div>
 	)}
+		<Snackbar
+			open={snackbar.open}
+			autoHideDuration={3000}
+			onClose={() => setSnackbar({ ...snackbar, open: false })}
+		>
+			<Alert severity={snackbar.severity} sx={{ width: "100%" }}>
+			{snackbar.message}
+			</Alert>
+		</Snackbar>
     </div>
   );
 };

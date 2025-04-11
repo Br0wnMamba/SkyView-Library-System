@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AddToCart.css";
 import cartManager from "../../utils/CartManager";
 
-const AddToCart = ({ id, type}) => {
+const AddToCart = ({ id, type, setSnackbar }) => {
   const label = type === 'physical' ? 'Physical Copy' : 'Digital Copy';
 
   const [added, setAdded] = useState(false);
@@ -24,7 +24,11 @@ const AddToCart = ({ id, type}) => {
         setTimeout(() => setAdded(false), 2000);
       }
     } else {
-      alert(result?.message || "Could not add to cart.");
+	  setSnackbar({
+		open: true,
+		message: result?.message || "Failed to add to cart",
+		severity: "error",
+	  });
     }
   };
 

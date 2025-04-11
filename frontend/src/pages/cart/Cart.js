@@ -10,10 +10,16 @@ import cartManager from "../../utils/CartManager";
 import bookmarkManager from "../../utils/BookmarkManager"; 
 import loanManager from "../../utils/LoanManager";
 import { Link } from "react-router-dom";
+import { Snackbar, Alert } from "@mui/material";
 
 export default function Cart() {
   const navigate = useNavigate();
   const [books, setBooks] = useState([]);
+  const [snackbar, setSnackbar] = useState({
+	open: false,
+	message: "",
+	severity: "success",
+  });
 
   useEffect(() => {
     const rawCart = cartManager.getCart();
@@ -59,7 +65,11 @@ export default function Cart() {
       : cartManager.remove(book_id, type, 1);
   
     if (result?.status !== 200) {
-      alert(result.message || "Failed to update cart.");
+	  setSnackbar({
+		open: true,
+		message: result.message || "Failed to update cart.",
+		severity: "error",
+	  });
       return;
     }
   
@@ -118,11 +128,23 @@ export default function Cart() {
   const handleBookmark = (bookId) => {
     const result = bookmarkManager.addBookmark(bookId);
     if (result?.status === 200) {
-      alert("Book bookmarked!");
+      setSnackbar({
+		open: true,
+		message: result?.message || "Book bookmarked successfully!",
+		severity: "success",
+	  });
     } else if (result?.status === 400) {
-      alert("Book already bookmarked!");
+      setSnackbar({
+		open: true,
+		message: result?.message || "Book already bookmarked.",
+		severity: "success",
+	  });
     } else {
-      alert("Something went wrong.");
+	  setSnackbar({
+		open: true,
+		message: "Failed to bookmark book.",
+		severity: "error",
+	  });
     }
   };
 
@@ -260,6 +282,15 @@ export default function Cart() {
           </>
         )}
       </div>
+	  <Snackbar
+			open={snackbar.open}
+			autoHideDuration={3000}
+			onClose={() => setSnackbar({ ...snackbar, open: false })}
+		>
+			<Alert severity={snackbar.severity} sx={{ width: "100%" }}>
+			{snackbar.message}
+			</Alert>
+		</Snackbar>
     </div>
   );
 }
