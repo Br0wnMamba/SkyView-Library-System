@@ -1,5 +1,5 @@
 import accountManager from "./AccountManager";
-import {Bookmarked} from "../data/bookmarked";
+import {bookmarked} from "../data/bookmarked";
 
 let instance;
 
@@ -13,8 +13,8 @@ class BookmarkManager {
     let allBookmarks = sessionStorage.getItem("book_marked");
 
     if (!allBookmarks) {
-      allBookmarks = Bookmarked;
-      sessionStorage.setItem("book_marked", JSON.stringify(Bookmarked));
+      allBookmarks = bookmarked;
+      sessionStorage.setItem("book_marked", JSON.stringify(bookmarked));
     }
   }
 

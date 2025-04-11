@@ -1,4 +1,4 @@
-export const Bookmarked = {
+export const bookmarked = {
   1: {
     101: { bookmarked_on: "2025-04-01" },
     102: { bookmarked_on: "2025-04-02" },

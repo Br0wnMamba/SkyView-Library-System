@@ -53,15 +53,20 @@ const Search = () => {
 	const filterBooks = useCallback(() => {
 		const matchesAnyFilter = (book) => {
 			const matchQuery = query && book.title.toLowerCase().includes(query);
-			const matchGenre = selectedGenre.length && selectedGenre.includes(book.genre);
-			const matchAuthor = selectedSaveAuthors.length && selectedSaveAuthors.some((author) =>
+			const matchGenre = selectedGenre.length > 0 ? 
+				selectedGenre.some((genre) => book.genre.toLowerCase() === genre.toLowerCase()) : true;
+			const matchAuthor = selectedSaveAuthors.length > 0 ? selectedSaveAuthors.some((author) =>
 				book.authors.some((bookAuthor) => bookAuthor.toLowerCase().includes(author.toLowerCase()))
-			);
-			const matchFormat =
-				(selectedMediaFormat.includes("Physical") && book.availability?.physical > 0) ||
-				(selectedMediaFormat.includes("eBook") && book.availability?.digital > 0);
+			) : true;
+			const matchFormat = selectedMediaFormat.length > 0 ? 
+				((selectedMediaFormat.includes("Physical") && book.availability?.physical > 0) ||
+				(selectedMediaFormat.includes("eBook") && book.availability?.digital > 0)) : true;
 
-			return matchQuery || matchGenre || matchAuthor || matchFormat;
+		   if (matchQuery) {
+				return matchGenre && matchAuthor && matchFormat;
+		   } else {
+				return false;
+		   }
 		};
 
 		if (

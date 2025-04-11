@@ -14,7 +14,7 @@ class AuthorManager {
 
     if (!allSavedAuthors) {
 	  allSavedAuthors = authors;
-      sessionStorage.setItem("saved_authors", JSON.stringify({}));
+      sessionStorage.setItem("saved_authors", JSON.stringify(allSavedAuthors));
     }
   }
 

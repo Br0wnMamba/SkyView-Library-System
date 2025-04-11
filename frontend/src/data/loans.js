@@ -1,4 +1,4 @@
-export const Loans = {
+export const loans = {
   1: [
     {
       book_id: 101,

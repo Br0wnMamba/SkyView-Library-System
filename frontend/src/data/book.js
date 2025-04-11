@@ -1,5 +1,5 @@
 import { covers } from "./covers";
-export const Books = {
+export const books = {
   101: {
     title: "The Silent Patient",
     authors: ["Alex Michaelides"],

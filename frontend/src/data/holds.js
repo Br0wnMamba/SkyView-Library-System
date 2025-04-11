@@ -1,4 +1,4 @@
-export const Holds = {
+export const holds = {
   1: [
     {
       id: 104,

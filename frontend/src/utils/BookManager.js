@@ -1,4 +1,4 @@
-import { Books } from "../data/book";
+import { books } from "../data/book";
 
 let instance;
 
@@ -12,7 +12,7 @@ class BookManager {
     let storedBooks = sessionStorage.getItem("books");
 
     if (storedBooks === null) {
-      storedBooks = Books;
+      storedBooks = books;
 
       sessionStorage.setItem("books", JSON.stringify(storedBooks));
     }

@@ -1,6 +1,6 @@
 import accountManager from "./AccountManager";
 import bookManager from "./BookManager";
-import { Holds } from "../data/holds";
+import { holds } from "../data/holds";
 
 let instance;
 
@@ -14,7 +14,7 @@ class HoldManager {
     let storedHolds = sessionStorage.getItem("holds");
 
     if (storedHolds === null) {
-      storedHolds = Holds;
+      storedHolds = holds;
 
       sessionStorage.setItem("holds", JSON.stringify(storedHolds));
     }

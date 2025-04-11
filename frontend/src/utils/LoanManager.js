@@ -1,7 +1,7 @@
 import accountManager from "./AccountManager";
 import bookManager from "./BookManager";
 import cartManager from "./CartManager";
-import { Loans } from "../data/loans";
+import { loans } from "../data/loans";
 
 let instance;
 
@@ -16,7 +16,7 @@ class LoanManager {
     let storedLoans = sessionStorage.getItem("loans");
 
     if (storedLoans === null) {
-      storedLoans = Loans;
+      storedLoans = loans;
 
       sessionStorage.setItem("loans", JSON.stringify(storedLoans));
     }
