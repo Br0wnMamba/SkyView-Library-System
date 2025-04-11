@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./Cart.css";
 
 import ebookIcon from "../../assets/ebook.svg";
@@ -9,8 +8,8 @@ import placeholderImage from "../../assets/empty-cart-image.png";
 import bookImage from "../../assets/image.png";
 import cartManager from "../../utils/CartManager";
 import bookmarkManager from "../../utils/BookmarkManager"; 
-
-import { handleAddBookmark } from "../../utils/setSessionStorage";
+import loanManager from "../../utils/LoanManager";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -130,9 +129,20 @@ export default function Cart() {
   const isEmpty = books.length === 0;
 
   const handleCheckout = () => {
+    const rawCart = cartManager.getCart();
+  
+    // Format loanManager expects
+    const transformedCart = rawCart.map(item => ({
+      id: item.book_id,
+      type: item.type,
+      quantity: item.quantity
+    }));
+  
+    loanManager.checkoutCart(transformedCart); 
+    setBooks([]); 
     navigate("/bookshelf");
-  };  
-
+  };
+   
   return (
     <div className="page-wrapper">
       <div className="cart-container">
@@ -155,9 +165,9 @@ export default function Cart() {
                 <div key={`${book.id}-${book.type}`} className="cart-item">
                   <img src={book.image_url} alt={book.name} />
                   <div className="cart-info">
-                    <a href="#" className="book-title">
-                      {book.name}
-                    </a>
+                  <Link to={`/book/${book.id}`} className="book-title">
+                    {book.name}
+                  </Link>
                     <p className="book-author">by {book.authors.join(", ")}</p>
                     <div className="book-type">
                       <img

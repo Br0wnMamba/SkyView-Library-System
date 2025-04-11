@@ -78,18 +78,10 @@ const Home = () => {
                     <AddToCart
                       id={book.id}
                       type="physical"
-                      count={book.availability.physical}
-                      title={book.title}
-                      author={book.authors[0]}
-                      image={book.cover}
                     />
                     <AddToCart
                       id={book.id}
                       type="digital"
-                      count={book.availability.digital}
-                      title={book.title}
-                      author={book.authors[0]}
-                      image={book.cover}
                     />
                   </div>
                 </div>
