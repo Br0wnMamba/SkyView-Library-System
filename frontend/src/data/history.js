@@ -1,4 +1,4 @@
-export const History = {
+export const history = {
   1: [
     {
       id: 102,

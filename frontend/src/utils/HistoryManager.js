@@ -1,5 +1,5 @@
 import accountManager from "./AccountManager";
-import { History } from "../data/history";
+import { history } from "../data/history";
 let instance;
 
 class HistoryManager {
@@ -12,7 +12,7 @@ class HistoryManager {
     let storedHistory = sessionStorage.getItem("history");
 
     if (storedHistory === null) {
-      storedHistory = History;
+      storedHistory = history;
 
       sessionStorage.setItem("history", JSON.stringify(storedHistory));
     }

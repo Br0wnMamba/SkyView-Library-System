@@ -1,0 +1,24 @@
+.search-container {
+	display: flex;
+	gap: 40px;
+}
+
+.book-list-container {
+	margin-top: 100px;
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 20px;
+	height: fit-content;
+	margin-right: 20px;
+}
+
+.search-results-header {
+	font-weight: 500;
+	margin-top: 0;
+}
+
+.search-results-books-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+}
