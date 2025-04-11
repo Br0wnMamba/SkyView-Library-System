@@ -53,7 +53,7 @@ const NavBar = () => {
                 <RiHome2Line className="icon-home"/>
             </div>
 
-            <div className="nav-container cart-container">
+            <div className="nav-container cart-container-nav" onClick={() => navigate("/cart")}>
                 <BsCart3 className="icon-cart"/>
             </div>
 

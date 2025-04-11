@@ -1,0 +1,195 @@
+.page-wrapper {
+    margin-top: 80px; 
+  }
+  
+  .cart-container {
+      padding: 1rem;
+      background-color: #f5f6fa;
+      border-radius: 10px;
+      margin: 2rem auto;
+      max-width: 1000px;
+    }
+    
+    .cart-items {
+      margin-bottom: 2rem;
+    }
+    
+    .cart-item {
+      display: flex;
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+    
+    .cart-item img {
+      width: 100px;
+      height: auto;
+      margin-right: 1rem;
+      border-radius: 5px;
+    }
+    
+    .cart-info {
+      flex-grow: 1;
+    }
+    
+    .book-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+    
+    .book-author {
+      margin: 0.3rem 0;
+      color: #555;
+    }
+    
+    .book-type {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0;
+    }
+    
+    .book-type img {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+    
+    .return-date {
+      font-size: 0.9rem;
+      color: #888;
+    }
+    
+    .cart-controls {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    
+    .delete-link {
+      color: #e53935;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    
+    .cart-summary {
+      background-color: #e0e0e0;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    
+    .cart-summary h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .cart-summary ul {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+    
+    .checkout-button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+  
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .quantity-controls button {
+      width: 32px;
+      height: 32px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background-color: #e0e0e0;
+      color: #333;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    
+    .quantity-controls button:hover {
+      background-color: #d5d5d5;
+    }
+    
+    .quantity-controls button:disabled {
+      background-color: #f9f9f9;
+      color: #aaa;
+      border-color: #ddd;
+      cursor: not-allowed;
+    }  
+    
+    .delete-link {
+      background: none;
+      border: none;
+      color: #e53935;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      font: inherit;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #555;
+    }
+    
+    .empty-cart h2 {
+      font-size: 1.6rem;
+      margin-top: 1rem;
+    }
+    
+    .empty-cart p {
+      font-size: 1rem;
+      color: #777;
+    }
+    
+    .empty-cart-img {
+      width: 150px;
+      opacity: 0.6;
+    }
+  
+    .cart-title {
+      border-bottom: 2px solid #000;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      max-width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .qty-warning {
+      font-size: 0.75rem;
+      color: #888;
+      margin-top: 0.25rem;
+      margin-left: 0.15rem; /* aligns under the quantity */
+    }
+    
+    .bookmark-link {
+      color: #2e7d32; /* a clean green */
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      text-decoration: underline;
+      font: inherit;
+      transition: color 0.2s ease;
+    }
+    
+    .bookmark-link:hover {
+      color: #1b5e20;
+    }
+    
