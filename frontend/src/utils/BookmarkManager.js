@@ -27,7 +27,7 @@ class BookmarkManager {
   #getUserStoredBookmarks = () => {
     let allBookmarks = this.#getStoredBookmarks();
     return allBookmarks[accountManager.getUser().id] || [];
-  };
+  };  
 
   #updateBookmarks = (value) => {
     sessionStorage.setItem("book_marked", JSON.stringify(value));

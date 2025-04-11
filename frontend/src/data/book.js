@@ -28,7 +28,7 @@ export const Books = {
     authors: ["Jodi Picoult", "Mark Fisher"],
     cover: covers.MySistersKeeper,
     availability: {
-      physical: 1,
+      physical: 2,
       digital: 3,
     },
     desc: "Based upon Anissa and Marissa Ayala",
