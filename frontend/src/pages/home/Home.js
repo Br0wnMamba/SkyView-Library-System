@@ -32,7 +32,7 @@ const Home = () => {
                   {/* Book Authors */}
                   <h4 className="home-bookAuthor">
                     {book?.authors?.map((author, index) => (
-                      <span key={index}>
+                      <span key={`${author}-${index}`}>
                         {index !== 0 && ", "}
                         {author}
                       </span>
