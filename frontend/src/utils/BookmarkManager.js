@@ -1,4 +1,5 @@
 import accountManager from "./AccountManager";
+import {Bookmarked} from "../data/bookmarked";
 
 let instance;
 
@@ -12,7 +13,8 @@ class BookmarkManager {
     let allBookmarks = sessionStorage.getItem("book_marked");
 
     if (!allBookmarks) {
-      sessionStorage.setItem("book_marked", JSON.stringify({}));
+      allBookmarks = Bookmarked;
+      sessionStorage.setItem("book_marked", JSON.stringify(Bookmarked));
     }
   }
 
@@ -24,10 +26,10 @@ class BookmarkManager {
     return JSON.parse(sessionStorage.getItem("book_marked")) || {};
   };
 
-  #getUserStoredBookmarks = () => {
+  getUserStoredBookmarks = () => {
     let allBookmarks = this.#getStoredBookmarks();
-    return allBookmarks[accountManager.getUser().id] || [];
-  };  
+    return allBookmarks[accountManager.getCardNumber()] || {};
+  };
 
   #updateBookmarks = (value) => {
     sessionStorage.setItem("book_marked", JSON.stringify(value));
@@ -35,11 +37,11 @@ class BookmarkManager {
 
   addBookmark = accountManager.requireAuth((book_id) => {
     let allBookmarks = this.#getStoredBookmarks();
-    let userBookmarks = this.#getUserStoredBookmarks();
+    let userBookmarks = this.getUserStoredBookmarks();
 
-    if (userBookmarks && !userBookmarks.includes(book_id)) {
-      userBookmarks.push(book_id);
-      allBookmarks[accountManager.getUser().id] = userBookmarks;
+    if (!userBookmarks[book_id]) {
+      userBookmarks[book_id] = { bookmarked_on: new Date().toISOString().split("T")[0] };
+      allBookmarks[accountManager.getCardNumber()] = userBookmarks;
 
       this.#updateBookmarks(allBookmarks);
 
@@ -57,14 +59,11 @@ class BookmarkManager {
 
   removeBookmark = accountManager.requireAuth((book_id) => {
     let allBookmarks = this.#getStoredBookmarks();
-    let userBookmarks = allBookmarks[accountManager.getUser().id];
+    let userBookmarks = allBookmarks[accountManager.getCardNumber()];
 
-    if (userBookmarks && userBookmarks.includes(book_id)) {
-      const index = userBookmarks.indexOf(book_id);
-      userBookmarks.splice(index, 1);
-
-      allBookmarks[accountManager.getUser().id] = userBookmarks;
-
+    if (userBookmarks && userBookmarks[book_id]) {
+      delete userBookmarks[book_id];
+      allBookmarks[accountManager.getCardNumber()] = userBookmarks;
       this.#updateBookmarks(allBookmarks);
 
       return {
@@ -79,18 +78,16 @@ class BookmarkManager {
     };
   });
 
-  // Returns if a user currently has a book bookmarked
   isBookmarked = accountManager.requireAuth((book_id) => {
     let bookmarks = this.#getStoredBookmarks();
 
-    return this.#getUserStoredBookmarks(bookmarks).includes(book_id);
+    return !!this.getUserStoredBookmarks()[book_id];
   });
 
-  // Returns all bookmarks for currently signed in user
   getAllBookmarks = accountManager.requireAuth(() => {
     let bookmarks = this.#getStoredBookmarks();
 
-    return bookmarks[accountManager.getUser().id] || [];
+    return bookmarks[accountManager.getCardNumber()] || {};
   });
 }
 
