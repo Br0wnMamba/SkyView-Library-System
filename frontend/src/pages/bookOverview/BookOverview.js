@@ -13,6 +13,9 @@ import { CiLocationOn } from "react-icons/ci";
 import { IoMdPhonePortrait } from "react-icons/io";
 
 const BookOverView = () => {
+
+    const [quantity, setQuantity] = useState(1); // State for selected quantity
+
   return (
     <div className="book-overview-page-container">
       <div className="book-overview-container">
@@ -35,18 +38,49 @@ const BookOverView = () => {
         {/* Middle Section: Metadata */}
         <div className="book-overview-metadata-container">
           <div className="book-overview-title-author">
-            <h1 className="book-title">The 48 Laws of Power</h1>
-            <p className="book-authors">Robert Greene, Joost Elffers</p>
+            <div className="book-overview-title-container">
+                <h1 className="book-title">The 48 Laws of Power</h1>
+            </div>
+            
+            <div className="book-overview-authors-container">
+                <div className="book-overview-authors-list-container">
+                    <p className="book-authors">Robert Greene</p>
+                    <p className="book-authors-role"> (Author)</p>
+                </div>
+                <div className="book-overview-authors-list-container">
+                    <p className="book-authors">Joost Elffers</p>
+                    <p className="book-authors-role"> (Producer)</p>
+                </div>
+            </div>
+            
+            
           </div>
 
           <div className="book-overview-availability-container">
             <div className="availability-item">
-              <FaBook className="availability-icon" /> <p>Available</p>
+                <FaBook className="availability-icon" />
+                <p>
+                <span className="availability-label">Physical:</span>
+                <span className="availability-status">3 Left</span>
+                </p>
             </div>
             <div className="availability-item">
-              <IoMdPhonePortrait className="availability-icon" /> <p>Available</p>
+                <IoMdPhonePortrait className="availability-icon" />
+                <p>
+                <span className="availability-label">Digital:</span>
+                <span className="availability-status">Available</span>
+                </p>
             </div>
-          </div>
+        </div>
+
+        <div className="book-overview-profile-update-buttons-container">
+            <div className="book-overview-profile-save-author-button-container">
+                <button className="book-overview-profile-update-button">Save Author</button>
+            </div>
+            <div className="book-overview-profile-bookmark-button-container">
+                <button className="book-overview-profile-update-button">BookMark</button>
+            </div> 
+        </div>
 
           <div className="book-overview-description">
             <div className="book-overview-accolades-container">
@@ -63,7 +97,7 @@ const BookOverView = () => {
 
             <div className="book-overview-summary-container">
                 <p> 
-                In the book that People magazine proclaimed “beguiling” and “fascinating,” Robert Greene and Joost Elffers have distilled three thousand years of the history of power into 48 essential laws by drawing from the philosophies of Machiavelli, Sun Tzu, and Carl Von Clausewitz and also from the lives of figures ranging from Henry Kissinger to P.T. Barnum.
+                In the book that People magazine proclaimed “beguiling” and “fascinating,” Robert Greene and Joost Elffers have distilled three thousand years of the history of power into 48 essential laws by drawing from the philosophies of Machiavelli, Sun Tzu, and Carl Von Clausewitz and also from the lives of figures ranging from Henry Kissinger to P.T. Barnum.
                 </p>
             </div>
 
@@ -75,14 +109,19 @@ const BookOverView = () => {
           </div>
 
           <div className="book-overview-authors-section">
-            <h2>Learn about the authors</h2>
+            <h2 className="authors-title">Learn More about the Authors!</h2>
+
             <div className="author-entry">
-              <FaUserCircle className="author-icon" /> <p>Robert Greene</p>
+                <FaUserCircle className="author-icon" />
+                <p className="author-name">Robert Greene</p>
             </div>
+
             <div className="author-entry">
-              <FaUserCircle className="author-icon" /> <p>Joost Elffers</p>
-            </div>
-          </div>
+                <FaUserCircle className="author-icon" />
+                <p className="author-name">Joost Elffers</p>
+        </div>
+    </div>
+
         </div>
 
         <div className="gap">
@@ -94,19 +133,38 @@ const BookOverView = () => {
           <h2 className="checkout-title">Checkout</h2>
 
           <div className="book-overview-checkout-formats">
-            <button className="checkout-format-button">Physical</button>
-            <button className="checkout-format-button">Digital</button>
+            <div className="book-overview-checkout-formats-physical">
+                <button className="checkout-format-button"> Add Physical Copy to Cart</button>
+            </div>  
+            
+            <div className="book-overview-checkout-formats-digital">
+                <button className="checkout-format-button">Add Digital Copy to Cart</button>
+            </div>
           </div>
 
           <div className="book-overview-pickup-location">
-            <CiLocationOn className="pickup-icon" /> <p>Pickup Location</p>
+            <CiLocationOn className="pickup-icon" /> <p>Pickup at: 1513 Brookfield Way</p>
           </div>
 
           <div className="book-overview-checkout-actions">
-            <div className="quantity-label">Quantity</div>
+          <select
+                className="checkout-quantity-select"
+                value={quantity}
+             onChange={(e) => setQuantity(parseInt(e.target.value))}
+            >
+            {[...Array(10)].map((_, i) => {
+            const val = i + 1;
+            return (
+                <option key={val} value={val}>
+                Quantity: {val}
+                </option>
+            );
+            })}
+         </select>
+
             <button className="checkout-button">Add to Cart</button>
             <button className="checkout-button">Checkout</button>
-          </div>
+        </div>
         </div>
 
       </div>
