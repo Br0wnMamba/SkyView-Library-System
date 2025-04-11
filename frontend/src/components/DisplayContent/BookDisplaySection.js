@@ -2,14 +2,18 @@ import React from "react";
 import "./BookDisplaySection.css";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
-
+import { useNavigate } from "react-router-dom";
 const BookDisplaySection = ({ title, books, renderButtons, customTextRenderer, showAvailability }) => {
+  const navigate = useNavigate();
+  const handleBookClick = (bookId) => {
+    navigate(`/book/${bookId}`);
+  };
   return (
     <div className="home-booknewsFeedGroupings">
       <h2 className="home-group-title">{title}</h2>
       <div className="home-books-container">
         {books.map((book) => (
-          <div key={book.id} className="home-book-item">
+          <div key={book.id} className="home-book-item" onClick={() => handleBookClick(book.id)} style={{ cursor: 'pointer' }}>
             <img src={book.cover} alt={book.title} className="book-cover"/>
             <h3 className="home-book-title">{book.title}</h3>
             <h4 className="home-bookAuthor">{book.author}</h4>
@@ -47,7 +51,7 @@ const BookDisplaySection = ({ title, books, renderButtons, customTextRenderer, s
                 </div>
               </>
             )}
-            <div className="home-addtocart-container">
+            <div className="home-addtocart-container" onClick={(e) => e.stopPropagation()}>
               {renderButtons && renderButtons(book)}
             </div>
           </div>

@@ -1,0 +1,70 @@
+/* .put-on-hold-container { */
+.store-author-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* .put-on-hold-button { */
+.store-author-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d0bd67; /* Button base colour */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  width: 100%; /* Fills container */
+  border-radius: 10px; /* Smooth rounded corners */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle shadow */
+}
+
+.store-author-button:hover {
+  background-color: #bca843; /* darker teal on hover */
+}
+
+.store-author-button:disabled {
+  background-color: #b0b0b0; /* Muted grey */
+  color: #000000; /* White text for contrast */
+  opacity: 0.6; /* Faded look */
+  cursor: not-allowed; /* Shows it's not clickable */
+  box-shadow: none; /* Remove glow/shadow to reinforce disabled state */
+  transition: none; /* No hover effect */
+}
+
+.store-author-button:disabled:hover {
+  background-color: #b0b0b0; /* Prevent hover changes */
+  color: #111010;
+}
+
+/* .put-on-hold-container:hover { */
+.store-author-container:hover {
+  background-color: transparent;
+  color: inherit;
+}
+
+/* .hold-added-toggle { */
+.store-author-toggle {
+  opacity: 0.85; /* slightly transparent */
+  background-color: #102838; /* dark blue base with transparency feel */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+/* .hold-added-toggle .put-on-hold-button { */
+.store-author-toggle .store-author-button {
+  background-color: #bca843; /* calmer teal for "added" */
+  color: #e0fdfc;
+  cursor: pointer;
+}
+
+/* .hold-added-toggle .put-on-hold-button:hover { */
+.store-author-toggle .store-author-button:hover {
+  background-color: #a49338; /* slightly darker hover */
+  color: white;
+}

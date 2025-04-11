@@ -80,5 +80,3 @@ const handlePlaceOnHold = ({ id, bookTypeCheckout }) => {
 const handleRemoveHold = (id) => {};
 
 export { handleAddToCart, handleCheckout, handleAddBookmark, handleRemoveBookmark, handlePlaceOnHold, handleRemoveHold };
-
-export { handleAddToCart, handleCheckout, handleAddBookmark, handleRemoveBookmark, handlePlaceOnHold, handleRemoveHold };
