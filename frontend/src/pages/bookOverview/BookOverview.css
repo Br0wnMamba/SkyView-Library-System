@@ -370,7 +370,7 @@
   }
   
   .checkout-button:hover {
-    background-color: #164d66;
+    background-color: #2C8573;
   }
 
 .book-overview-checkout-buttons-container {
@@ -400,8 +400,9 @@
 .gap {
 width: 1rem; /* horizontal space between containers */
   background-color: #e3e3e3; /* match surrounding background */
-  align-self: stretch; /* 💡 THIS is the key to fill vertical space */
-  flex-shrink: 0;       /* prevent shrinking if container is tight */
+  align-self: stretch; 
+  flex-shrink: 0;   
+      
 }
 
 .book-overview-availability-and-actions-wrapper {
