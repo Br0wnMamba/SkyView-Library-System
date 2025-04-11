@@ -26,10 +26,7 @@ class BookmarkManager {
 
   #getUserStoredBookmarks = () => {
     let allBookmarks = this.#getStoredBookmarks();
-    const userId = accountManager.getUser().id;
-    const userData = allBookmarks[userId];
-  
-    return Array.isArray(userData) ? userData : [];
+    return allBookmarks[accountManager.getUser().id] || [];
   };  
 
   #updateBookmarks = (value) => {

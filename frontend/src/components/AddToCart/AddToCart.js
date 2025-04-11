@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AddToCart.css";
 import cartManager from "../../utils/CartManager";
 
-const AddToCart = ({ id, type, title, author, image }) => {
+const AddToCart = ({ id, type}) => {
   const label = type === 'physical' ? 'Physical Copy' : 'Digital Copy';
 
   const [added, setAdded] = useState(false);
