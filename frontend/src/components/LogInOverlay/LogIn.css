@@ -20,7 +20,7 @@
     background: white;
     width: 20%;
     height: 100%;
-    padding: 2rem;
+    padding: 0rem 2rem 2rem 2rem; /* ⬅️ remove top padding */
     box-shadow: -2px 0 5px rgba(0,0,0,0.2);
   }
   
@@ -28,7 +28,7 @@
   .login-overlay-icon-skyViewLogo {
     font-size: 2.5rem;
     width: 100%;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
   }
@@ -37,11 +37,42 @@
   /* The header for the login overlay */
     .login-overlay-header-container {
         display: flex;
-        justify-content: right;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0B2948; 
+  color: white;
+  width: 100%;
+  height: 64px; 
+  padding: 0 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* optional for style */
+  position: relative; /* For absolute positioning of the close button */
+    }
+
+    .login-overlay-logo-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         width: 100%;
-        margin-bottom: 1rem;
     }
+
+    .login-overlay-skyView-text {
+        font-size: 0.85rem;
+        margin: 0;
+    }
+
+
+    .login-overlay-header-close-button {
+        background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+    }
+
+
+
 
 /* The Welcom container section for users  */
 .login-overlay-title-welcome-information-container {
@@ -63,6 +94,7 @@ align-items: center;
     font-size: 1rem;
     font-weight: bold;
     padding: 0.75rem 1rem;
+    margin-top: 1.5rem;
     width: 100%; /* Fills container */
     border-radius: 10px; /* Smooth rounded corners */
     border: none;
@@ -85,7 +117,7 @@ align-items: center;
     text-align: center;
     justify-content: center;
     width: 100%;
-    margin: 1.5rem 0;
+    margin: 0.25rem 0;
     color: #000000;
     font-weight: bold;
     font-size: 0.9rem;
@@ -141,9 +173,11 @@ align-items: center;
 .login-overlay-alternative-login-alternatives-container-create-account {
     display: flex;
     color: #635DFF;
-    font-size: 1.2rem;
+    font-size: 0.95rem;
     font-weight: 500;
     margin-left: 0.5rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 .welcome-heading {
@@ -159,10 +193,19 @@ align-items: center;
     max-width: 220px;
   }
   
-  .login-overlay-login-credentials-container input {
+  .login-overlay-login-credentials-email-input {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+
+  .login-overlay-login-credentials-password-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 0.25rem;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 0.95rem;

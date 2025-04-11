@@ -11,13 +11,16 @@ const LogIn = ({ onClose }) => {
         <div className="overlay-content" onClick={(e) => e.stopPropagation()}>
     
             <div className="login-overlay-header-container">
+
+                <div className="login-overlay-logo-container">
+                    <GiOpenBook className="login-overlay-icon-skyViewLogo" />
+                    <p className='login-overlay-skyView-text'>SkyView Library</p>
+                </div>
+
                 <button className="login-overlay-header-close-button" onClick={onClose}>X</button>
             </div>
 
-            <div className="login-overlay-logo-container">
-                <GiOpenBook className="login-overlay-icon-skyViewLogo" />
-                <p><strong>SkyView Library</strong></p>
-            </div>
+            
 
             <div className="login-overlay-title-welcome-information-container">
                 <p className="welcome-heading">Welcome!</p>
@@ -25,8 +28,8 @@ const LogIn = ({ onClose }) => {
             </div>
 
             <div className="login-overlay-login-credentials-container">
-                <input type="text" placeholder="Email address*" />
-                <input type="password" placeholder="Password*" />
+                <input type="text" className='login-overlay-login-credentials-email-input' placeholder="Email address*" />
+                <input type="password" className='login-overlay-login-credentials-password-input' placeholder="Password*" />
                 <p className="login-overlay-login-credentials-container-forgot-password">Forgot Password?</p>
                 <button className="login-overlay-login-credentials-conainer-sign-in-button">Sign In</button>
             </div>
