@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Home.css";
 import { DisplayContent } from "../../data/book";
 import AddToCart from "../../components/AddToCart/AddToCart";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
 import bookManager from "../../utils/BookManager";
+import { useNavigate } from "react-router-dom";
+import { Snackbar, Alert } from "@mui/material";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [snackbar, setSnackbar] = useState({
+	  open: false,
+	  message: "",
+	  severity: "success",
+	});
+
   return (
     <section className="homepage-container">
       {DisplayContent.map((section, sectionIndex) => (
@@ -24,6 +33,8 @@ const Home = () => {
                     src={book.cover}
                     alt={book.title}
                     className="book-cover"
+					onClick={() => navigate(`/book/${book.id}`)}
+					style={{ cursor: "pointer" }}
                   />
 
                   {/* Book Title */}
@@ -78,10 +89,12 @@ const Home = () => {
                     <AddToCart
                       id={book.id}
                       type="physical"
+					  setSnackbar={setSnackbar}
                     />
                     <AddToCart
                       id={book.id}
                       type="digital"
+					  setSnackbar={setSnackbar}
                     />
                   </div>
                 </div>
@@ -90,6 +103,15 @@ const Home = () => {
           </div>
         </div>
       ))}
+		<Snackbar
+			open={snackbar.open}
+			autoHideDuration={3000}
+			onClose={() => setSnackbar({ ...snackbar, open: false })}
+		>
+			<Alert severity={snackbar.severity} sx={{ width: "100%" }}>
+			{snackbar.message}
+			</Alert>
+		</Snackbar>
     </section>
   );
 };
