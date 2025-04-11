@@ -83,7 +83,7 @@ const LogIn = ({ onClose }) => {
         className='login-overlay-login-credentials-password-input' 
         placeholder="Password*" value={password}  onChange={(e) => setPassword(e.target.value)} 
         />
-        <button onclick={notImplemented} className="login-overlay-login-credentials-container-forgot-password">Forgot Password?</button>
+        <button onClick={notImplemented} className="login-overlay-login-credentials-container-forgot-password">Forgot Password?</button>
         <button className="login-overlay-login-credentials-conainer-sign-in-button" onClick={handleLogin}>Sign In</button>
       </div>
 
