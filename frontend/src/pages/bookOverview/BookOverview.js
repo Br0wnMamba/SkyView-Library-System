@@ -12,6 +12,7 @@ import cartManager from "../../utils/CartManager";
 import holdManager from "../../utils/HoldManager";
 import loanManager from "../../utils/LoanManager";
 import accountManager from "../../utils/AccountManager";
+import authorManager from "../../utils/AuthorManager";
 import { Snackbar, Alert } from "@mui/material";
 
 const BookOverview = () => {
@@ -109,19 +110,13 @@ const BookOverview = () => {
                 text="Save Author"
                 borderRadius={"0"}
                 onClick={() => {
-                  const savedAuthors =
-                    JSON.parse(sessionStorage.getItem("saved_authors")) || [];
-                  if (authors && authors.length > 0) {
-                    authors.forEach((author) => {
-                      if (!savedAuthors.includes(author)) {
-                        savedAuthors.push(author);
-                      }
-                    });
-                  }
-                  sessionStorage.setItem(
-                    "saved_authors",
-                    JSON.stringify(savedAuthors)
-                  );
+				  if (!accountManager.getUser()) {
+					setShowLogin(true);
+					return;
+				  }
+
+				  book.authors?.map((author) => authorManager.addAuthor(author));
+                  
 				  setSnackbar({
 					open: true,
 					message: "Authors saved successfully!",

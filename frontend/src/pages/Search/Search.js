@@ -5,10 +5,10 @@ import bookManager from "../../utils/BookManager";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/Button";
+import authorManager from "../../utils/AuthorManager";
 import accountManager from "../../utils/AccountManager";
-import bookmarkManager from "../../utils/BookmarkManager";
-import Login from "../registration/Login";
+import AddToCart from "../../components/AddToCart/AddToCart";
+import { Snackbar, Alert } from "@mui/material";
 
 const genreOptions = [
 	"Fiction", "Non-Fiction", "History", "Mystery", "Science Fiction", "Romance", "Thriller", "Horror Fiction", "Biography"
@@ -18,18 +18,18 @@ const mediaFormatOptions = ["Physical", "eBook"];
 
 const Search = () => {
 	const navigate = useNavigate();
-	const user = accountManager.getUser();
-	const bookmarkBooks = bookmarkManager.getAllBookmarks();
-	const [bookmarkedBooks, setBookmarkedBooks] = useState(bookmarkBooks);
 	const query = new URLSearchParams(window.location.search).get("q")?.toLowerCase() || "";
 	const allBooks = useMemo(() => bookManager.getAllBooks(), []);
-	const [savedAuthorOptions, setSavedAuthorOptions] = useState(JSON.parse(sessionStorage.getItem("saved_authors")) || []);
 
 	const [selectedGenre, setSelectedGenre] = useState([]);
 	const [selectedMediaFormat, setSelectedMediaFormat] = useState([]);
 	const [selectedSaveAuthors, setSelectedSaveAuthors] = useState([]);
 	const [filteredBooks, setFilteredBooks] = useState(allBooks);
-	const [showLogin, setShowLogin] = useState(false);
+	const [snackbar, setSnackbar] = useState({
+		open: false,
+		message: "",
+		severity: "success",
+	});
 
 	const handleGenreUpdate = (genre) => {
 		setSelectedGenre(prev =>
@@ -74,35 +74,27 @@ const Search = () => {
 		}
 	}, [query, selectedGenre, selectedMediaFormat, selectedSaveAuthors, allBooks]);
 
-	const handleBookmark = (bookId) => {
-		const user = accountManager.getUser();
-		if (!user) {
-			setShowLogin(true);
-			return;
-		}
-		
-		setBookmarkedBooks(bookmarkManager.getAllBookmarks());
-		bookmarkManager.addBookmark(bookId);
-		setBookmarkedBooks(bookmarkManager.getAllBookmarks());
-	};
-
-	const handleRemoveBookmark = (bookId) => {
-		const user = accountManager.getUser();
-		if (!user) {
-			setShowLogin(true);
-			return;
-		}
-		
-		setBookmarkedBooks(bookmarkManager.getAllBookmarks());
-		bookmarkManager.removeBookmark(bookId);
-		setBookmarkedBooks(bookmarkManager.getAllBookmarks());
-	};
-
 	const handleSaveAuthor = (authors) => {
-		const savedAuthors = JSON.parse(sessionStorage.getItem("saved_authors")) || [];
-		const newSavedAuthors = [...new Set([...savedAuthors, ...authors])];
-		sessionStorage.setItem("saved_authors", JSON.stringify(newSavedAuthors));
-		setSavedAuthorOptions(newSavedAuthors);
+		const user = accountManager.getUser();
+		if (!user) {
+			setSnackbar({
+				open: true,
+				message: "You must be logged in to save authors.",
+				severity: "error",
+			});
+			return;
+		}
+
+		authors.map((author) => {
+			authorManager.addAuthor(author);
+		});
+
+		setSnackbar({
+			open: true,
+			message: "Authors saved successfully.",
+			severity: "success",
+		});
+		setSelectedSaveAuthors(authorManager.getUserSavedAuthors());
 	};
 
 	useEffect(() => {
@@ -110,19 +102,19 @@ const Search = () => {
 	}, [filterBooks]);
 
 	useEffect(() => {
+		const user = accountManager.getUser();
 		if (user) {
-			setShowLogin(false);
+			const savedAuthors = authorManager.getUserSavedAuthors();
+			setSelectedSaveAuthors(savedAuthors);
 		}
-	  }, [user]);
+	}, []);
 
 	return (
-		<div>
-			{showLogin ? <Login backgroundLocation={window.location.pathname} /> : (
-			<div className="search-container">
+		<div className="search-container">
 			<SearchSidebar
 				genreOptions={genreOptions}
 				mediaFormatOptions={mediaFormatOptions}
-				savedAuthorOptions={savedAuthorOptions}
+				savedAuthorOptions={selectedSaveAuthors}
 				onGenreUpdate={handleGenreUpdate}
 				onMediaFormatUpdate={handleMediaFormatUpdate}
 				onSaveAuthorsUpdate={handleSaveAuthorsUpdate}
@@ -197,20 +189,33 @@ const Search = () => {
   
 					{/* Add to Cart Buttons */}
 					<div className="home-addtocart-container">
-					  <Button text="Add to Cart" backgroundColor={"#43B447"} borderRadius={"5px"} padding={"10px 20px"} fontSize={"16px"} onClick={() => navigate(`/book/${book.id}`)} />
-					{(Array.isArray(bookmarkedBooks) && bookmarkedBooks.includes(book.id)) ? (
-						<Button text="Remove Bookmark" borderRadius={"5px"} padding={"10px 20px"} fontSize={"16px"} onClick={() => handleRemoveBookmark(book.id)} />
-					) : (
-					  <Button text="Bookmark" borderRadius={"5px"} padding={"10px 20px"} fontSize={"16px"} onClick={() => handleBookmark(book.id)} />
-					)}
-					  <Button text="Save Author" borderRadius={"5px"} padding={"10px 20px"} fontSize={"16px"} onClick={() => handleSaveAuthor(book.authors)} />
+						<AddToCart
+						id={book.id}
+						type="physical"
+						setSnackbar={setSnackbar}
+						/>
+						<AddToCart
+						id={book.id}
+						type="digital"
+						setSnackbar={setSnackbar}
+						/>
+					  <button className="add-to-cart-button" onClick={() => handleSaveAuthor(book.authors)}>
+          				Save Authors
+        			  </button>
 					</div>
 				  </div>
 				))}
 			</div>
 		</div>
-		</div>
-			)}
+		<Snackbar
+					open={snackbar.open}
+					autoHideDuration={3000}
+					onClose={() => setSnackbar({ ...snackbar, open: false })}
+				>
+					<Alert severity={snackbar.severity} sx={{ width: "100%" }}>
+					{snackbar.message}
+					</Alert>
+				</Snackbar>
 		</div>
 	);
 };
