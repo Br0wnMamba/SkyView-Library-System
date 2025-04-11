@@ -1,0 +1,239 @@
+
+/* Page Container and setup CSS */
+.book-overview-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.25em;
+    padding: 2rem;
+    background-color: transparent;
+  }
+
+
+  /* Book Overview Container CSS */
+.book-overview-container {
+    background-color: #f7fafd;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    min-height: 100vh;    
+}
+
+/* Book Container */
+.book-overview-img-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 0.75rem 1.5rem;
+    gap: 1,5rem;  
+}
+
+/* Book Image */
+.book-overview-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+    width: 100%;
+
+}
+
+.book-overview-cover-img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); /* Gives the 3D depth */
+}
+
+
+
+/* Book additional Options */
+.book-overview-additional-options {
+    display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.book-overview-option-button {
+    flex: 1;
+  background-color: white;
+  border: 2px solid #0c2c3c;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0c2c3c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  min-width: 130px; 
+}
+
+.book-overview-option-button svg {
+    margin-right: 0.5rem;
+  }
+  
+  .book-overview-option-button:hover {
+    background-color: #0c2c3c;
+    color: white;
+  }
+
+
+/* Book metadata container like title authos and description */
+.book-overview-metadata-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 66%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+/* Author */
+.book-overview-title-author {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+    border-bottom: 2px solid black;
+}
+
+/* Title */
+.book-overview-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+/* Availability */
+.book-overview-availability-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+.availability-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 50%;
+}
+
+/* Physical Availabilty container */
+.book-overview-physical-availability {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+/* Digital Availabilty container */
+.book-overview-digital-availability {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+
+/* Learn more on the authors */
+.book-overview-learn-about-the-authors-container {
+
+}
+
+
+.book-overview-learn-about-the-authors {
+
+}
+
+.book-overview-authors {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+
+.book-overview-checkout-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+.book-overview-checkout-title-container {
+    display: flex;
+}
+
+.book-overview-checkout-formats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+
+.book-overview-checkout-pickup-location-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.book-overview-checkout-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+
+.book-overview-quantity-dropdown-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    padding: 0.5em 1.5rem 0.25rem 1rem;
+}
+
+
+.book-overview-quantity-container {
+
+}
+
+.gap {
+width: 1rem; /* horizontal space between containers */
+  background-color: #e3e3e3; /* match surrounding background */
+  align-self: stretch; /* 💡 THIS is the key to fill vertical space */
+  flex-shrink: 0;       /* prevent shrinking if container is tight */
+}
