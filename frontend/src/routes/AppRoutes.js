@@ -5,7 +5,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 // Import all components
 import Home from '../pages/home/Home.js';
 import Layout from "../layout/Layout.js";
-import Search from "../components/Search/Search.js"
+import Search from "../pages/Search/Search.js"
 import BookOverview from '../pages/bookOverview/BookOverview.js';
 import Cart from "../pages/cart/Cart.js"
 import BookShelf from '../pages/profile/BookShelf.js';

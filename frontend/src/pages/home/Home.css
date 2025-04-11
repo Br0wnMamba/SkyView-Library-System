@@ -43,7 +43,7 @@ body {
     width: 100%;
     height: auto;
     border-radius: 6px;
-
+	cursor: pointer;
     object-fit: cover;
   }
 

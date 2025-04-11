@@ -5,8 +5,11 @@ import AddToCart from "../../components/AddToCart/AddToCart";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
 import bookManager from "../../utils/BookManager";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="homepage-container">
       {DisplayContent.map((section, sectionIndex) => (
@@ -24,6 +27,7 @@ const Home = () => {
                     src={book.cover}
                     alt={book.title}
                     className="book-cover"
+					onClick={() => navigate(`/book/${book.id}`)}
                   />
 
                   {/* Book Title */}

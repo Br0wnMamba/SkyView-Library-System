@@ -1,8 +1,19 @@
 import React from "react";
 import { Box, TextField, InputAdornment } from "@mui/material";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
+	const q = new URLSearchParams(window.location.search).get("q");
+	const [value, setValue] = React.useState(q || "");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+	if (value.trim() !== "") {
+	  navigate(`/search?q=${encodeURIComponent(value)}`);
+	}
+  };
+
   return (
     <Box
       sx={{
@@ -17,10 +28,19 @@ const SearchBar = () => {
         size="small"
         variant="standard"
         placeholder="Search books..."
+		value={value}
+		onChange={(e) => setValue(e.target.value)}
+		onKeyDown={(e) => {
+			if (e.key === "Enter") {
+				handleSearch();
+			}
+		}}
         InputProps={{
           disableUnderline: true,
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position="start" onClick={() => {
+				handleSearch();
+			}} style={{ cursor: "pointer" }}>
               <SearchOutlinedIcon style={{ color: "#16273e" }} />
             </InputAdornment>
           ),
