@@ -1,70 +1,210 @@
 import { covers } from "./covers";
-
 export const Books = {
-  1: {
+  101: {
+    title: "The Silent Patient",
+    authors: ["Alex Michaelides"],
+    cover: covers.silentPatient,
+    availability: { physical: 4, digital: 1 },
+    desc: "A psychological thriller about a woman’s act of violence against her husband—and of the therapist obsessed with uncovering her motive.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  102: {
+    title: "Sapiens: A Brief History of Humankind",
+    authors: ["Yuval Noah Harari"],
+    cover: covers.sapiens,
+    availability: { physical: 2, digital: 1 },
+    desc: "An exploration of humanity’s creation and evolution—transforming the ways we understand ourselves and our place in the world.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  103: {
+    title: "Atomic Habits",
+    authors: ["James Clear"],
+    cover: covers.atomicHabits,
+    availability: { physical: 0, digital: 0 },
+    desc: "A practical guide to building good habits and breaking bad ones using proven strategies.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  104: {
+    title: "Educated",
+    authors: ["Tara Westover"],
+    cover: covers.educated,
+    availability: { physical: 3, digital: 1 },
+    desc: "A memoir about a girl who kept out of school leaves her survivalist family and goes on to earn a PhD from Cambridge University.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  105: {
+    title: "The Power of Habit",
+    authors: ["Charles Duhigg"],
+    cover: covers.powerOfHabit,
+    availability: { physical: 6, digital: 0 },
+    desc: "An investigation into the science of habit formation and how we can use it to improve our lives.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  106: {
+    title: "Start With Why",
+    authors: ["Simon Sinek"],
+    cover: covers.startWithWhy,
+    availability: { physical: 1, digital: 1 },
+    desc: "A guide to inspirational leadership based on understanding your purpose and vision.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  107: {
+    title: "Can't Hurt Me",
+    authors: ["David Goggins"],
+    cover: covers.cantHurtMe,
+    availability: { physical: 4, digital: 1 },
+    desc: "The astonishing life story of a man who transformed himself from a depressed, overweight young man into a U.S. Armed Forces icon.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  108: {
+    title: "Becoming",
+    authors: ["Michelle Obama"],
+    cover: covers.becoming,
+    availability: { physical: 0, digital: 0 },
+    desc: "A deeply personal memoir by the former First Lady of the United States.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  109: {
+    title: "The Alchemist",
+    authors: ["Paulo Coelho"],
+    cover: covers.theAlchemist,
+    availability: { physical: 5, digital: 1 },
+    desc: "A novel about a shepherd's journey to realize his personal legend.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  110: {
+    title: "The Great Gatsby",
+    authors: ["F. Scott Fitzgerald"],
+    cover: covers.theGreatGatsby,
+    availability: { physical: 3, digital: 0 },
+    desc: "A story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  111: {
+    title: "1984",
+    authors: ["George Orwell"],
+    cover: covers.nineteenEightyFour,
+    availability: { physical: 0, digital: 1 },
+    desc: "A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  112: {
+    title: "The Catcher in the Rye",
+    authors: ["J.D. Salinger"],
+    cover: covers.catcherInTheRye,
+    availability: { physical: 3, digital: 1 },
+    desc: "A story about teenage rebellion and alienation.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  113: {
+    title: "Pride and Prejudice",
+    authors: ["Jane Austen"],
+    cover: covers.prideAndPrejudice,
+    availability: { physical: 4, digital: 0 },
+    desc: "A romantic novel that critiques the British landed gentry at the end of the 18th century.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  114: {
+    title: "The Hobbit",
+    authors: ["J.R.R. Tolkien"],
+    cover: covers.theHobbit,
+    availability: { physical: 0, digital: 0 },
+    desc: "A fantasy novel about the journey of a hobbit named Bilbo Baggins.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  115: {
+    title: "Fahrenheit 451",
+    authors: ["Ray Bradbury"],
+    cover: covers.fahrenheit451,
+    availability: { physical: 0, digital: 0 },
+    desc: "A dystopian novel set in a future where books are outlawed.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  116: {
+    title: "The Grapes of Wrath",
+    authors: ["John Steinbeck"],
+    cover: covers.grapesOfWrath,
+    availability: { physical: 3, digital: 1 },
+    desc: "A novel about the struggles of a family during the Great Depression.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  117: {
+    title: "Brave New World",
+    authors: ["Aldous Huxley"],
+    cover: covers.braveNewWorld,
+    availability: { physical: 4, digital: 1 },
+    desc: "A dystopian novel that explores the implications of technological advancements.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  118: {
+    title: "The Picture of Dorian Gray",
+    authors: ["Oscar Wilde"],
+    cover: covers.pictureOfDorianGray,
+    availability: { physical: 0, digital: 0 },
+    desc: "A novel about a young man who wishes to remain young and beautiful forever.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
+  },
+  119: {
     title: "Percy Jackson & the Olympians",
     authors: ["Rick Riordan"],
-    cover: covers.PercyJackson,
-    availability: {
-      physical: 4,
-      digital: 0,
-    },
-    desc: "Percy Jackson & the Olympians is a fantasy novel series",
-    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
+    cover: covers.percyJackson,
+    availability: { physical: 4, digital: 1 },
+    desc: "A series of fantasy novels about a young demigod named Percy Jackson.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
   },
-  2: {
+  120: {
     title: "The Thirteenth Tale",
     authors: ["Diane Setterfield"],
-    cover: covers.ThirteenthTale,
-    availability: {
-      physical: 6,
-      digital: 4,
-    },
-    desc: "From Diane Setterfields series",
-    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
+    cover: covers.thirteenthTale,
+    availability: { physical: 6, digital: 1 },
+    desc: "A gothic suspense novel about a reclusive author and her mysterious past.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
   },
-  3: {
+  121: {
     title: "My Sister's Keeper",
-    authors: ["Jodi Picoult", "Mark Fisher"],
-    cover: covers.MySistersKeeper,
-    availability: {
-      physical: 2,
-      digital: 3,
-    },
-    desc: "Based upon Anissa and Marissa Ayala",
-    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
+    authors: ["Jodi Picoult"],
+    cover: covers.mySistersKeeper,
+    availability: { physical: 3, digital: 1 },
+    desc: "A provocative novel that raises important questions about life, love, and medical ethics as a family faces the life-or-death decision surrounding their daughter's health.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
   },
-  4: {
+  122: {
     title: "The Kite Runner",
     authors: ["Khaled Hosseini"],
-    cover: covers.KiteRunner,
-    availability: {
-      physical: 0,
-      digital: 0,
-    },
-    desc: "The Kite Runner is a coming of age story about redemption",
-    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
+    cover: covers.kiteRunner,
+    availability: { physical: 4, digital: 1 },
+    desc: "A haunting tale of friendship and redemption set against the backdrop of a changing Afghanistan.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
   },
-  5: {
+  123: {
     title: "The 48 Laws of Power",
     authors: ["Robert Greene"],
-    cover: covers.Laws48,
-    availability: {
-      physical: 2,
-      digital: 0,
-    },
-    desc: "48 Laws of Power details the laws for attaining power in life, business, and more, and gives historical examples of each law in practice.",
-    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" }, // To be updated by reading book designer
+    cover: covers.lawsOfPower,
+    availability: { physical: 0, digital: 0 },
+    desc: "A guide to understanding and mastering the dynamics of power through historical examples and strategic advice.",
+    content: { 1: "chapter - 1", 2: "chapter - 2", 3: "chapter - 3" },
   },
 };
 
 export const DisplayContent = [
   {
     title: "Recently Added",
-    books: [1, 2, 3],
+    books: [101, 102, 103, 104]
   },
   {
     title: "Top Picks",
-    books: [4, 5],
+    books: [105, 106, 107, 108],
   },
+  {
+    title: "Staff Picks",
+    books: [109, 110, 111, 112],
+  },
+  {
+    title: "Award Winners",
+    books: [113, 114, 115, 116],
+  },
+  {
+    title: "Trending Now",
+    books: [117, 118, 119, 120],
+  }
 ];
