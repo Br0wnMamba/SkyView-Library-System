@@ -160,16 +160,33 @@ class CartManager {
   });
 
   getCart = accountManager.requireAuth(() => {
-    let userCart = this.#getUserCart();
-    let result = [];
-
+    const userCart = this.#getUserCart(); // should always be an array
+    const result = [];
+  
     for (let i = 0; i < userCart.length; i++) {
-      result.push(bookManager.getBook(userCart[i]));
+      const cartItem = userCart[i];
+  
+      if (!cartItem || !cartItem.book_id || !cartItem.type) continue;
+  
+      const book = bookManager.getBook(cartItem.book_id);
+  
+      if (book) {
+        result.push({
+          book_id: cartItem.book_id,
+          type: cartItem.type,
+          quantity: cartItem.quantity,
+          book: book, // full book data
+        });
+      }
     }
-
+  
     return result;
-  });
+  });   
 
+  getRawCart = accountManager.requireAuth(() => {
+    return this.#getUserCart(); 
+  });
+  
   canAdd = (book_id, type) => {
     let result = false;
     const book = bookManager.getBook(book_id);

@@ -7,6 +7,8 @@ import ebookIcon from "../../assets/ebook.svg";
 import physicalBookIcon from "../../assets/physical-book.svg";
 import placeholderImage from "../../assets/empty-cart-image.png";
 import bookImage from "../../assets/image.png";
+import cartManager from "../../utils/CartManager";
+import bookmarkManager from "../../utils/BookmarkManager"; 
 
 import { handleAddBookmark } from "../../utils/setSessionStorage";
 
@@ -15,26 +17,28 @@ export default function Cart() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    const storedCart = JSON.parse(sessionStorage.getItem("cart")) || {};
-    const storedBooks = JSON.parse(sessionStorage.getItem("books")) || {};
-
-    const cartBooks = Object.entries(storedCart).map(([key, item]) => {
-      const [id, type] = key.split("-");
-      const bookData = storedBooks[id] || {};
-    
-      return {
-        id: key,
-        name: item.name || bookData.title || `Book Title for ${id}`,
-        authors: item.authors || bookData.authors || ["Unknown Author"],
-        is_physical: item.is_physical ? "true" : "false",
+    const rawCart = cartManager.getCart();
+  
+    if (!Array.isArray(rawCart)) {
+      console.error("Cart data is not an array:", rawCart);
+      return;
+    }
+  
+    const booksList = rawCart
+      .filter(item => item && item.book && item.book_id)
+      .map((item) => ({
+        id: String(item.book_id),
+        name: item.book.title,
+        authors: item.book.authors,
+        image_url: item.book.cover || bookImage,
+        is_physical: item.type === "physical" ? "true" : "false",
         quantity: item.quantity,
-        return_date: item.return_date,
-        image_url: item.image || bookImage,
-      };
-    });
-    
-    setBooks(cartBooks);
-  }, []);
+        return_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString(),
+        type: item.type,
+      }));
+  
+    setBooks(booksList);
+  }, []);  
 
   const totalBooks = books.reduce(
     (acc, book) => {
@@ -45,51 +49,89 @@ export default function Cart() {
     { ebooks: 0, physical: 0 }
   );
 
-  const handleQuantityChange = (id, delta) => {
-    const updatedBooks = books.map((book) => {
-      if (book.id === id) {
-        const newQuantity = Math.max(1, book.quantity + delta);
-        return { ...book, quantity: newQuantity };
+  const handleQuantityChange = (book_id, type, delta) => {
+    const book = books.find((b) => b.id === book_id && b.type === type);
+    if (!book) return;
+  
+    if (delta < 0 && book.quantity === 1) return;
+  
+    const result = delta > 0
+      ? cartManager.add(book_id, type, 1)
+      : cartManager.remove(book_id, type, 1);
+  
+    if (result?.status !== 200) {
+      alert(result.message || "Failed to update cart.");
+      return;
+    }
+  
+    // Get and group the updated cart
+    const updatedCart = cartManager.getCart();
+    const groupedMap = new Map();
+  
+    updatedCart.forEach((item) => {
+      const key = `${item.book_id}-${item.type}`;
+      if (!groupedMap.has(key)) {
+        groupedMap.set(key, {
+          id: item.book_id,
+          type: item.type,
+          name: item.book.title,
+          authors: item.book.authors,
+          image_url: item.book.cover || bookImage,
+          is_physical: item.type === "physical" ? "true" : "false",
+          quantity: item.quantity,
+          return_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString(),
+        });
+      } else {
+        groupedMap.get(key).quantity += item.quantity;
       }
-      return book;
     });
-    setBooks(updatedBooks);
-
-    const updatedCart = {};
-    updatedBooks.forEach((book) => {
-      updatedCart[book.id] = {
-        is_physical: book.is_physical === "true",
-        quantity: book.quantity,
-        return_date: book.return_date,
-      };
+  
+    setBooks(Array.from(groupedMap.values()));
+  };
+  
+  const handleDelete = (book_id, type) => {
+    cartManager.remove(book_id, type, 999);
+  
+    const updatedCart = cartManager.getCart();
+    const groupedMap = new Map();
+  
+    updatedCart.forEach((item) => {
+      const key = `${item.book_id}-${item.type}`;
+      if (!groupedMap.has(key)) {
+        groupedMap.set(key, {
+          id: item.book_id,
+          type: item.type,
+          name: item.book.title,
+          authors: item.book.authors,
+          image_url: item.book.cover || bookImage,
+          is_physical: item.type === "physical" ? "true" : "false",
+          quantity: item.quantity,
+          return_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString(),
+        });
+      } else {
+        groupedMap.get(key).quantity += item.quantity;
+      }
     });
-    sessionStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
+  
+    setBooks(Array.from(groupedMap.values()));
+  };  
 
-  const handleDelete = (id) => {
-    const updatedBooks = books.filter((book) => book.id !== id);
-    setBooks(updatedBooks);
-
-    const cart = JSON.parse(sessionStorage.getItem("cart")) || {};
-    delete cart[id];
-    sessionStorage.setItem("cart", JSON.stringify(cart));
-  };
-
-  const handleBookmark = (id) => {
-    handleAddBookmark(id);
-    alert("Book bookmarked!");
+  const handleBookmark = (bookId) => {
+    const result = bookmarkManager.addBookmark(bookId);
+    if (result?.status === 200) {
+      alert("Book bookmarked!");
+    } else if (result?.status === 400) {
+      alert("Book already bookmarked!");
+    } else {
+      alert("Something went wrong.");
+    }
   };
 
   const isEmpty = books.length === 0;
 
   const handleCheckout = () => {
-    const isLoggedIn = sessionStorage.getItem("user");
-    if (isLoggedIn) {
-      navigate("/profile");
-    } else {
-      navigate("/login");
-    }
-  };
+    navigate("/bookshelf");
+  };  
 
   return (
     <div className="page-wrapper">
@@ -110,7 +152,7 @@ export default function Cart() {
           <>
             <div className="cart-items">
               {books.map((book) => (
-                <div key={book.id} className="cart-item">
+                <div key={`${book.id}-${book.type}`} className="cart-item">
                   <img src={book.image_url} alt={book.name} />
                   <div className="cart-info">
                     <a href="#" className="book-title">
@@ -142,19 +184,28 @@ export default function Cart() {
                     <div className="quantity-wrapper">
                       <div className="quantity-controls">
                         <button
-                          onClick={() => handleQuantityChange(book.id, -1)}
+                          onClick={() => handleQuantityChange(book.id, book.type, -1)}
                           disabled={book.quantity === 1}
                           className="qty-button"
                         >
                           -
                         </button>
                         <span>{book.quantity}</span>
-                        <button
-                          onClick={() => handleQuantityChange(book.id, 1)}
-                          className="qty-button"
-                        >
-                          +
-                        </button>
+                        {(() => {
+                          const disableAddButton =
+                            (book.type === "digital" && book.quantity >= 1) ||
+                            (book.type === "physical" && !cartManager.canAdd(book.id, "physical"));
+
+                          return (
+                            <button
+                              onClick={() => handleQuantityChange(book.id, book.type, 1)}
+                              className="qty-button"
+                              disabled={disableAddButton}
+                            >
+                              +
+                            </button>
+                          );
+                        })()}
                       </div>
                       {book.quantity === 1 && (
                         <p className="qty-warning">Minimum quantity is 1</p>
@@ -163,7 +214,7 @@ export default function Cart() {
 
                     <div className="cart-controls">
                       <button
-                        onClick={() => handleDelete(book.id)}
+                        onClick={() => handleDelete(book.id, book.type)}
                         className="delete-link"
                       >
                         Delete
