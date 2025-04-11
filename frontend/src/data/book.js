@@ -5,6 +5,7 @@ export const Books = {
     authors: ["Alex Michaelides"],
     cover: covers.silentPatient,
     availability: { physical: 4, digital: 1 },
+	genre: "Thriller",
     desc: "A psychological thriller about a woman’s act of violence against her husband—and of the therapist obsessed with uncovering her motive.",
     content: {
 			1: "Alicia Berenson's seemingly perfect life as a painter shatters when she shoots her husband five times in the face. Found silent and unresponsive at the crime scene, she's admitted to a secure forensic unit where she refuses to speak a single word. The art world becomes obsessed with her mysterious case.",
@@ -19,6 +20,7 @@ export const Books = {
     authors: ["Yuval Noah Harari"],
     cover: covers.sapiens,
     availability: { physical: 2, digital: 1 },
+	genre: "Non-Fiction",
     desc: "An exploration of humanity’s creation and evolution—transforming the ways we understand ourselves and our place in the world.",
     content: {
 			1: "Harari begins by examining the Cognitive Revolution (70,000 years ago) where Homo sapiens developed complex language and imagination. This ability to create shared myths enabled large-scale cooperation, distinguishing humans from other species. The chapter explores how fictional concepts like money and religion shaped civilizations.",
@@ -33,6 +35,7 @@ export const Books = {
     authors: ["James Clear"],
     cover: covers.atomicHabits,
     availability: { physical: 0, digital: 0 },
+	genre: "Non-Fiction",
     desc: "A practical guide to building good habits and breaking bad ones using proven strategies.",
     content: {
 			1: "Clear introduces the concept of marginal gains - small 1% improvements compounding over time. He explains how habits shape identity and vice versa, emphasizing that real change requires both action and self-perception shifts. The chapter includes the habit loop: cue, craving, response, reward.",
@@ -45,6 +48,7 @@ export const Books = {
     authors: ["Tara Westover"],
     cover: covers.educated,
     availability: { physical: 3, digital: 1 },
+	genre: "Biography",
     desc: "A memoir about a girl who kept out of school leaves her survivalist family and goes on to earn a PhD from Cambridge University.",
     content: {
 			1: "Tara's childhood in rural Idaho with radical survivalist parents who reject formal education and modern medicine. Vivid descriptions of working in her father's junkyard and her mother's herbalist practices. Early signs of family dysfunction and religious extremism emerge.",
@@ -56,6 +60,7 @@ export const Books = {
     authors: ["Charles Duhigg"],
     cover: covers.powerOfHabit,
     availability: { physical: 6, digital: 0 },
+	genre: "Non-Fiction",
     desc: "An investigation into the science of habit formation and how we can use it to improve our lives.",
     content: {
 			1: "The Habit Loop concept introduction through the case study of Eugene Pauly, an amnesiac who retained habit-forming abilities. Duhigg explains neurological patterns in the basal ganglia and how habits conserve mental energy through automatic behaviors.",
@@ -70,6 +75,7 @@ export const Books = {
     authors: ["Simon Sinek"],
     cover: covers.startWithWhy,
     availability: { physical: 1, digital: 1 },
+	genre: "Non-Fiction",
     desc: "A guide to inspirational leadership based on understanding your purpose and vision.",
     content: {
       1: "Sinek introduces the Golden Circle model (Why-How-What), demonstrating how great leaders like Steve Jobs communicate from the inside out. The chapter analyzes the biological basis of decision-making, showing how 'why' statements activate the limbic system and inspire loyalty versus rational features-focused messaging.",
@@ -82,6 +88,7 @@ export const Books = {
     authors: ["David Goggins"],
     cover: covers.cantHurtMe,
     availability: { physical: 4, digital: 1 },
+	genre: "Biography",
     desc: "The astonishing life story of a man who transformed himself from a depressed, overweight young man into a U.S. Armed Forces icon.",
     content: {
       1: "Goggins' traumatic childhood with an abusive father in rural Indiana. The chapter details his development of a 'calloused mind' through constant physical challenges, including his first breakthrough running 100+ miles despite asthma and obesity.",
@@ -95,6 +102,7 @@ export const Books = {
     authors: ["Michelle Obama"],
     cover: covers.becoming,
     availability: { physical: 0, digital: 0 },
+	genre: "Biography",
     desc: "A deeply personal memoir by the former First Lady of the United States.",
     content: {
       1: "Early life in Chicago's South Side - navigating childhood with a father battling MS. The chapter explores formative experiences with racial discrimination and her mother's educational advocacy. Michelle's realization that 'Princeton was the goal' becomes a driving force.",
@@ -109,6 +117,7 @@ export const Books = {
     authors: ["Paulo Coelho"],
     cover: covers.theAlchemist,
     availability: { physical: 5, digital: 1 },
+	genre: "Fiction",
     desc: "A novel about a shepherd's journey to realize his personal legend.",
     content: {
       1: "Santiago's recurring dream about Egyptian pyramids while tending sheep in Andalusia. Consultation with a Gypsy fortune teller plants the first seeds of adventure. The old king Melchizedek introduces the concept of Personal Legends and the 'beginner's luck' principle.",
@@ -123,6 +132,7 @@ export const Books = {
     authors: ["F. Scott Fitzgerald"],
     cover: covers.theGreatGatsby,
     availability: { physical: 3, digital: 0 },
+	genre: "Fiction",
     desc: "A story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.",
     content: {
       1: "Nick Carraway's introduction to West Egg society and his mysterious neighbor Gatsby's lavish parties. Early hints of Gatsby's obsession with the green light across the bay. First person narration establishes themes of illusion vs reality in Jazz Age America.",
@@ -135,6 +145,7 @@ export const Books = {
     authors: ["George Orwell"],
     cover: covers.nineteenEightyFour,
     availability: { physical: 0, digital: 1 },
+	genre: "Science Fiction",
     desc: "A dystopian social science fiction novel and cautionary tale about the dangers of totalitarianism.",
     content: {
       1: "Winston Smith's dreary life in Airstrip One. Introduction to Newspeak, Doublethink, and the omnipresent Big Brother. Winston's illegal diary writing begins with 'DOWN WITH BIG BROTHER' - his first act of rebellion against the Thought Police's reality control.",
@@ -149,6 +160,7 @@ export const Books = {
     authors: ["J.D. Salinger"],
     cover: covers.catcherInTheRye,
     availability: { physical: 3, digital: 1 },
+	genre: "Fiction",
     desc: "A story about teenage rebellion and alienation.",
     content: {
       1: "Holden Caulfield's expulsion from Pencey Prep. His final interactions with teacher Mr. Spencer and roommate Stradlater. Introduction to Holden's 'phony' radar and grief over brother Allie's death.",
@@ -162,6 +174,7 @@ export const Books = {
     authors: ["Jane Austen"],
     cover: covers.prideAndPrejudice,
     availability: { physical: 4, digital: 0 },
+	genre: "Romance",
     desc: "A romantic novel that critiques the British landed gentry at the end of the 18th century.",
     content: {
       1: "The iconic opening at Longbourn - Mrs. Bennet's matchmaking frenzy. Mr. Bingley's Netherfield arrival and first Meryton ball. Darcy's insult overheard by Elizabeth: 'tolerable, but not handsome enough to tempt me' establishes central conflict.",
@@ -176,6 +189,7 @@ export const Books = {
     authors: ["J.R.R. Tolkien"],
     cover: covers.theHobbit,
     availability: { physical: 0, digital: 0 },
+	genre: "Fiction",
     desc: "A fantasy novel about the journey of a hobbit named Bilbo Baggins.",
     content: {
       1: "Bilbo's unexpected party - Gandalf tricks him into hosting 13 dwarves. Thorin's map reveals Lonely Mountain secret door. The chapter establishes hobbit-hole comfort vs adventure call through dwarves' Misty Mountain song.",
@@ -188,6 +202,7 @@ export const Books = {
     authors: ["Ray Bradbury"],
     cover: covers.fahrenheit451,
     availability: { physical: 0, digital: 0 },
+	genre: "Science Fiction",
     desc: "A dystopian novel set in a future where books are outlawed.",
     content: {
       1: "Montag's fireman job revealed as book-burning. Mechanical Hound introduction. Clarisse's revolutionary questions: 'Are you happy?' begins his awakening.",
@@ -201,6 +216,7 @@ export const Books = {
     authors: ["John Steinbeck"],
     cover: covers.grapesOfWrath,
     availability: { physical: 3, digital: 1 },
+	genre: "Fiction",
     desc: "A novel about the struggles of a family during the Great Depression.",
     content: {
       1: "Dust Bowl devastation - the Joads' forced migration. Bank representatives as 'monsters' metaphor. Grandpa's death and burial as first sacrifice.",
@@ -214,6 +230,7 @@ export const Books = {
     authors: ["Aldous Huxley"],
     cover: covers.braveNewWorld,
     availability: { physical: 4, digital: 1 },
+	genre: "Science Fiction",
     desc: "A dystopian novel that explores the implications of technological advancements.",
     content: {
       1: "Hatchery conditioning tour - Bokanovsky's Process and caste system. 'Ending is better than mending' consumerist indoctrination.",
@@ -227,6 +244,7 @@ export const Books = {
     authors: ["Oscar Wilde"],
     cover: covers.pictureOfDorianGray,
     availability: { physical: 0, digital: 0 },
+	genre: "Fiction",
     desc: "A novel about a young man who wishes to remain young and beautiful forever.",
     content: {
       1: "Basil's portrait introduction. Lord Henry's corrupting influence: 'The only way to get rid of temptation is to yield to it.'",
@@ -239,6 +257,7 @@ export const Books = {
     authors: ["Rick Riordan"],
     cover: covers.percyJackson,
     availability: { physical: 4, digital: 1 },
+	genre: "Fiction",
     desc: "A series of fantasy novels about a young demigod named Percy Jackson.",
     content: {
       1: "Percy discovers demigod status at Yancy Academy. Minotaur battle and mother's disappearance. Arrival at Camp Half-Blood.",
@@ -253,6 +272,7 @@ export const Books = {
     authors: ["Diane Setterfield"],
     cover: covers.thirteenthTale,
     availability: { physical: 6, digital: 1 },
+	genre: "Mystery",
     desc: "A gothic suspense novel about a reclusive author and her mysterious past.",
     content: {
       1: "Margaret's summons to Vida Winter's estate. The Gothic Angelfield family history - Charlie's obsession with Isabelle.",
@@ -264,6 +284,7 @@ export const Books = {
     authors: ["Jodi Picoult"],
     cover: covers.mySistersKeeper,
     availability: { physical: 3, digital: 1 },
+	genre: "Fiction",
     desc: "A provocative novel that raises important questions about life, love, and medical ethics as a family faces the life-or-death decision surrounding their daughter's health.",
     content: {
       1: "Anna's lawsuit against parents for medical emancipation. Flashbacks to Kate's leukemia diagnosis and Anna's designer baby origins.",
@@ -277,6 +298,7 @@ export const Books = {
     authors: ["Khaled Hosseini"],
     cover: covers.kiteRunner,
     availability: { physical: 4, digital: 1 },
+	genre: "Fiction",
     desc: "A haunting tale of friendship and redemption set against the backdrop of a changing Afghanistan.",
     content: {
       1: "1975 kite tournament betrayal - Hassan's rape witnessed by Amir. Pomegranate tree symbolism deterioration.",
@@ -291,6 +313,7 @@ export const Books = {
     authors: ["Robert Greene"],
     cover: covers.lawsOfPower,
     availability: { physical: 0, digital: 0 },
+	genre: "Non-Fiction",
     desc: "A guide to understanding and mastering the dynamics of power through historical examples and strategic advice.",
     content: {
       1: "Law 1: Never Outshine the Master - Analysis of Louis XIV vs Nicolas Fouquet. Use strategic self-restraint to avoid provoking insecurity in superiors. Modern application: corporate ladder navigation.",

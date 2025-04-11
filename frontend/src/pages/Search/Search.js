@@ -24,6 +24,7 @@ const Search = () => {
 	const [selectedGenre, setSelectedGenre] = useState([]);
 	const [selectedMediaFormat, setSelectedMediaFormat] = useState([]);
 	const [selectedSaveAuthors, setSelectedSaveAuthors] = useState([]);
+	const [saveAuthors, setSaveAuthors] = useState(authorManager.getUserSavedAuthors());
 	const [filteredBooks, setFilteredBooks] = useState(allBooks);
 	const [snackbar, setSnackbar] = useState({
 		open: false,
@@ -53,7 +54,9 @@ const Search = () => {
 		const matchesAnyFilter = (book) => {
 			const matchQuery = query && book.title.toLowerCase().includes(query);
 			const matchGenre = selectedGenre.length && selectedGenre.includes(book.genre);
-			const matchAuthor = selectedSaveAuthors.length && selectedSaveAuthors.includes(book.author);
+			const matchAuthor = selectedSaveAuthors.length && selectedSaveAuthors.some((author) =>
+				book.authors.some((bookAuthor) => bookAuthor.toLowerCase().includes(author.toLowerCase()))
+			);
 			const matchFormat =
 				(selectedMediaFormat.includes("Physical") && book.availability?.physical > 0) ||
 				(selectedMediaFormat.includes("eBook") && book.availability?.digital > 0);
@@ -105,7 +108,7 @@ const Search = () => {
 		const user = accountManager.getUser();
 		if (user) {
 			const savedAuthors = authorManager.getUserSavedAuthors();
-			setSelectedSaveAuthors(savedAuthors);
+			setSaveAuthors(savedAuthors);
 		}
 	}, []);
 
@@ -114,7 +117,7 @@ const Search = () => {
 			<SearchSidebar
 				genreOptions={genreOptions}
 				mediaFormatOptions={mediaFormatOptions}
-				savedAuthorOptions={selectedSaveAuthors}
+				savedAuthorOptions={saveAuthors}
 				onGenreUpdate={handleGenreUpdate}
 				onMediaFormatUpdate={handleMediaFormatUpdate}
 				onSaveAuthorsUpdate={handleSaveAuthorsUpdate}
