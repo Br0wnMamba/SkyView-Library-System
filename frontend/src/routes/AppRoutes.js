@@ -55,7 +55,11 @@ export default function AppRoutes() {
 						<OnHold />
 					</ProtectedRoute>
 			} />
-            <Route path="bookmarks" element={<Bookmarks />} />
+            <Route path="bookmarks" element={
+					<ProtectedRoute>
+						<Bookmarks />
+					</ProtectedRoute>
+			} />
           {/* </Route> */}
         </Route>
       </Routes>

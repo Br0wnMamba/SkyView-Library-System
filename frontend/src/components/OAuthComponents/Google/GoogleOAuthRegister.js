@@ -1,6 +1,5 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 import { IconButton } from "../../general";
 import accountManager from "../../../utils/AccountManager";
 

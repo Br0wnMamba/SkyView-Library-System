@@ -33,8 +33,8 @@ const BookCard = ({
             ))}
         </h3>
         <hr />
-        <p>{first_line}</p>
-        <hr />
+       {first_line && <p>{first_line}</p>}
+        {first_line && <hr />}
         {second_line && <p>{second_line}</p>}
         {second_line && <hr />}
         <div className="button-container">
