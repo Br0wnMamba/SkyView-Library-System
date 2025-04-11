@@ -35,7 +35,6 @@ class HistoryManager {
   };
 
   getUserHistory = () => {
-    console.log("User History: ", this.#getUserHistory());
     return this.#getUserHistory();
   };
   

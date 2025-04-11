@@ -27,13 +27,11 @@ class SavedAuthorsManager {
 
   getUserStoredAuthors = () => {
     let allAuthors = this.#getStoredAuthors();
-    console.log("[DEBUG] allAuthors (raw):", allAuthors);
     const userId = accountManager.getCardNumber();
     const userAuthors = allAuthors?.[userId];
     if (!Array.isArray(userAuthors)) {
       console.warn("[WARN] No authors found for user ID:", userId);
     }
-    console.log("[DEBUG] savedAuthors (raw):", userAuthors);
     return Array.isArray(userAuthors) ? userAuthors : [];
   };
 

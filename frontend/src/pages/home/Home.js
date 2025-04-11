@@ -21,10 +21,9 @@ const Home = () => {
   const [bookmarkedIds, setBookmarkedIds] = React.useState(
     Object.keys(bookmarkManager.getUserStoredBookmarks())
   );
-
+  
   const handleUndo = () => {
     if (undoAction?.type === "bookmark" && undoAction?.state === "remove") {
-      console.log("Undoing bookmark removal (adding it back)");
       const id = undoAction.id;
       bookmarkManager.removeBookmark(id);
       setBookmarkedIds(Object.keys(bookmarkManager.getUserStoredBookmarks()));
@@ -34,7 +33,6 @@ const Home = () => {
       setUndoAction(null);
       setSnackbarOpen(false);
     } else if (undoAction?.type === "bookmark" && undoAction?.state === "add") {
-      console.log("Undoing bookmark addition (removing it)");
       const id = undoAction.id;
       bookmarkManager.addBookmark(id);
       setBookmarkedIds(Object.keys(bookmarkManager.getUserStoredBookmarks()));
@@ -44,7 +42,6 @@ const Home = () => {
       setUndoAction(null);
       setSnackbarOpen(false);
     } else if (undoAction?.type === "hold" && undoAction?.state === "remove") {
-      console.log("Undoing hold removal (adding it back)");
       const id = undoAction.id;
       holdManager.remove(id);
       setOnHoldIds(holdManager.getUserHolds());
@@ -54,7 +51,6 @@ const Home = () => {
       setUndoAction(null);
       setSnackbarOpen(false);
     } else if (undoAction?.type === "hold" && undoAction?.state === "add") {
-      console.log("Undoing hold addition (removing it)");
       const id = undoAction.id;
       holdManager.add(id);
       const updated = holdManager.getUserHolds();
