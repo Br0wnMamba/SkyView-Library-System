@@ -11,7 +11,7 @@ const AddToCart = ({ id, type}) => {
   const isAvailable = cartManager.canAdd(id, type);
 
   const handleAdd = () => {
-    const result = cartManager.add(id, type, 1);
+    const result = cartManager.add(String(id), type, 1);
 
     if (result?.status === 200) {
       setAdded(true);

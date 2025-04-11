@@ -49,7 +49,7 @@ export default function Cart() {
   );
 
   const handleQuantityChange = (book_id, type, delta) => {
-    const book = books.find((b) => Number(b.id) === Number(book_id) && b.type === type);
+    const book = books.find((b) => b.id === book_id && b.type === type);
     if (!book) return;
   
     if (delta < 0 && book.quantity === 1) return;
