@@ -7,20 +7,50 @@
     height: 100%;
     background-color: rgba(0,0,0,0.3);
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
     z-index: 1000;
   }
   
+    /* The header for the login overlay */
+    .login-overlay-header-container {
+        display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #14273E; 
+    color: white;
+    width: 100%;
+    height: 44px; 
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    position: relative; /* For absolute positioning of the close button */
+    }
+
+    
+
+      
+
   .overlay-content {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 1.5rem;
     align-items: center;
     background: white;
     width: 20%;
     height: 100%;
-    padding: 0rem 2rem 2rem 2rem; /* ⬅️ remove top padding */
+    padding: 0rem 2rem 2rem 2rem; 
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+  }
+
+  .overlay-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: white;
+    width: 20%;
+    height: 100%;
+    padding: 0rem 2rem 2rem 2rem; 
     box-shadow: -2px 0 5px rgba(0,0,0,0.2);
   }
   
@@ -33,20 +63,6 @@
     justify-content: center;
   }
 
-
-  /* The header for the login overlay */
-    .login-overlay-header-container {
-        display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #0B2948; 
-  color: white;
-  width: 100%;
-  height: 64px; 
-  padding: 0 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* optional for style */
-  position: relative; /* For absolute positioning of the close button */
-    }
 
     .login-overlay-logo-container {
         display: flex;
@@ -117,7 +133,7 @@ align-items: center;
     text-align: center;
     justify-content: center;
     width: 100%;
-    margin: 0.25rem 0;
+    margin: 1rem 0rem;
     color: #000000;
     font-weight: bold;
     font-size: 0.9rem;
@@ -132,10 +148,7 @@ align-items: center;
   
   .login-overlay-alternative-login-alternatives-bridge-container span {
     white-space: nowrap;
-  }
-
-
-
+}
 
   /* Alternative Site Login CSS */
 
@@ -233,6 +246,24 @@ align-items: center;
     font-size: 0.95rem;
     color: #444;
   }
+
+
+  /* Apply same max width to inputs and buttons */
+.login-overlay-login-credentials-container,
+.login-overlay-alternative-login-alternatives-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Force buttons to match input width */
+.login-option-button,
+.login-overlay-login-credentials-email-input,
+.login-overlay-login-credentials-password-input,
+.login-overlay-login-credentials-conainer-sign-in-button {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
   
 
 
