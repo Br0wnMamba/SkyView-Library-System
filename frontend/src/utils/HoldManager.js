@@ -75,7 +75,7 @@ class HoldManager {
       bookManager.updateCopies(
         book_id,
         type,
-        bookManager.getBook(book_id).availability[type] - quantity
+        bookManager.getBook(book_id).availability[type]
       );
 
       holds[accountManager.getUser().id] = userHolds;
