@@ -28,15 +28,7 @@ const ReadBook = () => {
 		setChapter(chapter);
 	};
 
-	const userLoans = loanManager.getUserLoans();
-	const isEBookLoaned = userLoans.find((loan) => Number(loan.book_id) === Number(bookId) && loan.type === "digital");
 	const book = bookManager.getBook(bookId);
-
-	useEffect(() => {
-		if (!isEBookLoaned) {
-			navigate("/bookShelf");
-		}
-	}, [isEBookLoaned, navigate]);
 
 	return (
 		<div className="read-book-container">
