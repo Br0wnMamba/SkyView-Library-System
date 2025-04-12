@@ -14,7 +14,7 @@ This system was developed by the following team members:
 
 Our team worked collaboratively to design the interface, build the system’s functionality, and ensure the user experience aligns with modern digital library expectations.
 
-## 💡 Project Overview
+## Project Overview
 
 The aim of this project is to provide a fully functional digital library frontend for users to:
 
@@ -23,14 +23,14 @@ The aim of this project is to provide a fully functional digital library fronten
 - Check out books for digital reading or reservation
 - Interact with a clean and responsive UI
 
-## 🛠️ Technologies Used
+## 🛠Technologies Used
 
 - **React** – Frontend framework  
 - **JavaScript / JSX** – Application logic  
 - **CSS** – Styling and layout  
 - **Figma** – UI/UX design reference
 
-## 🚀 Getting Started
+## Getting Started
 
 To run the project locally:
 
