@@ -1,117 +1,92 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Home.css";
 import { DisplayContent } from "../../data/book";
 import AddToCart from "../../components/AddToCart/AddToCart";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBook } from "react-icons/fa";
 import bookManager from "../../utils/BookManager";
-import { useNavigate } from "react-router-dom";
-import { Snackbar, Alert } from "@mui/material";
+import holdManager from "../../utils/HoldManager";
+import bookmarkManager from "../../utils/BookmarkManager";
+import PutOnHold from "../../components/PutOnHold/PutOnHold";
+import accountManager from "../../utils/AccountManager";
+import BookDisplaySection from "../../components/DisplayContent/BookDisplaySection";
+import MuiButton from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import AddToBookMark from "../../components/AddToBookmark/AddToBookmark";
 
 const Home = () => {
-  const navigate = useNavigate();
-  const [snackbar, setSnackbar] = useState({
-	  open: false,
-	  message: "",
-	  severity: "success",
-	});
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState("");
+  const userId = accountManager.getCardNumber();
+  const [onHoldIds, setOnHoldIds] = React.useState([
+    ...(holdManager.getHolds()[userId] || []).map((b) => b.id),
+  ]);
+  const [bookmarkedIds, setBookmarkedIds] = React.useState(
+    Object.keys(bookmarkManager.getUserStoredBookmarks())
+  );
 
   return (
     <section className="homepage-container">
       {DisplayContent.map((section, sectionIndex) => (
-        <div key={sectionIndex} className="home-booknewsFeedGroupings">
-          <h2 className="home-group-title">{section.title}</h2>
+        <BookDisplaySection
+          key={sectionIndex}
+          title={section.title}
+          books={section.books.map((bookId) => bookManager.getBook(bookId))}
+          renderButtons={(book) => {
+            const physicalCount = book.availability.physical ?? 0;
+            const digitalAvailability = book.availability.digital ?? false;
 
-          <div className="home-books-container">
-            {section.books.map((book_id) => {
-              const book = bookManager.getBook(book_id);
-
-              return (
-                <div key={book.id} className="home-book-item">
-                  {/* Book Cover */}
-                  <img
-                    src={book.cover}
-                    alt={book.title}
-                    className="book-cover"
-					onClick={() => navigate(`/book/${book.id}`)}
-					style={{ cursor: "pointer" }}
+            return (
+              <div className="home-addtocart-container">
+                {physicalCount > 0 || digitalAvailability ? (
+                  <>
+                    <AddToCart id={book.id} type="physical" />
+                    <AddToCart id={book.id} type="digital" />
+                  </>
+                ) : (
+                  <PutOnHold
+                    bookId={book.id}
+                    bookTitle={book.title}
+                    initiallyOnHold={onHoldIds.includes(book.id)}
+                    updateHoldList={() =>
+                      setOnHoldIds([
+                        ...(holdManager.getHolds()[userId] || []).map(
+                          (b) => b.id
+                        ),
+                      ])
+                    }
+                    setSnackbarMessage={setSnackbarMessage}
+                    setSnackbarOpen={setSnackbarOpen}
                   />
-
-                  {/* Book Title */}
-                  <h3>{book.title}</h3>
-
-                  {/* Book Authors */}
-                  <h4 className="home-bookAuthor">
-                    {book?.authors?.map((author, index) => (
-                      <span key={`${author}-${index}`}>
-                        {index !== 0 && ", "}
-                        {author}
-                      </span>
-                    ))}
-                  </h4>
-
-                  {/* Physical Availability */}
-                  <div className="home-phsycial-avaiablity-container">
-                    <FaBook className="availability-icon" />
-                    <p>
-                      <strong>physical:</strong>{" "}
-                      {book.availability.physical === 0 ? (
-                        <span className="availability-no">unavailable</span>
-                      ) : (
-                        <span className="availability-yes">
-                          {book.availability.physical} available
-                        </span>
-                      )}
-                    </p>
-                  </div>
-
-                  {/* Digital Availability */}
-                  <div className="home-digital-avaiablity-container">
-                    <IoMdPhonePortrait className="availability-icon" />
-                    <p>
-                      <strong>digital:</strong>{" "}
-                      <span
-                        className={
-                          book.availability.digital === 0
-                            ? "availability-no"
-                            : "availability-yes"
-                        }
-                      >
-                        {book.availability.digital === 0
-                          ? "unavailable"
-                          : "available"}
-                      </span>
-                    </p>
-                  </div>
-
-                  {/* Add to Cart Buttons */}
-                  <div className="home-addtocart-container">
-                    <AddToCart
-                      id={book.id}
-                      type="physical"
-					  setSnackbar={setSnackbar}
-                    />
-                    <AddToCart
-                      id={book.id}
-                      type="digital"
-					  setSnackbar={setSnackbar}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+                )}
+                <AddToBookMark
+                  bookId={book.id}
+                  bookTitle={book.title}
+                  initiallyBookmarked={bookmarkedIds.includes(book.id)}
+                  updateBookmarks={() =>
+                    setBookmarkedIds(
+                      Object.keys(bookmarkManager.getUserStoredBookmarks())
+                    )
+                  }
+                  setSnackbarMessage={setSnackbarMessage}
+                  setSnackbarOpen={setSnackbarOpen}
+                />
+              </div>
+            );
+          }}
+          showAvailability={true}
+        />
       ))}
-		<Snackbar
-			open={snackbar.open}
-			autoHideDuration={3000}
-			onClose={() => setSnackbar({ ...snackbar, open: false })}
-		>
-			<Alert severity={snackbar.severity} sx={{ width: "100%" }}>
-			{snackbar.message}
-			</Alert>
-		</Snackbar>
+      <Snackbar
+        open={snackbarOpen}
+        onClose={() => setSnackbarOpen(false)}
+        autoHideDuration={8000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        message={snackbarMessage}
+        ContentProps={{
+          className: "success-snackbar",
+        }}
+      />
     </section>
   );
 };
