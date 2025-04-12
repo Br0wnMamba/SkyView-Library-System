@@ -18,12 +18,13 @@ const Home = () => {
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState("");
   const userId = accountManager.getCardNumber();
-  const [onHoldIds, setOnHoldIds] = React.useState([
-    ...(holdManager.getHolds()[userId] || []).map((b) => b.id),
-  ]);
+  const onHoldUserBooks = holdManager.getHolds() || [];
+  const onHoldUserBooksIds = (onHoldUserBooks.length > 0 && onHoldUserBooks.map((hold) => hold.id)) || [];
+  const [onHoldIds, setOnHoldIds] = React.useState(onHoldUserBooksIds);
   const [bookmarkedIds, setBookmarkedIds] = React.useState(
     Object.keys(bookmarkManager.getUserStoredBookmarks())
   );
+  console.log("onHoldIds", onHoldIds);
 
   return (
     <section className="homepage-container">
@@ -50,13 +51,11 @@ const Home = () => {
                     type="digital"
                     quantity={1}
                     initiallyOnHold={onHoldIds.includes(book.id)}
-                    updateHoldList={() =>
-                      setOnHoldIds([
-                        ...(holdManager.getHolds()[userId] || []).map(
-                          (b) => b.id
-                        ),
-                      ])
-                    }
+                    updateHoldList={(holds) => {
+						setOnHoldIds(
+							holds.map((hold) => hold.id)
+						);
+                    }}
                     setSnackbarMessage={setSnackbarMessage}
                     setSnackbarOpen={setSnackbarOpen}
                   />
