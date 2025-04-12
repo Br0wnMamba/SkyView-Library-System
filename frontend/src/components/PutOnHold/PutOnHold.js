@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import holdManager from '../../utils/HoldManager';
 import './PutOnHold.css';
-
+import accountManager from '../../utils/AccountManager';
+import {useNavigate} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 const PutOnHold = ({
   bookId,
   bookTitle,
@@ -13,14 +15,14 @@ const PutOnHold = ({
   quantity
 }) => {
   const [onHold, setOnHold] = useState(initiallyOnHold);
-
+  const navigate = useNavigate();
+  const account = accountManager.getUser();
+  const location = useLocation();
   useEffect(() => {
     setOnHold(initiallyOnHold);
   }, [initiallyOnHold]);
 
   const handleAddHold = () => {
-    const type = "digital";
-    const quantity = 1;
     holdManager.add(bookId, type, quantity);
     updateHoldList(holdManager.getHolds());
     setOnHold(true);
@@ -29,8 +31,6 @@ const PutOnHold = ({
   };
 
   const handleRemoveHold = () => {
-    const type = "digital";
-
     const holdsBefore = holdManager.getHolds();
 
     holdManager.remove(bookId, type, quantity);
@@ -43,6 +43,10 @@ const PutOnHold = ({
   };
 
   const handleClick = () => {
+    if (!account) {
+      navigate('/login', { state: { backgroundLocation: location.pathname } });
+      return;
+    }
     if (onHold) {
       handleRemoveHold();
     } else {

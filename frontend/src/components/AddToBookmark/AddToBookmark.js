@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import bookmarkManager from "../../utils/BookmarkManager";
 import "./AddToBookmark.css";
-
+import accountManager from "../../utils/AccountManager";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const AddToBookmark = ({
   bookId,
   bookTitle,
@@ -11,7 +13,9 @@ const AddToBookmark = ({
   setSnackbarOpen
 }) => {
   const [bookmarked, setBookmarked] = useState(initiallyBookmarked);
-
+  const navigate = useNavigate();
+  const user = accountManager.getUser();
+  const location = useLocation();
   useEffect(() => {
     setBookmarked(initiallyBookmarked);
   }, [initiallyBookmarked]);
@@ -43,6 +47,10 @@ const AddToBookmark = ({
   };
 
   const handleClick = () => {
+    if (!user) {
+      navigate("/login", { state: { backgroundLocation: location.pathname } });
+      return;
+    }
     if (bookmarked) {
       handleRemoveBookmark();
     } else {
