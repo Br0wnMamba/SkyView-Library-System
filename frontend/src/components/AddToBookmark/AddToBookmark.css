@@ -1,0 +1,64 @@
+.bookmark-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.bookmark-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #76b5c5; /* Button base colour */
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  width: 100%; /* Fills container */
+  border-radius: 10px; /* Smooth rounded corners */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* subtle shadow */
+}
+
+.bookmark-button:hover {
+  background-color: #abdbe3; /* darker teal on hover */
+}
+
+.bookmark-button:disabled {
+  background-color: #b0b0b0;      /* Muted grey */
+  color: #000000;                 /* White text for contrast */
+  opacity: 0.6;                   /* Faded look */
+  cursor: not-allowed;           /* Shows it's not clickable */
+  box-shadow: none;              /* Remove glow/shadow to reinforce disabled state */
+  transition: none;              /* No hover effect */
+}
+
+.bookmark-button:disabled:hover {
+  background-color: #b0b0b0;      /* Prevent hover changes */
+  color: #111010;
+}
+
+.bookmark-container:hover {
+  background-color: transparent;
+  color: inherit;
+}
+
+.bookmark-added-toggle {
+  opacity: 0.85; /* slightly transparent */
+  background-color: #102838; /* dark blue base with transparency feel */
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.bookmark-added-toggle .bookmark-button {
+  background-color: #abdbe3; /* calmer teal for "added" */
+  color: #e0fdfc;
+  cursor: pointer;
+}
+
+.bookmark-added-toggle .bookmark-button:hover {
+  background-color: #1e81b0; /* slightly darker hover */
+  color: white;
+}

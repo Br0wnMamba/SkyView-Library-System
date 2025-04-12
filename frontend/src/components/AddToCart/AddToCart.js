@@ -3,7 +3,7 @@ import "./AddToCart.css";
 import cartManager from "../../utils/CartManager";
 
 const AddToCart = ({ id, type, setSnackbar }) => {
-  const label = type === 'physical' ? 'Physical Copy' : 'Digital Copy';
+  const label = type === 'physical' ? 'Paperback' : 'eBook';
 
   const [added, setAdded] = useState(false);
   const [locked, setLocked] = useState(false);
