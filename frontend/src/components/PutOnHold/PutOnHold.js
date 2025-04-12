@@ -19,10 +19,8 @@ const PutOnHold = ({
   const handleAddHold = () => {
     const type = "digital";
     const quantity = 1;
-    console.log("[DEBUG] Adding hold:", { bookId, type, quantity });
     holdManager.add(bookId, type, quantity);
     updateHoldList(holdManager.getHolds());
-    console.log("[DEBUG] Updated hold list after add:", holdManager.getHolds());
     setOnHold(true);
     setSnackbarMessage(`You placed a hold on "${bookTitle}".`);
     setSnackbarOpen(true);
@@ -30,15 +28,12 @@ const PutOnHold = ({
 
   const handleRemoveHold = () => {
     const type = "digital";
-    console.log("[DEBUG] Removing hold:", { bookId, type });
 
     const holdsBefore = holdManager.getHolds();
-    console.log("[DEBUG] Hold list before remove:", holdsBefore);
 
     holdManager.remove(bookId, type);
 
     const holdsAfter = holdManager.getHolds();
-    console.log("[DEBUG] Hold list after remove:", holdsAfter);
 
     setOnHold(false);
     setSnackbarMessage(`You removed "${bookTitle}" from your holds.`);
@@ -46,7 +41,6 @@ const PutOnHold = ({
   };
 
   const handleClick = () => {
-    console.log("[DEBUG] Handle click - current hold state:", onHold);
     if (onHold) {
       handleRemoveHold();
     } else {
