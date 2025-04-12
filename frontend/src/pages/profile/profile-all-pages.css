@@ -67,3 +67,15 @@
   background-color: #f9d7da !important; 
   color: #9a4d5b !important; 
 }
+
+.physical-copy-badge {
+  background-color: #f0f0f0;
+  color: #555;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  margin-top: 8px;
+  font-style: italic;
+  text-align: center;
+}
