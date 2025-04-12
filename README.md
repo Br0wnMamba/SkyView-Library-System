@@ -30,6 +30,17 @@ The aim of this project is to provide a fully functional digital library fronten
 - **CSS** – Styling and layout  
 - **Figma** – UI/UX design reference
 
+
+## Login Credentials
+
+To access certain features of the library system (such as checking out books or accessing a user profile), users must log in.
+
+### Default Login Credentials
+
+For demo purposes, the following credentials can be used:
+
+
+
 ## Getting Started
 
 To run the project locally:
