@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AddToCart.css";
 import cartManager from "../../utils/CartManager";
 
-const AddToCart = ({ id, type, setSnackbar }) => {
+const AddToCart = ({ id, type }) => {
   const label = type === 'physical' ? 'Paperback' : 'eBook';
 
   const [added, setAdded] = useState(false);
@@ -23,12 +23,6 @@ const AddToCart = ({ id, type, setSnackbar }) => {
       } else {
         setTimeout(() => setAdded(false), 2000);
       }
-    } else {
-	  setSnackbar({
-		open: true,
-		message: result?.message || "Failed to add to cart",
-		severity: "error",
-	  });
     }
   };
 

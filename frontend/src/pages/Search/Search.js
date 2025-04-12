@@ -200,12 +200,10 @@ const Search = () => {
 						<AddToCart
 						id={book.id}
 						type="physical"
-						setSnackbar={setSnackbar}
 						/>
 						<AddToCart
 						id={book.id}
 						type="digital"
-						setSnackbar={setSnackbar}
 						/>
 					  <button className="add-to-cart-button" onClick={() => handleSaveAuthor(book.authors)}>
           				Save Authors
