@@ -101,6 +101,8 @@ const Bookmarks = () => {
                         }}
                         setSnackbarMessage={setSnackbarMessage}
                         setSnackbarOpen={setSnackbarOpen}
+                        type="digital"
+                        quantity={1}
                       />
                     ) : (
                       <>
