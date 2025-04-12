@@ -8,7 +8,9 @@ const PutOnHold = ({
   initiallyOnHold,
   updateHoldList,
   setSnackbarMessage,
-  setSnackbarOpen
+  setSnackbarOpen,
+  type,
+  quantity
 }) => {
   const [onHold, setOnHold] = useState(initiallyOnHold);
 
@@ -31,7 +33,7 @@ const PutOnHold = ({
 
     const holdsBefore = holdManager.getHolds();
 
-    holdManager.remove(bookId, type);
+    holdManager.remove(bookId, type, quantity);
 
     const holdsAfter = holdManager.getHolds();
 

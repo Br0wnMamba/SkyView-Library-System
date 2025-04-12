@@ -52,7 +52,6 @@ const History = () => {
             books={history_books
               .filter((record) => books[record.id])
               .map((record) => {
-                console.log("[DEBUG] Rendering book record", record);
                 return {
                   id: record.id,
                   title: books[record.id].title,
@@ -63,7 +62,6 @@ const History = () => {
                 };
               })}
             renderButtons={(book) => {
-              console.log("[DEBUG] Render buttons for book", book);
               const physicalCount = books[book.id]?.availability?.physical ?? 0;
               const digitalAvailability = books[book.id]?.availability?.digital ?? 0;
 

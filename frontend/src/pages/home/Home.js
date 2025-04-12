@@ -47,6 +47,8 @@ const Home = () => {
                   <PutOnHold
                     bookId={book.id}
                     bookTitle={book.title}
+                    type="digital"
+                    quantity={1}
                     initiallyOnHold={onHoldIds.includes(book.id)}
                     updateHoldList={() =>
                       setOnHoldIds([
